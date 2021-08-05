@@ -1,7 +1,7 @@
 # Telemetry Support Library for Chrome OS
 
-This repository contains a library code that facilitates access to the telemetry
-and diagnostics APIs on Chrome OS.
+This repository contains a library code that facilitate access telemetry and
+diagnostics APIs on Chrome OS.
 
 The code in this repository contains most of the code from
 [dpsl](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/)
@@ -15,5 +15,4 @@ The importing code represents a special type of chrome extensions
 extenion resources before serving (inside the crx file).
 
 npm package name: TBD.
-
 Publishing status: In development.
