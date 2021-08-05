@@ -1,24 +1,19 @@
-# Telemetry Support Extension for Chrome OS
+# Telemetry Support Library for Chrome OS
 
-This repository contains code for the
-[shared module](https://developer.chrome.com/docs/extensions/mv2/shared_modules/)
-extension that acts as an API to access telemetry and diagnostics chrome
-extension APIs.
+This repository contains a library code that facilitates access to the telemetry
+and diagnostics APIs on Chrome OS.
 
 The code in this repository contains most of the code from
 [dpsl](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/)
- and is tweaked as a valid shared module chrome extension
- (with manifest.json ... etc).
+ and is tweaked to integrate with the Chrome OS system extension APIs.
 
 # Usages
 
-Chrome extensions can include this module in 'import'
-[manifest](https://developer.chrome.com/docs/extensions/mv3/manifest/) entry.
-If allowed*, the extension gains access to the set of telemetry and diagnostics
-APIs. See
-[examples](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/)
-.
+The library is published via npm and can be included by importing code.
+The importing code represents a special type of chrome extensions
+(chromeos_system_extension). It should package this library code with the
+extenion resources before serving (inside the crx file).
 
-(*) Only allowed chrome extension IDs can import this extension. This is because
-the underlying chrome extension APIs are only exposed to certain chrome
-extension IDs. See [this](https://source.chromium.org/chromium/chromium/src/+/main:chrome/common/chromeos/extensions/api/_manifest_features.json;l=19)
+npm package name: TBD.
+
+Publishing status: In development.
