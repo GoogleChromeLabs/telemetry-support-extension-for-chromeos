@@ -1,4 +1,4 @@
-name: CI Actions
+name: CD Actions
 on: [push]
 jobs:
   build:
