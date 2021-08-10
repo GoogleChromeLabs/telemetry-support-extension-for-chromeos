@@ -6,7 +6,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --no-error-on-unmatched-pattern",
+    "test": "echo \"Warning: no test specified\" && exit 0",
+    "script:ci": "sh ./scripts/ci.sh",
+    "script:cd": "sh ./scripts/cd.sh"
   },
   "repository": {
     "type": "git",
@@ -24,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/GoogleChromeLabs/telemetry-support-extension-for-chromeos/issues"
   },
-  "homepage": "https://github.com/GoogleChromeLabs/telemetry-support-extension-for-chromeos#readme"
+  "homepage": "https://github.com/GoogleChromeLabs/telemetry-support-extension-for-chromeos#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0"
+  }
 }
