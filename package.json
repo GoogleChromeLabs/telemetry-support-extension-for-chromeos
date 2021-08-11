@@ -2,12 +2,16 @@
   "name": "cros-dpsl-js",
   "version": "1.0.0",
   "description": "Diagnostics processor support library for Chrome OS",
+  "main": "./src/dpsl.js",
+  "exports": "./src/dpsl.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "lint": "node_modules/.bin/eslint . --no-error-on-unmatched-pattern",
-    "test": "echo \"Warning: no test specified\" && exit 0",
+    "build": "node_modules/.bin/node src/dpsl.js",
+    "lint": "node_modules/.bin/eslint .",
+    "test": "node_modules/.bin/node --experimental-vm-modules node_modules/.bin/jest --coverage",
     "script:ci": "sh ./scripts/ci.sh",
     "script:cd": "sh ./scripts/cd.sh"
   },
@@ -30,6 +34,8 @@
   "homepage": "https://github.com/GoogleChromeLabs/telemetry-support-extension-for-chromeos#readme",
   "devDependencies": {
     "eslint": "^7.32.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "node": "^16.6.1",
+    "jest": "^27.0.6"
   }
 }
