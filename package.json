@@ -1,5 +1,5 @@
 {
-  "name": "cros-dpsl-v2",
+  "name": "cros-dpsl-js",
   "version": "1.0.0",
   "description": "Diagnostics processor support library for Chrome OS",
   "directories": {
