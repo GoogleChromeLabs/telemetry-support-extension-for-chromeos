@@ -14,7 +14,7 @@ The importing code represents a special type of chrome extensions
 (chromeos_system_extension). It should package this library code with the
 extenion resources before serving (inside the crx file).
 
-npm package name: cros-dpsl-v2.
+npm package name: cros-dpsl-js.
 
 Publishing status: In development.
 
