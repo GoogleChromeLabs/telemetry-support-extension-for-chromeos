@@ -6,7 +6,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "lint": "eslint . --no-error-on-unmatched-pattern",
+    "lint": "node_modules/.bin/eslint . --no-error-on-unmatched-pattern",
     "test": "echo \"Warning: no test specified\" && exit 0",
     "script:ci": "sh ./scripts/ci.sh",
     "script:cd": "sh ./scripts/cd.sh"
