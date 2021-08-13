@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "rules": {
+    "no-console": "off"
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  }
+}
