@@ -1,0 +1,28 @@
+{
+  "name": "cros-dpsl-js",
+  "version": "1.0.0",
+  "description": "Diagnostics processor support library for Chrome OS",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoogleChromeLabs/telemetry-support-extension-for-chromeos.git"
+  },
+  "keywords": [
+    "dpsl",
+    "chromeos"
+  ],
+  "publishConfig": {
+    "registry": "https://wombat-dressing-room.appspot.com"
+  },
+  "author": "Mahmoud Gawad <mgawad@google.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/GoogleChromeLabs/telemetry-support-extension-for-chromeos/issues"
+  },
+  "homepage": "https://github.com/GoogleChromeLabs/telemetry-support-extension-for-chromeos#readme"
+}
