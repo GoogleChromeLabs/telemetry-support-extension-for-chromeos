@@ -28,33 +28,6 @@
  */
 export default class DPSLTelemetryRequester {
   /**
-   * Requests Backlight info.
-   * @return { !Promise<!dpsl.BacklightInfo> }
-   * @public
-   */
-  async getBacklightInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Requests Battery info.
-   * @return { !Promise<!dpsl.BatteryInfo> }
-   * @public
-   */
-  async getBatteryInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Requests Bluetooth info.
-   * @return { !Promise<!dpsl.BluetoothInfo> }
-   * @public
-   */
-  async getBluetoothInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
    * Requests CachedVpd info.
    * @return { !Promise<!dpsl.VpdInfo> }
    * @public
@@ -70,59 +43,5 @@ export default class DPSLTelemetryRequester {
    */
   async getOemData() {
     return chrome.os.telemetry.getOemData();
-  }
-
-  /**
-   * Requests CPU info.
-   * @return { !Promise<!dpsl.CpuInfo> }
-   * @public
-   */
-  async getCpuInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Requests Fan info.
-   * @return { !Promise<!dpsl.FanInfo> }
-   * @public
-   */
-  async getFanInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Requests Memory info.
-   * @return { !Promise<!dpsl.MemoryInfo> }
-   * @public
-   */
-  async getMemoryInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Requests NonRemovableBlockDevice info.
-   * @return { !Promise<!dpsl.BlockDeviceInfo> }
-   * @public
-   */
-  async getNonRemovableBlockDevicesInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Requests StatefulPartition info.
-   * @return { !Promise<!dpsl.StatefulPartitionInfo> }
-   * @public
-   */
-  async getStatefulPartitionInfo() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Requests Timezone info.
-   * @return { !Promise<!dpsl.TimezoneInfo> }
-   * @public
-   */
-  async getTimezoneInfo() {
-    throw new Error('Not implemented!');
   }
 }
