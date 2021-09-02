@@ -15,9 +15,11 @@
  */
 
 import DPSLTelemetryRequester from './telemetry_requester.js';
+import DPSLDiagnosticsRequester from './diagnostics_manager.js';
 
 const dpsl = {
   telemetry: new DPSLTelemetryRequester(),
+  diagnostics: new DPSLDiagnosticsRequester(),
 };
 
 export default dpsl;
