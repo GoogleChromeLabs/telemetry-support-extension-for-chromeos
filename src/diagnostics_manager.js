@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* global chrome */
+
 /**
 * @fileoverview
 *
@@ -21,28 +23,26 @@
 * routines (tests).
 */
 
-/**
- * @type {!string}
- * @const
- * @private
- */
-const ROUTINE_STATUS_WAITING_USER_ACTION = 'waiting';
+const ROUTINE_COMMAND_TYPE = {
+  CANCEL: 'cancel',
+  REMOVE: 'remove',
+  RESUME: 'resume',
+  GET_STATUS: 'status',
+};
 
 /**
  * Keeps track of Routine status when running dpsl.diagnostics.* diagnostics
  * routines.
  */
-class Routine {
+export class Routine {
   /**
    * @param {!number} id
-   * @private
    */
   constructor(id) {
     /**
      * Routine ID created when the routine is first requested to run.
      * @type { !number }
      * @const
-     * @private
      */
     this.id = id;
   }
@@ -50,50 +50,17 @@ class Routine {
   /**
    * Sends |command| on this routine to the backend.
    * @param {!string} command
-   * @returns {!Promise<!dpsl.RoutineStatus>}
+   * @return {!Promise<!dpsl.RoutineStatus>}
    * @private
    */
-  async _genericSendCommand(command) {
-    const message =
-          /** @type {!dpsl_internal.DiagnosticsGetRoutineUpdateRequest} */ ({
-        routineId: this.id,
-        command: command,
-        includeOutput: true
-      });
-    const response =
-      /**
-        @type {{
-        progressPercent: number,
-        output: string,
-        routineUpdateUnion: ({interactiveUpdate: {userMessage:
-        string}}|{noninteractiveUpdate:{status: string, statusMessage:
-        string}})
-        }}
-      */
-      (await genericSendMessage(
-        dpsl_internal.Message.DIAGNOSTICS_ROUTINE_UPDATE, message));
+  async _getRoutineUpdate(command) {
+    const request = {
+      id: this.id,
+      command: command,
+    };
 
-    let status = /** @type {dpsl.RoutineStatus} */ ({
-      progressPercent: 0,
-      output: '',
-      status: '',
-      statusMessage: '',
-      userMessage: ''
-    });
-
-    // fill in the status object and return it.
-    status.progressPercent = response.progressPercent;
-    status.output = response.output || '';
-    if (response.routineUpdateUnion.noninteractiveUpdate) {
-      status.status = response.routineUpdateUnion.noninteractiveUpdate.status;
-      status.statusMessage =
-        response.routineUpdateUnion.noninteractiveUpdate.statusMessage;
-    } else {
-      status.userMessage =
-        response.routineUpdateUnion.interactiveUpdate.userMessage;
-      status.status = ROUTINE_STATUS_WAITING_USER_ACTION;
-    }
-    return status;
+    return /** @type {!dpsl.RoutineStatus} */ (
+      chrome.os.diagnostics.getRoutineUpdate(request));
   }
 
   /**
@@ -102,7 +69,7 @@ class Routine {
    * @public
    */
   async getStatus() {
-    return this._genericSendCommand('get-status');
+    return this._getRoutineUpdate(ROUTINE_COMMAND_TYPE.GET_STATUS);
   }
 
   /**
@@ -111,7 +78,7 @@ class Routine {
    * @public
    */
   async resume() {
-    return this._genericSendCommand('continue');
+    return this._getRoutineUpdate(ROUTINE_COMMAND_TYPE.RESUME);
   }
 
   /**
@@ -121,23 +88,9 @@ class Routine {
    * @public
    */
   async stop() {
-    this._genericSendCommand('cancel');
-    return this._genericSendCommand('remove');
+    this._getRoutineUpdate(ROUTINE_COMMAND_TYPE.CANCEL);
+    return this._getRoutineUpdate(ROUTINE_COMMAND_TYPE.REMOVE);
   }
-}
-
-const routineMap = {
-  BATTERY_RUN_CAPACITY_ROUTINE: chrome.os.diagnostics.runBatteryCapcityRoutine
-};
-
-/**
- * @param {!routineToRun} Promise<!RunRoutineResponse>
- * @param {!args} Object
- * @returns {!Promise<!Routine>}
- */
-async function genericRunRoutine(routineToRun, args) {
-  const response = await routineToRun(args);
-  return new Routine(response.id);
 }
 
 /**
@@ -150,7 +103,8 @@ class BatteryManager {
    * @public
    */
   async runCapacityRoutine() {
-    return genericRunRoutine(routineMap[BATTERY_RUN_CAPACITY_ROUTINE]);
+    return chrome.os.diagnostics.runBatteryCapacityRoutine().then(
+        (response) => new Routine(response.id));
   }
 
   /**
@@ -159,7 +113,8 @@ class BatteryManager {
    * @public
    */
   async runHealthRoutine() {
-    throw new Error('Not implemented!');
+    return chrome.os.diagnostics.runBatteryHealthRoutine().then(
+        (response) => new Routine(response.id));
   }
 
   /**
@@ -169,7 +124,8 @@ class BatteryManager {
    * @public
    */
   async runDischargeRoutine(params) {
-    throw new Error('Not implemented!');
+    return chrome.os.diagnostics.runBatteryDischargeRoutine(params).then(
+        (response) => new Routine(response.id));
   }
 
   /**
@@ -179,74 +135,8 @@ class BatteryManager {
    * @public
    */
   async runChargeRoutine(params) {
-    throw new Error('Not implemented!');
-  }
-}
-
-/**
- * Diagnostics NVME Manager for dpsl.diagnostics.nmve.* APIs.
- */
-class NvmeManager {
-  /**
-   * Runs NVMe smartctl test.
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runSmartctlCheckRoutine() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Runs NVMe wear level test.
-   * @param {!dpsl.NvmeWearLevelRoutineParams} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runWearLevelRoutine(params) {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Runs NVMe short-self-test type test.
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runShortSelfTestRoutine() {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Runs NVMe long-self-test type test.
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runLongSelfTestRoutine() {
-    throw new Error('Not implemented!');
-  }
-}
-
-/**
- * Diagnostics Power Manager for dpsl.diagnostics.power.* APIs.
- */
-class PowerManager {
-  /**
-   * Runs power ac connected-type test.
-   * @param {(!dpsl.PowerAcRoutineParams)=} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runAcConnectedRoutine(params) {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Runs power ac disconnected-type test.
-   * @param {(!dpsl.PowerAcRoutineParams)=} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runAcDisconnectedRoutine(params) {
-    throw new Error('Not implemented!');
+    return chrome.os.diagnostics.runBatteryChargeRoutine(params).then(
+        (response) => new Routine(response.id));
   }
 }
 
@@ -261,7 +151,8 @@ class CpuManager {
    * @public
    */
   async runCacheRoutine(params) {
-    throw new Error('Not implemented!');
+    return chrome.os.diagnostics.runCpuCacheRoutine(params).then(
+        (response) => new Routine(response.id));
   }
 
   /**
@@ -271,53 +162,23 @@ class CpuManager {
    * @public
    */
   async runStressRoutine(params) {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Runs CPU floating point accuracy test.
-   * @param {!dpsl.CpuRoutineDurationParams} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runFloatingPointAccuracyRoutine(params) {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Runs CPU prime number search test.
-   * @param {!dpsl.CpuPrimeSearchRoutineParams} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runPrimeSearchRoutine(params) {
-    throw new Error('Not implemented!');
+    return chrome.os.diagnostics.runCpuStressRoutine(params).then(
+        (response) => new Routine(response.id));
   }
 }
 
-
 /**
- * Diagnostics Disk Manager for dpsl.diagnostics.disk.* APIs.
+ * Diagnostics Memory Manager for dpsl.diagnostics.memory.* APIs.
  */
-class DiskManager {
+class MemoryManager {
   /**
-   * Runs disk linear read test.
-   * @param {!dpsl.DiskReadRoutineParams} params
+   * Runs memory test.
    * @return { !Promise<!Routine> }
    * @public
    */
-  async runLinearReadRoutine(params) {
-    throw new Error('Not implemented!');
-  }
-
-  /**
-   * Runs disk random read test.
-   * @param {!dpsl.DiskReadRoutineParams} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runRandomReadRoutine(params) {
-    throw new Error('Not implemented!');
+  async runMemoryRoutine() {
+    return chrome.os.diagnostics.runMemoryRoutine().then(
+        (response) => new Routine(response.id));
   }
 }
 
@@ -325,6 +186,9 @@ class DiskManager {
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 export default class DPSLDiagnosticsManager {
+  /**
+   * @constructor
+   */
   constructor() {
     /**
      * @type {!BatteryManager}
@@ -333,27 +197,24 @@ export default class DPSLDiagnosticsManager {
     this.battery = new BatteryManager();
 
     /**
-     * @type {!NvmeManager}
-     * @public
-     */
-    this.nvme = new NvmeManager();
-
-    /**
-     * @type {!PowerManager}
-     * @public
-     */
-    this.power = new PowerManager();
-
-    /**
      * @type {!CpuManager}
      * @public
      */
     this.cpu = new CpuManager();
 
     /**
-     * @type {!DiskManager}
+     * @type {!MemoryManager}
      * @public
      */
-    this.disk = new DiskManager();
+    this.memory = new MemoryManager();
+  }
+
+  /**
+     * Requests a list of available diagnostics routines.
+     * @return { !Promise<!dpsl.AvailableRoutinesList> }
+     * @public
+     */
+  async getAvailableRoutines() {
+    return chrome.os.diagnostics.getAvailableRoutines();
   }
 }

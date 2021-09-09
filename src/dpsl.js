@@ -22,4 +22,5 @@ const dpsl = {
   diagnostics: new DPSLDiagnosticsRequester(),
 };
 
-export default dpsl;
+export {Routine} from './diagnostics_manager.js';
+export {dpsl};

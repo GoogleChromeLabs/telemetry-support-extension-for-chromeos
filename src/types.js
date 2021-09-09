@@ -21,6 +21,8 @@
  * dpsl.* types definitions.
  */
 
+ ////////////////////// dpsl.telemetry.* type definitions //////////////////////
+
 /**
  * Response message containing Backlight Info
  * @typedef {!Array<{
@@ -156,3 +158,60 @@ dpsl.TimezoneInfo;
  * )}
  */
 dpsl.TelemetryInfoTypes;
+
+///////////////////// dpsl.diagnostics.* type definitions //////////////////////
+
+/**
+ * List of available diagnostics routines (tests). Possible values: [
+ * 'battery_capacity', 'battery_charge', 'battery_discharge', 'battery_health',
+ * 'cpu_cache', 'cpu_stress', 'memory']
+ * @typedef {{
+ *    routines: !Array<!string>
+ * }}
+ */
+dpsl.AvailableRoutinesList;
+
+/**
+ * |progressPercent| percentage of the routine progress.
+ * |output| accumulated output, like logs.
+ * |status| current status of the routine. One of ['ready', 'running',
+ *   'waiting_user_action', 'passed', 'failed', 'error', 'cancelled',
+ *   'failed_to_start', 'removed', 'cancelling', 'unsupported', 'not_run']
+ * |statusMessage| more detailed status message.
+ * |userMessage| Requested user action. Should be localized and displayed to the
+ * user. Note: used in interactive routines only, two possible values are
+ * returned: 'unplug-ac-power' or 'plug-in-ac-power'.
+ * @typedef {{
+ *   progressPercent: !number,
+ *   output?: string,
+ *   status: !string,
+ *   statusMessage: !string,
+ *   userMessage?: string
+  }}
+ */
+dpsl.RoutineStatus;
+
+/**
+ * Params object of dpsl.diagnostics.battery.runChargeRoutine()
+ * @typedef {{
+ *   lengthSeconds: !number,
+ *   minimumChargePercentRequired: !number
+ * }}
+ */
+dpsl.BatteryChargeRoutineParams;
+
+/**
+ * Params object of dpsl.diagnostics.battery.runDischargeRoutine()
+ * @typedef {{
+ *   lengthSeconds: !number,
+ *   maximumDischargePercentAllowed: !number
+ * }}
+ */
+dpsl.BatteryDischargeRoutineParams;
+
+/**
+ * Params object of dpsl.diagnostics.cpu.{runCacheRoutine(), runStressRoutine(),
+ * runFloatingPointAccuracyRoutine()}
+ * @typedef {{duration: !number}}
+ */
+dpsl.CpuRoutineDurationParams;
