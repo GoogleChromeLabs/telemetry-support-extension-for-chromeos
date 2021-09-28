@@ -1,17 +1,16 @@
 {
   "name": "cros-dpsl-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Diagnostics processor support library for Chrome OS",
   "main": "./src/dpsl.js",
   "exports": "./src/dpsl.js",
-  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "build": "node_modules/.bin/node src/dpsl.js",
     "lint": "node_modules/.bin/eslint .",
-    "test": "node_modules/.bin/node --experimental-vm-modules node_modules/.bin/jest --coverage",
+    "test": "node_modules/.bin/node node_modules/.bin/jest --coverage",
     "script:ci": "sh ./scripts/ci.sh",
     "script:cd": "sh ./scripts/cd.sh"
   },
