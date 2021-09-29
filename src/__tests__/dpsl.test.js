@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {dpsl} from '../dpsl.js';
+const {dpsl} = require('../dpsl.js');
 
 describe('dpsl.telemetry tests', () => {
   let originalChrome;

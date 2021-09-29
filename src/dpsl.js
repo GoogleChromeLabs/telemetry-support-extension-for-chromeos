@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-import DPSLTelemetryRequester from './telemetry_requester.js';
-import DPSLDiagnosticsRequester from './diagnostics_manager.js';
+const {DPSLTelemetryRequester} = require('./telemetry_requester.js');
+const {DPSLDiagnosticsManager, Routine} = require('./diagnostics_manager.js');
 
 const dpsl = {
   telemetry: new DPSLTelemetryRequester(),
-  diagnostics: new DPSLDiagnosticsRequester(),
+  diagnostics: new DPSLDiagnosticsManager(),
 };
 
-export {Routine} from './diagnostics_manager.js';
-export {dpsl};
+module.exports = {
+  dpsl: dpsl,
+  Routine: Routine,
+};

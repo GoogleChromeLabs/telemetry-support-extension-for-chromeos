@@ -41,6 +41,9 @@ coverage
 */testem.log
 */typings
 
+# Wombat-dressing-room
+.npmrc
+
 # System Files
 */.DS_Store
 */Thumbs.db

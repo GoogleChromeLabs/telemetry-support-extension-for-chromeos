@@ -26,7 +26,7 @@
 /**
  * DPSL Telemetry Requester used in dpsl.telemetry.*.
  */
-export default class DPSLTelemetryRequester {
+class DPSLTelemetryRequester {
   /**
    * Requests CachedVpd info.
    * @return { !Promise<!dpsl.VpdInfo> }
@@ -45,3 +45,7 @@ export default class DPSLTelemetryRequester {
     return chrome.os.telemetry.getOemData();
   }
 }
+
+module.exports = {
+  DPSLTelemetryRequester: DPSLTelemetryRequester,
+};

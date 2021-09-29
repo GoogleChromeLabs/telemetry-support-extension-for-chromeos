@@ -34,7 +34,7 @@ const ROUTINE_COMMAND_TYPE = {
  * Keeps track of Routine status when running dpsl.diagnostics.* diagnostics
  * routines.
  */
-export class Routine {
+class Routine {
   /**
    * @param {!number} id
    */
@@ -185,7 +185,7 @@ class MemoryManager {
 /**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
-export default class DPSLDiagnosticsManager {
+class DPSLDiagnosticsManager {
   /**
    * @constructor
    */
@@ -218,3 +218,8 @@ export default class DPSLDiagnosticsManager {
     return chrome.os.diagnostics.getAvailableRoutines();
   }
 }
+
+module.exports = {
+  DPSLDiagnosticsManager: DPSLDiagnosticsManager,
+  Routine: Routine,
+};
