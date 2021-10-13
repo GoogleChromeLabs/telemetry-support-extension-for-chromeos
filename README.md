@@ -4,7 +4,7 @@ This repository contains a library code that facilitates access to the telemetry
 and diagnostics APIs on Chrome OS.
 
 The code in this repository contains most of the code from
-[dpsl](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/)
+[dpsl](https://source.chromium.org/chromium/chromium/src/+/main:ash/webui/telemetry_extension_ui/resources/dpsl/)
  and is tweaked to integrate with the Chrome OS system extension APIs.
 
 # Usages
@@ -14,16 +14,15 @@ The importing code represents a special type of chrome extensions
 (chromeos_system_extension). It should package this library code with the
 extenion resources before serving (inside the crx file).
 
-npm package name: cros-dpsl-js.
+npm package name: **cros-dpsl-js**.
 
-Publishing status: In development.
+Publishing status: published in [npm](https://www.npmjs.com/package/cros-dpsl-js).
 
-# Development Instructions
+## Instructions
 
-**Prerequisites**
+1. `npm install cros-dpsl-js`
+2. Import the package in your source code: `import { dpsl } from 'cros-dpsl-js';`
+3. Begin using the library through the dpsl.* namespace.
+4. See the currently supported APIs and sample usages in src/README.md.
 
-1. npm 7.20+
-
-**Instructions**
-
-1. `npm install`
+Currently, the library is integrated in another project. Refer to usages to know more: [cros-diag-app/diagnostics-extension](https://github.com/MahmoudAGawad/cros-diag-app/tree/main/diagnostics-extension).
