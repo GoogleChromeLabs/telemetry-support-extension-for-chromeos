@@ -1,50 +1,17 @@
-# NOTE#1
-The files in this directory (including this README.md) is a subset of [DPSL doc](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/).
+# NOTES
+- The files in this directory (including this README.md) is a subset of [Chromium's DPSL](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/).
 
-# Note#2
-You may refer to [cros-diag-app/diagnostics-extension](https://github.com/MahmoudAGawad/cros-diag-app/tree/main/diagnostics-extension) to see the integration of this library in action.
+- You may refer to [cros-diag-app/diagnostics-extension](https://github.com/MahmoudAGawad/cros-diag-app/tree/main/diagnostics-extension) to see the integration of this library in action.
 
 # Overview
 Diagnostic Processor Support Library (DPSL) is a collection of telemetry and
 diagnostics interfaces exposed to third-parties. All API functions are
-accessed through the dpsl.* namespace:
+accessed via the dpsl.* namespace:
    - dpsl.diagnostics
     | Diagnostics interface for running device diagnostics routines (tests).
    - dpsl.telemetry
     | Telemetry (a.k.a. Probe) interface for getting device telemetry
     | information.
-
-# Supported APIs/Functions
-Currently, the following is supported:
-- dpsl.telemetry:
--- dpsl.telemetry.getVpdInfo(): Promise<dpsl.VpdInfo>     // see types.js
--- dpsl.telemetry.getOemData(): Promise<dpsl.OemDataInfo>
-- dpsl.diagnostics:
--- dpsl.diagnostics.getAvailableRoutines(): Promise<dpsl.AvailableRoutinesList>
--- dpsl.diagnostics.battery.runCapacityRoutine(): Promise<Routine>
--- dpsl.diagnostics.battery.runHealthRoutine(): Promise<Routine>
--- dpsl.diagnostics.battery.runDischargeRoutine(params: dpsl.BatteryDischargeRoutineParams): Promise<Routine>
--- dpsl.diagnostics.battery.runChargeRoutine(params: dpsl.BatteryChargeRoutineParams): Promise<Routine>
--- dpsl.diagnostics.cpu.runCacheRoutine(params: dpsl.CpuRoutineDurationParams): Promise<Routine>
--- dpsl.diagnostics.cpu.runStressRoutine(params: dpsl.CpuRoutineDurationParams): Promise<Routine>
--- dpsl.diagnostics.memory.runMemoryRoutine(): Promise<Routine>
-
-## Dealing with diagnostic routines
-Routine object is returned from run*Routine() functions. It stores the
-routine's id and exposes useful operations. Below is the interface:
-
-class Routine {
-  constructor(id)
-  // Queries the status of the routine.
-  getStatus(): Promise<dpsl.RoutineStatus>
-  // Used for interactive diagnostic routines. Typically routines that
-  // wait user input.
-  resume(): Promise<dpsl.RoutineStatus>
-  // Stops and removes the routine from the system.
-  stop(): Promise<dpsl.RoutineStatus>
-}
-
-dpsl.RoutineStatus is documented in types.js.
 
 # Usage examples
 
@@ -108,3 +75,100 @@ dpsl.diagnostics.getAvailableRoutines().then((routineList) => {
   });
 });
 ```
+
+# API Summary
+## Types
+### RoutineStatus
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| progressPercent | number | Percentage of the routine progress |
+| output* | string | Accumulated output, like logs |
+| status | string | Current status of the routine. One of ['ready', 'running', 'waiting_user_action', 'passed', 'failed', 'error', 'cancelled', 'failed_to_start', 'removed', 'cancelling', 'unsupported', 'not_run', 'unknown'] |
+| statusMessage | string | More detailed status message |
+| userMessage* | string | The requested user action. Note: used in interactive routines only. Possible values ['unplug-ac-power', 'plug-in-ac-power', 'unknown' ]
+
+(*) Optional fields.
+
+### Routine
+The `Routine` object is returned from run*Routine() functions. It stores the
+routine's id and exposes useful operations.
+```
+class Routine {
+  constructor(id)
+  // Queries the status of the routine.
+  getStatus(): Promise<RoutineStatus>
+  // Used for interactive diagnostic routines. Typically routines that
+  // wait user input.
+  resume(): Promise<RoutineStatus>
+  // Stops and removes the routine from the system.
+  stop(): Promise<RoutineStatus>
+}
+```
+
+#### Important Notes regarding routine's id
+- The code (chrome browser extension) that uses the library needs to remember the routine's id so that it can perform operations on it (i.e. Routine.getStatus()) after the service worker is restarted.
+
+- Chrome OS doesn't persist routines across reboots. This means that depending code must not rely on routines created in previous sessions.
+
+- Routine's id usually starts with 0.
+
+### VpdInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| skuNumber | string | Device's SKU number, a.k.a. product number |
+| serialNumber | string | Device's serial number |
+| modelName | string | Device's model name |
+| activateDate | string | Device's activate date: Format: YYYY-WW |
+
+### OemDataInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| oemData | string | // OEM's specific data. This field is used to store battery serial number by some OEMs. |
+
+### BatteryDischargeRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| lengthSeconds | number | Length of time to run the routine for |
+| maximumDischargePercentAllowed | number | the routine will fail if the battery discharges by more than this percentage. |
+
+### BatteryChargeRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| lengthSeconds | number | Length of time to run the routine for |
+| minimumChargePercentRequired | number | the routine will fail if the battery charges by less than this percentage. |
+
+### CpuRoutineDurationParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| lengthSeconds | number | Length of time to run the routine for |
+
+## Functions
+### dpsl.telemetry.*
+| Function Name | Definition |
+------------ | -------------
+| getVpdInfo | () => Promise\<VpdInfo\> |
+| getOemData | () => Promise\<OemDataInfo\> |
+
+### dpsl.diagnostics.*
+| Function Name | Definition |
+------------ | ------------- |
+| getAvailableRoutines | () => Promise\<List\<string\>\> |
+
+### dpsl.diagnostics.battery.*
+| Function Name | Definition |
+------------ | ------------- |
+| runCapacityRoutine | () => Promise\<Routine\> |
+| runHealthRoutine | () => Promise\<Routine\> |
+| runDischargeRoutine | (params: BatteryDischargeRoutineParams) => Promise\<Routine\> |
+| runChargeRoutine | (params: BatteryChargeRoutineParams) => Promise\<Routine\> |
+
+### dpsl.diagnostics.cpu.*
+| Function Name | Definition |
+------------ | ------------- |
+| runCacheRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
+| runStressRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
+
+### dpsl.diagnostics.memory.*
+| Function Name | Definition |
+------------ | ------------- |
+| runMemoryRoutine | () => Promise\<Routine\> |
