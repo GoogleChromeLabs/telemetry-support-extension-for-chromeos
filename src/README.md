@@ -1,5 +1,5 @@
 # NOTES
-- The files in this directory (including this README.md) is a subset of [Chromium's DPSL](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/).
+- The files in this directory is a subset of [Chromium's DPSL](https://source.chromium.org/chromium/chromium/src/+/main:chromeos/components/telemetry_extension_ui/resources/dpsl/).
 
 - You may refer to [cros-diag-app/diagnostics-extension](https://github.com/MahmoudAGawad/cros-diag-app/tree/main/diagnostics-extension) to see the integration of this library in action.
 
@@ -123,19 +123,19 @@ class Routine {
 ### OemDataInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| oemData | string | // OEM's specific data. This field is used to store battery serial number by some OEMs. |
+| oemData | string | OEM's specific data. This field is used to store battery serial number by some OEMs |
 
 ### BatteryDischargeRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
 | lengthSeconds | number | Length of time to run the routine for |
-| maximumDischargePercentAllowed | number | the routine will fail if the battery discharges by more than this percentage. |
+| maximumDischargePercentAllowed | number | The routine will fail if the battery discharges by more than this percentage |
 
 ### BatteryChargeRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
 | lengthSeconds | number | Length of time to run the routine for |
-| minimumChargePercentRequired | number | the routine will fail if the battery charges by less than this percentage. |
+| minimumChargePercentRequired | number | The routine will fail if the battery charges by less than this percentage |
 
 ### CpuRoutineDurationParams
 | Property Name | Type | Description |
