@@ -212,6 +212,6 @@ dpsl.BatteryDischargeRoutineParams;
 /**
  * Params object of dpsl.diagnostics.cpu.{runCacheRoutine(), runStressRoutine(),
  * runFloatingPointAccuracyRoutine()}
- * @typedef {{duration: !number}}
+ * @typedef {{lengthSeconds: !number}}
  */
 dpsl.CpuRoutineDurationParams;
