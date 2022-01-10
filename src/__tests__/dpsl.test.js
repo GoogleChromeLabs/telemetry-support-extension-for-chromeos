@@ -109,13 +109,13 @@ describe('dpsl.telemetry tests', () => {
     const chrome = {
       os: {
         telemetry: {
-          getOemData: () => expectedCpuInfo,
+          getCpuInfo: () => expectedCpuInfo,
         },
       },
     };
     global.chrome = chrome;
 
-    dpsl.telemetry.getOemData().then((cpuInfo) => {
+    dpsl.telemetry.getCpuInfo().then((cpuInfo) => {
       expect(cpuInfo).toEqual(expectedCpuInfo);
       done();
     });
@@ -132,13 +132,13 @@ describe('dpsl.telemetry tests', () => {
     const chrome = {
       os: {
         telemetry: {
-          getOemData: () => expectedMemoryInfo,
+          getMemoryInfo: () => expectedMemoryInfo,
         },
       },
     };
     global.chrome = chrome;
 
-    dpsl.telemetry.getOemData().then((memoryInfo) => {
+    dpsl.telemetry.getMemoryInfo().then((memoryInfo) => {
       expect(memoryInfo).toEqual(expectedMemoryInfo);
       done();
     });
