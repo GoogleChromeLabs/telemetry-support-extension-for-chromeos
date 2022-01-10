@@ -173,15 +173,6 @@ describe('dpsl.diagnostics tests', () => {
       'chromeOsRoutineFunction': 'runCpuStressRoutine',
     },
     {
-      'dpslRoutineFunction':
-        dpsl.diagnostics.cpu.runFloatingPointAccuracyRoutine,
-      'chromeOsRoutineFunction': 'runCpuFloatingPointAccuracyRoutine',
-    },
-    {
-      'dpslRoutineFunction': dpsl.diagnostics.cpu.runPrimeSearchRoutine,
-      'chromeOsRoutineFunction': 'runCpuPrimeSearchRoutine',
-    },
-    {
       'dpslRoutineFunction': dpsl.diagnostics.memory.runMemoryRoutine,
       'chromeOsRoutineFunction': 'runMemoryRoutine',
     },

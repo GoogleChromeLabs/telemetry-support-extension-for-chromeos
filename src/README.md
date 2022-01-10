@@ -167,8 +167,6 @@ class Routine {
 ------------ | ------------- |
 | runCacheRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
 | runStressRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
-| runFloatingPointAccuracyRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
-| runPrimeSearchRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
 
 ### dpsl.diagnostics.memory.*
 | Function Name | Definition |

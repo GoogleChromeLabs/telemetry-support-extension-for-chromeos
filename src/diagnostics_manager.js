@@ -165,28 +165,6 @@ class CpuManager {
     return chrome.os.diagnostics.runCpuStressRoutine(params).then(
         (response) => new Routine(response.id));
   }
-
-  /**
-   * Runs CPU floating point accuracy test.
-   * @param {!dpsl.CpuRoutineDurationParams} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runFloatingPointAccuracyRoutine(params) {
-    return chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine(params)
-        .then((response) => new Routine(response.id));
-  }
-
-  /**
-   * Runs CPU prime search test.
-   * @param {!dpsl.CpuRoutineDurationParams} params
-   * @return { !Promise<!Routine> }
-   * @public
-   */
-  async runPrimeSearchRoutine(params) {
-    return chrome.os.diagnostics.runCpuPrimeSearchRoutine(params).then(
-        (response) => new Routine(response.id));
-  }
 }
 
 /**
