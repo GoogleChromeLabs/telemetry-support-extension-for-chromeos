@@ -148,6 +148,8 @@ class Routine {
 ------------ | -------------
 | getVpdInfo | () => Promise\<VpdInfo\> |
 | getOemData | () => Promise\<OemDataInfo\> |
+| getCpuInfo | () => Promise\<CpuInfo\> |
+| getMemoryInfo | () => Promise\<MemoryInfo\> |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition |

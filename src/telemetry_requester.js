@@ -44,6 +44,24 @@ class DPSLTelemetryRequester {
   async getOemData() {
     return chrome.os.telemetry.getOemData();
   }
+
+  /**
+   * Requests CPU info.
+   * @return { !Promise<!dpsl.CpuInfo> }
+   * @public
+   */
+  async getCpuInfo() {
+    return chrome.os.telemetry.getCpuInfo();
+  }
+
+  /**
+   * Requests Memory info.
+   * @return { !Promise<!dpsl.MemoryInfo> }
+   * @public
+   */
+  async getMemoryInfo() {
+    return chrome.os.telemetry.getMemoryInfo();
+  }
 }
 
 module.exports = {
