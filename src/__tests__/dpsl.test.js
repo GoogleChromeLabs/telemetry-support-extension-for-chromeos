@@ -70,6 +70,79 @@ describe('dpsl.telemetry tests', () => {
       done();
     });
   });
+
+  test('dpsl.telemetry.getCpuInfo() returns correct data', (done) => {
+    // Mock the global chrome object.
+    const expectedCpuInfo = {
+      'numTotalThreads': 2147483647,
+      'architecture': 'armv7l',
+      'physicalCpus': [{
+        'modelName': 'i9',
+        'logicalCpus': [{
+          'maxClockSpeedKhz': 2147473647,
+          'scalingMaxFrequencyKhz': 1073764046,
+          'scalingCurrentFrequencyKhz': 536904245,
+          'idleTimeMs': 0,
+          'cStates': [{
+            'name': 'C1',
+            'timeInStateSinceLastBootUs': 1125899906875957,
+          },
+          {
+            'name': 'C2',
+            'timeInStateSinceLastBootUs': 1125899906877777,
+          }],
+        }],
+      }, {
+        'modelName': 'i9-low-powered',
+        'logicalCpus': [{
+          'maxClockSpeedKhz': 1147494759,
+          'scalingMaxFrequencyKhz': 1063764046,
+          'scalingCurrentFrequencyKhz': 936904246,
+          'idleTimeMs': 0,
+          'cStates': [{
+            'name': 'CX',
+            'timeInStateSinceLastBootUs': 1125888806877777,
+          }],
+        }],
+      }],
+    };
+    const chrome = {
+      os: {
+        telemetry: {
+          getCpuInfo: () => expectedCpuInfo,
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.telemetry.getCpuInfo().then((cpuInfo) => {
+      expect(cpuInfo).toEqual(expectedCpuInfo);
+      done();
+    });
+  });
+
+  test('dpsl.telemetry.getMemoryInfo() returns correct data', (done) => {
+    // Mock the global chrome object.
+    const expectedMemoryInfo = {
+      'totalMemoryKiB': 2147483647,
+      'freeMemoryKiB': 2147483646,
+      'availableMemoryKiB': 2147483645,
+      'pageFaultsSinceLastBoot': 4611686018427388000,
+    };
+    const chrome = {
+      os: {
+        telemetry: {
+          getMemoryInfo: () => expectedMemoryInfo,
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.telemetry.getMemoryInfo().then((memoryInfo) => {
+      expect(memoryInfo).toEqual(expectedMemoryInfo);
+      done();
+    });
+  });
 });
 
 

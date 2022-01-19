@@ -89,7 +89,19 @@ dpsl.OemDataInfo;
  * @typedef {{
  *   numTotalThreads: number,
  *   architecture: string,
- *   physicalCpus: Array<Object>
+ *   physicalCpus: Array<{
+ *     modelName: string,
+ *     logicalCpus: Array<{
+ *       maxClockSpeedKhz: number,
+ *       scalingMaxFrequencyKhz: number,
+ *       scalingCurrentFrequencyKhz: number,
+ *       idleTimeMs: number,
+ *       cStates: Array<{
+ *         name: string,
+ *         timeInStateSinceLastBootUs: number
+ *       }>
+ *     }>
+ *   }>
  * }}
  */
 dpsl.CpuInfo;
@@ -105,9 +117,9 @@ dpsl.FanInfo;
 /**
  * Response message containing Memory Info
  * @typedef {{
- *   totalMemoryKib: number,
- *   freeMemoryKib: number,
- *   availableMemoryKib: number,
+ *   totalMemoryKiB: number,
+ *   freeMemoryKiB: number,
+ *   availableMemoryKiB: number,
  *   pageFaultsSinceLastBoot: number
  * }}
  */
