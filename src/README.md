@@ -143,7 +143,7 @@ class Routine {
 ------------ | ------- | ----------- |
 | cStates | Array<CpuCStateInfo> | Information about the logical CPU's time in various C-states |
 | idleTimeMs | number | Idle time since last boot, in milliseconds |
-| maxClockSpeedKhz | number | The max CPU clock speed in kHz |
+| maxClockSpeedKhz | number | The max CPU clock speed in kilohertz |
 | scalingCurrentFrequencyKhz | number | Current frequency the CPU is running at |
 | scalingMaxFrequencyKhz | number | Maximum frequency the CPU is allowed to run at, by policy |
 
@@ -156,9 +156,9 @@ class Routine {
 ### MemoryInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| totalMemoryKiB | number | Total memory, in KiB |
-| freeMemoryKiB | number | Free memory, in KiB |
-| availableMemoryKiB | number | Available memory, in KiB |
+| totalMemoryKiB | number | Total memory, in kilobytes |
+| freeMemoryKiB | number | Free memory, in kilobytes |
+| availableMemoryKiB | number | Available memory, in kilobytes |
 | pageFaultsSinceLastBoot | number | Number of page faults since the last boot |
 
 ### BatteryDischargeRoutineParams
