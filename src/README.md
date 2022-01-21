@@ -125,6 +125,42 @@ class Routine {
 ------------ | ------- | ----------- |
 | oemData | string | OEM's specific data. This field is used to store battery serial number by some OEMs |
 
+### CpuInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| architecture | string | The CPU architecture - it's assumed all of a device's CPUs share the same architecture |
+| numTotalThreads | number | Number of total threads available |
+| phyiscalCpus | Array<PhyiscalCpuInfo> | Information about the device's physical CPUs |
+
+### PhyiscalCpuInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| logicalCpus | Array<LogicalCpuInfo> | Logical CPUs corresponding to this physical CPU |
+| modelName | string | The CPU model name |
+
+### LogicalCpuInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| cStates | Array<CpuCStateInfo> | Information about the logical CPU's time in various C-states |
+| idleTimeMs | number | Idle time since last boot, in milliseconds |
+| maxClockSpeedKhz | number | The max CPU clock speed in kilohertz |
+| scalingCurrentFrequencyKhz | number | Current frequency the CPU is running at |
+| scalingMaxFrequencyKhz | number | Maximum frequency the CPU is allowed to run at, by policy |
+
+### CpuCStateInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| name | string | State name |
+| timeInStateSinceLastBootUs | number | Time spent in the state since the last reboot, in microseconds |
+
+### MemoryInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| totalMemoryKiB | number | Total memory, in kilobytes |
+| freeMemoryKiB | number | Free memory, in kilobytes |
+| availableMemoryKiB | number | Available memory, in kilobytes |
+| pageFaultsSinceLastBoot | number | Number of page faults since the last boot |
+
 ### BatteryDischargeRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
