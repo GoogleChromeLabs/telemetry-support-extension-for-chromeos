@@ -62,6 +62,15 @@ class DPSLTelemetryRequester {
   async getMemoryInfo() {
     return chrome.os.telemetry.getMemoryInfo();
   }
+
+  /**
+   * Requests Battery info.
+   * @return { !Promise<!dpsl.BatteryInfo> }
+   * @public
+   */
+   async getBatteryInfo() {
+    return chrome.os.telemetry.getBatteryInfo();
+  }
 }
 
 module.exports = {

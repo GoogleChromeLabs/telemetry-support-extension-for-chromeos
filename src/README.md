@@ -161,6 +161,24 @@ class Routine {
 | availableMemoryKiB | number | Available memory, in kilobytes |
 | pageFaultsSinceLastBoot | number | Number of page faults since the last boot |
 
+### BatteryInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| chargeFull | number | Full capacity (Ah) |
+| chargeFullDesign | number | Design capacity (Ah) |
+| chargeNow | number | Battery's charge (Ah) |
+| currentNow | number | Battery's current (A) |
+| cycleCount | number | Battery's cycle count |
+| manufactureDate | string | Manufacturing date in yyyy-mm-dd format. Included when the main battery is Smart |
+| modelName | string | Battery's model name |
+| serialNumber | string | Battery's serial number |
+| status | string | Battery's status (e.g. charging) |
+| technology | string | Used technology in the battery |
+| temperature | number | Temperature in 0.1K. Included when the main battery is Smart |
+| vendor | string | Battery's manufacturer |
+| voltageMinDesign | number | Desired minimum output voltage |
+| voltageNow | number | Battery's voltage (V) |
+
 ### BatteryDischargeRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -186,6 +204,7 @@ class Routine {
 | getOemData | () => Promise\<OemDataInfo\> |
 | getCpuInfo | () => Promise\<CpuInfo\> |
 | getMemoryInfo | () => Promise\<MemoryInfo\> |
+| getBatteryInfo | () => Promise\<BatteryInfo\> |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition |
