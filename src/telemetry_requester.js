@@ -33,6 +33,13 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getVpdInfo() {
+    if (!chrome.os || !chrome.os.telemetry
+        || !chrome.os.telemetry.getVpdInfo
+        || chrome.os.telemetry.getVpdInfo !== 'function') {
+      return Promise.reject("DPSL: chrome.os.telemetry.getVpdInfo() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.telemetry.getVpdInfo();
   }
 
@@ -42,6 +49,13 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getOemData() {
+    if (!chrome.os || !chrome.os.telemetry
+        || !chrome.os.telemetry.getOemData
+        || chrome.os.telemetry.getOemData !== 'function') {
+      return Promise.reject("DPSL: chrome.os.telemetry.getOemData() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.telemetry.getOemData();
   }
 
@@ -51,6 +65,13 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getCpuInfo() {
+    if (!chrome.os || !chrome.os.telemetry
+        || !chrome.os.telemetry.getCpuInfo
+        || chrome.os.telemetry.getCpuInfo !== 'function') {
+      return Promise.reject("DPSL: chrome.os.telemetry.getCpuInfo() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.telemetry.getCpuInfo();
   }
 
@@ -60,6 +81,13 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getMemoryInfo() {
+    if (!chrome.os || !chrome.os.telemetry
+        || !chrome.os.telemetry.getMemoryInfo
+        || chrome.os.telemetry.getMemoryInfo !== 'function') {
+      return Promise.reject("DPSL: chrome.os.telemetry.getMemoryInfo() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.telemetry.getMemoryInfo();
   }
 

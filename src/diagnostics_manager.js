@@ -103,6 +103,13 @@ class BatteryManager {
    * @public
    */
   async runCapacityRoutine() {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runBatteryCapacityRoutine
+        || chrome.os.diagnostics.runBatteryCapacityRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryCapacityRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runBatteryCapacityRoutine().then(
         (response) => new Routine(response.id));
   }
@@ -113,6 +120,13 @@ class BatteryManager {
    * @public
    */
   async runHealthRoutine() {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runBatteryHealthRoutine
+        || chrome.os.diagnostics.runBatteryHealthRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryHealthRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runBatteryHealthRoutine().then(
         (response) => new Routine(response.id));
   }
@@ -124,6 +138,13 @@ class BatteryManager {
    * @public
    */
   async runDischargeRoutine(params) {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runBatteryDischargeRoutine
+        || chrome.os.diagnostics.runBatteryDischargeRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryDischargeRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runBatteryDischargeRoutine(params).then(
         (response) => new Routine(response.id));
   }
@@ -135,6 +156,13 @@ class BatteryManager {
    * @public
    */
   async runChargeRoutine(params) {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runBatteryChargeRoutine
+        || chrome.os.diagnostics.runBatteryChargeRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryChargeRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runBatteryChargeRoutine(params).then(
         (response) => new Routine(response.id));
   }
@@ -151,6 +179,13 @@ class CpuManager {
    * @public
    */
   async runCacheRoutine(params) {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runCpuCacheRoutine
+        || chrome.os.diagnostics.runCpuCacheRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuCacheRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runCpuCacheRoutine(params).then(
         (response) => new Routine(response.id));
   }
@@ -162,6 +197,13 @@ class CpuManager {
    * @public
    */
   async runStressRoutine(params) {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runCpuStressRoutine
+        || chrome.os.diagnostics.runCpuStressRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuStressRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runCpuStressRoutine(params).then(
         (response) => new Routine(response.id));
   }
@@ -173,6 +215,13 @@ class CpuManager {
    * @public
    */
   async runFloatingPointAccuracyRoutine(params) {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine
+        || chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine(params)
         .then((response) => new Routine(response.id));
   }
@@ -184,6 +233,13 @@ class CpuManager {
    * @public
    */
   async runPrimeSearchRoutine(params) {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runCpuPrimeSearchRoutine
+        || chrome.os.diagnostics.runCpuPrimeSearchRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuPrimeSearchRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runCpuPrimeSearchRoutine(params).then(
         (response) => new Routine(response.id));
   }
@@ -199,6 +255,13 @@ class MemoryManager {
    * @public
    */
   async runMemoryRoutine() {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.runMemoryRoutine
+        || chrome.os.diagnostics.runMemoryRoutine !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.runMemoryRoutine() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.runMemoryRoutine().then(
         (response) => new Routine(response.id));
   }
@@ -290,6 +353,13 @@ class DPSLDiagnosticsManager {
      * @public
      */
   async getAvailableRoutines() {
+    if (!chrome.os || !chrome.os.diagnostics
+        || !chrome.os.diagnostics.getAvailableRoutines
+        || chrome.os.diagnostics.getAvailableRoutines !== 'function') {
+      return Promise.reject("DPSL: chrome.os.diagnostics.getAvailableRoutines() is not" + 
+        "found. Consider updating Google Chrome.");
+    }
+
     return chrome.os.diagnostics.getAvailableRoutines();
   }
 }
