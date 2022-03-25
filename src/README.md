@@ -178,6 +178,11 @@ class Routine {
 ------------ | ------- | ----------- |
 | lengthSeconds | number | Length of time to run the routine for |
 
+### NvmeWearLevelRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| wearLevelThreshold | number | Threshold number in percentage which routine examines wear level status against |
+
 ## Functions
 ### dpsl.telemetry.*
 | Function Name | Definition |
@@ -212,3 +217,14 @@ class Routine {
 | Function Name | Definition |
 ------------ | ------------- |
 | runMemoryRoutine | () => Promise\<Routine\> |
+
+### dpsl.diagnostics.disk.*
+| Function Name | Definition |
+------------ | ------------- |
+| runReadRoutine | () => Promise\<Routine\> |
+
+### dpsl.diagnostics.nvme.*
+| Function Name | Definition |
+------------ | ------------- |
+| runSmartctlCheckRoutine | () => Promise\<Routine\> |
+| runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> |

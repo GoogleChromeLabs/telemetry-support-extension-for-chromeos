@@ -205,6 +205,47 @@ class MemoryManager {
 }
 
 /**
+ * Diagnostics Disk Manager for dpsl.diagnostics.disk.* APIs.
+ */
+ class DiskManager {
+  /**
+   * Runs disk read test.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runReadRoutine() {
+    return chrome.os.diagnostics.runDiskReadRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
+ * Diagnostics NVME Manager for dpsl.diagnostics.nmve.* APIs.
+ */
+  class NvmeManager {
+  /**
+   * Runs NVMe smartctl test.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runSmartctlCheckRoutine() {
+    return chrome.os.diagnostics.runSmartctlCheckRoutine().then(
+      (response) => new Routine(response.id));
+  }
+
+  /**
+   * Runs NVMe wear level test.
+   * @param {!dpsl.NvmeWearLevelRoutineParams} params
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runWearLevelRoutine(params) {
+    return chrome.os.diagnostics.runNvmeWearLevelRoutine(params).then(
+      (response) => new Routine(response.id));
+  }
+}
+
+/**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 class DPSLDiagnosticsManager {
@@ -229,6 +270,18 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.memory = new MemoryManager();
+
+    /**
+     * @type {!DiskManager}
+     * @public
+     */
+    this.disk = new DiskManager();
+
+    /**
+     * @type {!NvmeManager}
+     * @public
+     */
+    this.nvme = new NvmeManager();
   }
 
   /**

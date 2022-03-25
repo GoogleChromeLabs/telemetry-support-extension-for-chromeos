@@ -227,3 +227,9 @@ dpsl.BatteryDischargeRoutineParams;
  * @typedef {{lengthSeconds: !number}}
  */
 dpsl.CpuRoutineDurationParams;
+
+/**
+ * Params object of dpsl.diagnostics.nvme.runWearLevelRoutine()
+ * @typedef {{wearLevelThreshold: !number}}
+ */
+ dpsl.NvmeWearLevelRoutineParams;

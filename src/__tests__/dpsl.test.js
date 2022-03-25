@@ -165,7 +165,8 @@ describe('dpsl.diagnostics tests', () => {
         // Mock the global chrome object.
         const expectedRoutinesList = {
           routines: ['battery_capacity', 'battery_charge', 'battery_discharge',
-            'battery_health', 'cpu_cache', 'cpu_stress', 'memory'],
+            'battery_health', 'cpu_cache', 'cpu_stress', 'memory', 'disk-read',
+            'smartctl-check', 'nvme-wear-level'],
         };
         const chrome = {
           os: {
@@ -257,6 +258,18 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.memory.runMemoryRoutine,
       'chromeOsRoutineFunction': 'runMemoryRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.disk.runReadRoutine,
+      'chromeOsRoutineFunction': 'runDiskReadRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.nvme.runSmartctlCheckRoutine,
+      'chromeOsRoutineFunction': 'runSmartctlCheckRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.nvme.runWearLevelRoutine,
+      'chromeOsRoutineFunction': 'runNvmeWearLevelRoutine',
     },
   ];
 
