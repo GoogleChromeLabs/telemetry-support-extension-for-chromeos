@@ -207,7 +207,7 @@ class MemoryManager {
 /**
  * Diagnostics Disk Manager for dpsl.diagnostics.disk.* APIs.
  */
- class DiskManager {
+class DiskManager {
   /**
    * Runs disk read test.
    * @return { !Promise<!Routine> }
@@ -222,7 +222,7 @@ class MemoryManager {
 /**
  * Diagnostics NVME Manager for dpsl.diagnostics.nmve.* APIs.
  */
-  class NvmeManager {
+class NvmeManager {
   /**
    * Runs NVMe smartctl test.
    * @return { !Promise<!Routine> }
@@ -230,7 +230,7 @@ class MemoryManager {
    */
   async runSmartctlCheckRoutine() {
     return chrome.os.diagnostics.runSmartctlCheckRoutine().then(
-      (response) => new Routine(response.id));
+        (response) => new Routine(response.id));
   }
 
   /**
@@ -241,7 +241,7 @@ class MemoryManager {
    */
   async runWearLevelRoutine(params) {
     return chrome.os.diagnostics.runNvmeWearLevelRoutine(params).then(
-      (response) => new Routine(response.id));
+        (response) => new Routine(response.id));
   }
 }
 
