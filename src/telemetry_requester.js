@@ -68,7 +68,7 @@ class DPSLTelemetryRequester {
    * @return { !Promise<!dpsl.BatteryInfo> }
    * @public
    */
-   async getBatteryInfo() {
+  async getBatteryInfo() {
     return chrome.os.telemetry.getBatteryInfo();
   }
 }
