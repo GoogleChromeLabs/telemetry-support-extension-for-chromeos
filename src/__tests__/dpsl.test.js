@@ -143,6 +143,39 @@ describe('dpsl.telemetry tests', () => {
       done();
     });
   });
+
+  test('dpsl.telemetry.getBatteryInfo() returns correct data', (done) => {
+    // Mock the global chrome object.
+    const expectedBatteryInfo = {
+      'chargeFull': 9000000000000000,
+      'chargeFullDesign': 3000000000000000,
+      'chargeNow': 7777777777.777,
+      'currentNow': 0.9999999999999,
+      'cycleCount': 100000000000000,
+      'manufactureDate': '2020-07-30',
+      'modelName': 'Google Battery',
+      'serialNumber': 'abcdef',
+      'status': 'Charging',
+      'technology': 'Li-ion',
+      'temperature': 7777777777777777,
+      'vendor': 'Google',
+      'voltageMinDesign': 1000000000.1001,
+      'voltageNow': 1234567890.123456,
+    };
+    const chrome = {
+      os: {
+        telemetry: {
+          getBatteryInfo: () => expectedBatteryInfo,
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.telemetry.getBatteryInfo().then((batteryInfo) => {
+      expect(batteryInfo).toEqual(expectedBatteryInfo);
+      done();
+    });
+  });
 });
 
 
