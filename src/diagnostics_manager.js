@@ -220,7 +220,7 @@ class DiskManager {
 }
 
 /**
- * Diagnostics NVME Manager for dpsl.diagnostics.nmve.* APIs.
+ * Diagnostics NVMe Manager for dpsl.diagnostics.nmve.* APIs.
  */
 class NvmeManager {
   /**
