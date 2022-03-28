@@ -282,6 +282,11 @@ class DiskManager {
    * @public
    */
   async runReadRoutine() {
+    const functionName = 'runDiskReadRoutine';
+    if (!isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
+    }
+
     return chrome.os.diagnostics.runDiskReadRoutine().then(
         (response) => new Routine(response.id));
   }
@@ -297,6 +302,11 @@ class NvmeManager {
    * @public
    */
   async runSmartctlCheckRoutine() {
+    const functionName = 'runSmartctlCheckRoutine';
+    if (!isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
+    }
+
     return chrome.os.diagnostics.runSmartctlCheckRoutine().then(
         (response) => new Routine(response.id));
   }
@@ -308,6 +318,11 @@ class NvmeManager {
    * @public
    */
   async runWearLevelRoutine(params) {
+    const functionName = 'runNvmeWearLevelRoutine';
+    if (!isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
+    }
+
     return chrome.os.diagnostics.runNvmeWearLevelRoutine(params).then(
         (response) => new Routine(response.id));
   }

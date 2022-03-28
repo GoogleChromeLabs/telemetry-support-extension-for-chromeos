@@ -113,6 +113,11 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getBatteryInfo() {
+    const functionName = 'getBatteryInfo';
+    if (!isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
+    }
+
     return chrome.os.telemetry.getBatteryInfo();
   }
 }
