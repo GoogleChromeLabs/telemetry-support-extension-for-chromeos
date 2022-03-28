@@ -58,7 +58,7 @@ class DPSLTelemetryRequester {
    */
   async getVpdInfo() {
     const functionName = 'getVpdInfo';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -72,7 +72,7 @@ class DPSLTelemetryRequester {
    */
   async getOemData() {
     const functionName = 'getOemData';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -86,7 +86,7 @@ class DPSLTelemetryRequester {
    */
   async getCpuInfo() {
     const functionName = 'getCpuInfo';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -100,7 +100,7 @@ class DPSLTelemetryRequester {
    */
   async getMemoryInfo() {
     const functionName = 'getMemoryInfo';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 

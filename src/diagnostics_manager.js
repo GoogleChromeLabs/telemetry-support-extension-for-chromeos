@@ -127,7 +127,7 @@ class BatteryManager {
    */
   async runCapacityRoutine() {
     const functionName = 'runBatteryCapacityRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -142,7 +142,7 @@ class BatteryManager {
    */
   async runHealthRoutine() {
     const functionName = 'runBatteryHealthRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -158,7 +158,7 @@ class BatteryManager {
    */
   async runDischargeRoutine(params) {
     const functionName = 'runBatteryDischargeRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -174,7 +174,7 @@ class BatteryManager {
    */
   async runChargeRoutine(params) {
     const functionName = 'runBatteryChargeRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -195,7 +195,7 @@ class CpuManager {
    */
   async runCacheRoutine(params) {
     const functionName = 'runCpuCacheRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -211,7 +211,7 @@ class CpuManager {
    */
   async runStressRoutine(params) {
     const functionName = 'runCpuStressRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -227,7 +227,7 @@ class CpuManager {
    */
   async runFloatingPointAccuracyRoutine(params) {
     const functionName = 'runCpuFloatingPointAccuracyRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -243,7 +243,7 @@ class CpuManager {
    */
   async runPrimeSearchRoutine(params) {
     const functionName = 'runCpuPrimeSearchRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -263,7 +263,7 @@ class MemoryManager {
    */
   async runMemoryRoutine() {
     const functionName = 'runMemoryRoutine';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
@@ -359,7 +359,7 @@ class DPSLDiagnosticsManager {
      */
   async getAvailableRoutines() {
     const functionName = 'getAvailableRoutines';
-    if (isSupported(functionName)) {
+    if (!isSupported(functionName)) {
       return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
