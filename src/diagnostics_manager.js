@@ -94,6 +94,29 @@ class Routine {
 }
 
 /**
+   * Returns true if a |functionName| exists in the chrome.os.diagnostics API.
+   * Returns false otherwise.
+   * @param {!string} functionName
+   * @return { !boolean }
+   */
+function isSupported(functionName) {
+  return chrome.os && chrome.os.diagnostics &&
+      chrome.os.diagnostics[functionName] &&
+      (typeof chrome.os.diagnostics[functionName] === 'function');
+}
+
+/**
+   * Returns a meaningful error message if a |functionName| doesn't exist in
+   * the chrome.os.diagnostics API.
+   * @param {!string} functionName
+   * @return { !string }
+   */
+function getErrorMessage(functionName) {
+  return 'DPSL: chrome.os.diagnostics.' + functionName + '() is not found.' +
+    ' Consider updating Google Chrome.';
+}
+
+/**
  * Diagnostics Battery Manager for dpsl.diagnostics.battery.* APIs.
  */
 class BatteryManager {
@@ -103,11 +126,9 @@ class BatteryManager {
    * @public
    */
   async runCapacityRoutine() {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runBatteryCapacityRoutine
-        || chrome.os.diagnostics.runBatteryCapacityRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryCapacityRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runBatteryCapacityRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runBatteryCapacityRoutine().then(
@@ -120,11 +141,9 @@ class BatteryManager {
    * @public
    */
   async runHealthRoutine() {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runBatteryHealthRoutine
-        || chrome.os.diagnostics.runBatteryHealthRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryHealthRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runBatteryHealthRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runBatteryHealthRoutine().then(
@@ -138,11 +157,9 @@ class BatteryManager {
    * @public
    */
   async runDischargeRoutine(params) {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runBatteryDischargeRoutine
-        || chrome.os.diagnostics.runBatteryDischargeRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryDischargeRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runBatteryDischargeRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runBatteryDischargeRoutine(params).then(
@@ -156,11 +173,9 @@ class BatteryManager {
    * @public
    */
   async runChargeRoutine(params) {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runBatteryChargeRoutine
-        || chrome.os.diagnostics.runBatteryChargeRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runBatteryChargeRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runBatteryChargeRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runBatteryChargeRoutine(params).then(
@@ -179,11 +194,9 @@ class CpuManager {
    * @public
    */
   async runCacheRoutine(params) {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runCpuCacheRoutine
-        || chrome.os.diagnostics.runCpuCacheRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuCacheRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runCpuCacheRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runCpuCacheRoutine(params).then(
@@ -197,11 +210,9 @@ class CpuManager {
    * @public
    */
   async runStressRoutine(params) {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runCpuStressRoutine
-        || chrome.os.diagnostics.runCpuStressRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuStressRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runCpuStressRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runCpuStressRoutine(params).then(
@@ -215,11 +226,9 @@ class CpuManager {
    * @public
    */
   async runFloatingPointAccuracyRoutine(params) {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine
-        || chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runCpuFloatingPointAccuracyRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine(params)
@@ -233,11 +242,9 @@ class CpuManager {
    * @public
    */
   async runPrimeSearchRoutine(params) {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runCpuPrimeSearchRoutine
-        || chrome.os.diagnostics.runCpuPrimeSearchRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runCpuPrimeSearchRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runCpuPrimeSearchRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runCpuPrimeSearchRoutine(params).then(
@@ -255,11 +262,9 @@ class MemoryManager {
    * @public
    */
   async runMemoryRoutine() {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.runMemoryRoutine
-        || chrome.os.diagnostics.runMemoryRoutine !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.runMemoryRoutine() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'runMemoryRoutine';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.runMemoryRoutine().then(
@@ -353,11 +358,9 @@ class DPSLDiagnosticsManager {
      * @public
      */
   async getAvailableRoutines() {
-    if (!chrome.os || !chrome.os.diagnostics
-        || !chrome.os.diagnostics.getAvailableRoutines
-        || chrome.os.diagnostics.getAvailableRoutines !== 'function') {
-      return Promise.reject("DPSL: chrome.os.diagnostics.getAvailableRoutines() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'getAvailableRoutines';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.diagnostics.getAvailableRoutines();

@@ -24,6 +24,30 @@
  */
 
 /**
+   * Returns true if a |functionName| exists in the chrome.os.telemetry API.
+   * Returns false otherwise.
+   * @param {!string} functionName
+   * @return { !boolean }
+   */
+function isSupported(functionName) {
+  return chrome.os && chrome.os.telemetry &&
+      chrome.os.telemetry[functionName] &&
+      (typeof chrome.os.telemetry[functionName] === 'function');
+}
+
+/**
+   * Returns a meaningful error message if a |functionName| doesn't exist in
+   * the chrome.os.telemetry API.
+   * @param {!string} functionName
+   * @return { !string }
+   */
+function getErrorMessage(functionName) {
+  return 'DPSL: chrome.os.telemetry.' + functionName + '() is not found.' +
+    ' Consider updating Google Chrome.';
+}
+
+
+/**
  * DPSL Telemetry Requester used in dpsl.telemetry.*.
  */
 class DPSLTelemetryRequester {
@@ -33,11 +57,9 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getVpdInfo() {
-    if (!chrome.os || !chrome.os.telemetry
-        || !chrome.os.telemetry.getVpdInfo
-        || chrome.os.telemetry.getVpdInfo !== 'function') {
-      return Promise.reject("DPSL: chrome.os.telemetry.getVpdInfo() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'getVpdInfo';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.telemetry.getVpdInfo();
@@ -49,11 +71,9 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getOemData() {
-    if (!chrome.os || !chrome.os.telemetry
-        || !chrome.os.telemetry.getOemData
-        || chrome.os.telemetry.getOemData !== 'function') {
-      return Promise.reject("DPSL: chrome.os.telemetry.getOemData() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'getOemData';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.telemetry.getOemData();
@@ -65,11 +85,9 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getCpuInfo() {
-    if (!chrome.os || !chrome.os.telemetry
-        || !chrome.os.telemetry.getCpuInfo
-        || chrome.os.telemetry.getCpuInfo !== 'function') {
-      return Promise.reject("DPSL: chrome.os.telemetry.getCpuInfo() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'getCpuInfo';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.telemetry.getCpuInfo();
@@ -81,11 +99,9 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getMemoryInfo() {
-    if (!chrome.os || !chrome.os.telemetry
-        || !chrome.os.telemetry.getMemoryInfo
-        || chrome.os.telemetry.getMemoryInfo !== 'function') {
-      return Promise.reject("DPSL: chrome.os.telemetry.getMemoryInfo() is not" + 
-        "found. Consider updating Google Chrome.");
+    const functionName = 'getMemoryInfo';
+    if (isSupported(functionName)) {
+      return Promise.reject(new Error(getErrorMessage(functionName)));
     }
 
     return chrome.os.telemetry.getMemoryInfo();
