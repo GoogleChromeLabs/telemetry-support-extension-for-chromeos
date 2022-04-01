@@ -40,7 +40,7 @@ class DPSLTelemetryRequester {
     const functionName = 'getVpdInfo';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.telemetry.getVpdInfo();
@@ -55,7 +55,7 @@ class DPSLTelemetryRequester {
     const functionName = 'getOemData';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.telemetry.getOemData();
@@ -70,7 +70,7 @@ class DPSLTelemetryRequester {
     const functionName = 'getCpuInfo';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 99);
+          /* chromeVersion */ 99);
     }
 
     return chrome.os.telemetry.getCpuInfo();
@@ -85,7 +85,7 @@ class DPSLTelemetryRequester {
     const functionName = 'getMemoryInfo';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 99);
+          /* chromeVersion */ 99);
     }
 
     return chrome.os.telemetry.getMemoryInfo();
@@ -100,7 +100,7 @@ class DPSLTelemetryRequester {
     const functionName = 'getBatteryInfo';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 102);
+          /* chromeVersion */ 102);
     }
 
     return chrome.os.telemetry.getBatteryInfo();

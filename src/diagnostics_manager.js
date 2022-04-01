@@ -109,7 +109,7 @@ class BatteryManager {
     const functionName = 'runBatteryCapacityRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.runBatteryCapacityRoutine().then(
@@ -125,7 +125,7 @@ class BatteryManager {
     const functionName = 'runBatteryHealthRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.runBatteryHealthRoutine().then(
@@ -142,7 +142,7 @@ class BatteryManager {
     const functionName = 'runBatteryDischargeRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.runBatteryDischargeRoutine(params).then(
@@ -159,7 +159,7 @@ class BatteryManager {
     const functionName = 'runBatteryChargeRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.runBatteryChargeRoutine(params).then(
@@ -181,7 +181,7 @@ class CpuManager {
     const functionName = 'runCpuCacheRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.runCpuCacheRoutine(params).then(
@@ -198,7 +198,7 @@ class CpuManager {
     const functionName = 'runCpuStressRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.runCpuStressRoutine(params).then(
@@ -215,7 +215,7 @@ class CpuManager {
     const functionName = 'runCpuFloatingPointAccuracyRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 99);
+          /* chromeVersion */ 99);
     }
 
     return chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine(params)
@@ -232,7 +232,7 @@ class CpuManager {
     const functionName = 'runCpuPrimeSearchRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 99);
+          /* chromeVersion */ 99);
     }
 
     return chrome.os.diagnostics.runCpuPrimeSearchRoutine(params).then(
@@ -253,7 +253,7 @@ class MemoryManager {
     const functionName = 'runMemoryRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.runMemoryRoutine().then(
@@ -274,7 +274,7 @@ class DiskManager {
     const functionName = 'runDiskReadRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 101);
+          /* chromeVersion */ 101);
     }
 
     return chrome.os.diagnostics.runDiskReadRoutine().then(
@@ -295,7 +295,7 @@ class NvmeManager {
     const functionName = 'runSmartctlCheckRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 100);
+          /* chromeVersion */ 100);
     }
 
     return chrome.os.diagnostics.runSmartctlCheckRoutine().then(
@@ -312,7 +312,7 @@ class NvmeManager {
     const functionName = 'runNvmeWearLevelRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 100);
+          /* chromeVersion */ 100);
     }
 
     return chrome.os.diagnostics.runNvmeWearLevelRoutine(params).then(
@@ -368,7 +368,7 @@ class DPSLDiagnosticsManager {
     const functionName = 'getAvailableRoutines';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-        /* chromeVersion */ 96);
+          /* chromeVersion */ 96);
     }
 
     return chrome.os.diagnostics.getAvailableRoutines();
