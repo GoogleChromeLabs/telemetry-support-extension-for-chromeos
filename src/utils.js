@@ -30,37 +30,36 @@
    * @return { !boolean }
    */
 function isSupported(functionName) {
-    const foundInTelemetry = (chrome.os && chrome.os.telemetry &&
-        chrome.os.telemetry[functionName] &&
-        (typeof chrome.os.telemetry[functionName] === 'function'));
+  const foundInTelemetry = (chrome.os && chrome.os.telemetry &&
+    chrome.os.telemetry[functionName] &&
+    (typeof chrome.os.telemetry[functionName] === 'function'));
 
-    const foundInDiagnostics = (chrome.os && chrome.os.diagnostics &&
-        chrome.os.diagnostics[functionName] &&
-        (typeof chrome.os.diagnostics[functionName] === 'function'));
+  const foundInDiagnostics = (chrome.os && chrome.os.diagnostics &&
+    chrome.os.diagnostics[functionName] &&
+    (typeof chrome.os.diagnostics[functionName] === 'function'));
 
-    return foundInTelemetry || foundInDiagnostics;
+  return foundInTelemetry || foundInDiagnostics;
 }
-  
+
 /**
   * Custom DPSL error that is thrown if an API function is not supported.
-  * @param {!string} apiName either 'telemetry' or 'diagnostics'
-  * @param {!string} functionName the expected function name in |apiName|.
-  * @param {!number} chromeVersion the minimum chrome version that the
-  * |functionName| is supported in.
   */
 class MethodNotFoundError extends Error {
-    /**
-      * @constructor
-      */
-    constructor(apiName, functionName, chromeVersion) {
-        super('chrome.os.' + apiName + '.' + functionName + '() is not found' +
-        '. Consider updating Google Chrome to M' + chromeVersion + '.');
-        this.name = 'DPSL_MethodNotFoundError';
-    }
+  /**
+    * @constructor
+    * @param {!string} apiName either 'telemetry' or 'diagnostics'
+    * @param {!string} functionName the expected function name in |apiName|.
+    * @param {!number} chromeVersion the minimum chrome version that the
+    * |functionName| is supported in.
+    */
+  constructor(apiName, functionName, chromeVersion) {
+    super('chrome.os.' + apiName + '.' + functionName + '() is not found' +
+    '. Consider updating Google Chrome to M' + chromeVersion + '.');
+    this.name = 'DPSL_MethodNotFoundError';
+  }
 }
 
 module.exports = {
-    isSupported: isSupported,
-    MethodNotFoundError: MethodNotFoundError,
+  isSupported: isSupported,
+  MethodNotFoundError: MethodNotFoundError,
 };
-  
