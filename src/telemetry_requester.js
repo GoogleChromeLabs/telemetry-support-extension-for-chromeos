@@ -16,6 +16,8 @@
 
 /* global chrome */
 
+const {isSupported, MethodNotFoundError} = require('./utils.js');
+
 /**
  * @fileoverview
  *
@@ -23,29 +25,7 @@
  * information.
  */
 
-/**
-   * Returns true if a |functionName| exists in the chrome.os.telemetry API.
-   * Returns false otherwise.
-   * @param {!string} functionName
-   * @return { !boolean }
-   */
-function isSupported(functionName) {
-  return chrome.os && chrome.os.telemetry &&
-      chrome.os.telemetry[functionName] &&
-      (typeof chrome.os.telemetry[functionName] === 'function');
-}
-
-/**
-   * Returns a meaningful error message if a |functionName| doesn't exist in
-   * the chrome.os.telemetry API.
-   * @param {!string} functionName
-   * @return { !string }
-   */
-function getErrorMessage(functionName) {
-  return 'DPSL: chrome.os.telemetry.' + functionName + '() is not found.' +
-    ' Consider updating Google Chrome.';
-}
-
+const API_NAME = 'telemetry';
 
 /**
  * DPSL Telemetry Requester used in dpsl.telemetry.*.
@@ -59,7 +39,7 @@ class DPSLTelemetryRequester {
   async getVpdInfo() {
     const functionName = 'getVpdInfo';
     if (!isSupported(functionName)) {
-      return Promise.reject(new Error(getErrorMessage(functionName)));
+      throw new MethodNotFoundError(API_NAME, functionName, /*chromeVersion=*/96);
     }
 
     return chrome.os.telemetry.getVpdInfo();
@@ -73,7 +53,7 @@ class DPSLTelemetryRequester {
   async getOemData() {
     const functionName = 'getOemData';
     if (!isSupported(functionName)) {
-      return Promise.reject(new Error(getErrorMessage(functionName)));
+      throw new MethodNotFoundError(API_NAME, functionName, /*chromeVersion=*/96);
     }
 
     return chrome.os.telemetry.getOemData();
@@ -87,7 +67,7 @@ class DPSLTelemetryRequester {
   async getCpuInfo() {
     const functionName = 'getCpuInfo';
     if (!isSupported(functionName)) {
-      return Promise.reject(new Error(getErrorMessage(functionName)));
+      throw new MethodNotFoundError(API_NAME, functionName, /*chromeVersion=*/99);
     }
 
     return chrome.os.telemetry.getCpuInfo();
@@ -101,7 +81,7 @@ class DPSLTelemetryRequester {
   async getMemoryInfo() {
     const functionName = 'getMemoryInfo';
     if (!isSupported(functionName)) {
-      return Promise.reject(new Error(getErrorMessage(functionName)));
+      throw new MethodNotFoundError(API_NAME, functionName, /*chromeVersion=*/99);
     }
 
     return chrome.os.telemetry.getMemoryInfo();
@@ -115,7 +95,7 @@ class DPSLTelemetryRequester {
   async getBatteryInfo() {
     const functionName = 'getBatteryInfo';
     if (!isSupported(functionName)) {
-      return Promise.reject(new Error(getErrorMessage(functionName)));
+      throw new MethodNotFoundError(API_NAME, functionName, /*chromeVersion=*/102);
     }
 
     return chrome.os.telemetry.getBatteryInfo();
