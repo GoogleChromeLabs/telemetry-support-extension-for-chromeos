@@ -247,3 +247,8 @@ class Routine {
 ------------ | ------------- |
 | runSmartctlCheckRoutine | () => Promise\<Routine\> |
 | runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> |
+
+### dpsl.diagnostics.network.*
+| Function Name | Definition |
+------------ | ------------- |
+| runLanConnectivityRoutine | () => Promise\<Routine\> |

@@ -304,6 +304,10 @@ describe('dpsl.diagnostics tests', () => {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runWearLevelRoutine,
       'chromeOsRoutineFunction': 'runNvmeWearLevelRoutine',
     },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.network.runLanConnectivityRoutine,
+      'chromeOsRoutineFunction': 'runLanConnectivityRoutine',
+    },
   ];
 
   testCases.forEach((testCase) => {
