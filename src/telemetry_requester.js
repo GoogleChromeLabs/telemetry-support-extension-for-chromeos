@@ -16,12 +16,16 @@
 
 /* global chrome */
 
+const {isSupported, MethodNotFoundError} = require('./utils.js');
+
 /**
  * @fileoverview
  *
  * Telemetry interface exposed to third-parties for getting device telemetry
  * information.
  */
+
+const API_NAME = 'telemetry';
 
 /**
  * DPSL Telemetry Requester used in dpsl.telemetry.*.
@@ -33,6 +37,12 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getVpdInfo() {
+    const functionName = 'getVpdInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 96);
+    }
+
     return chrome.os.telemetry.getVpdInfo();
   }
 
@@ -42,6 +52,12 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getOemData() {
+    const functionName = 'getOemData';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 96);
+    }
+
     return chrome.os.telemetry.getOemData();
   }
 
@@ -51,6 +67,12 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getCpuInfo() {
+    const functionName = 'getCpuInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 99);
+    }
+
     return chrome.os.telemetry.getCpuInfo();
   }
 
@@ -60,6 +82,12 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getMemoryInfo() {
+    const functionName = 'getMemoryInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 99);
+    }
+
     return chrome.os.telemetry.getMemoryInfo();
   }
 
@@ -69,6 +97,12 @@ class DPSLTelemetryRequester {
    * @public
    */
   async getBatteryInfo() {
+    const functionName = 'getBatteryInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 102);
+    }
+
     return chrome.os.telemetry.getBatteryInfo();
   }
 }
