@@ -323,7 +323,7 @@ class NvmeManager {
 /**
  * Diagnostics Network Manager for dpsl.diagnostics.network.* APIs.
  */
- class NetworkManager {
+class NetworkManager {
   /**
    * Runs Network Lan connectivity test.
    * @return { !Promise<!Routine> }
