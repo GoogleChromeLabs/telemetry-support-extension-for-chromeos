@@ -321,6 +321,27 @@ class NvmeManager {
 }
 
 /**
+ * Diagnostics Network Manager for dpsl.diagnostics.network.* APIs.
+ */
+class NetworkManager {
+  /**
+   * Runs Network Lan connectivity test.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runLanConnectivityRoutine() {
+    const functionName = 'runLanConnectivityRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 102);
+    }
+
+    return chrome.os.diagnostics.runLanConnectivityRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 class DPSLDiagnosticsManager {
@@ -357,6 +378,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.nvme = new NvmeManager();
+
+    /**
+     * @type {!NetworkManager}
+     * @public
+     */
+    this.network = new NetworkManager();
   }
 
   /**
