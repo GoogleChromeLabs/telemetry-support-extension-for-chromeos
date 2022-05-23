@@ -229,6 +229,16 @@ dpsl.BatteryDischargeRoutineParams;
 dpsl.CpuRoutineDurationParams;
 
 /**
+ * Params object of dpsl.diagnostics.disk.runReadRoutine()
+ * @typedef {{
+ *  type: !string,
+ *  lengthSeconds: !number,
+ *  fileSizeMb: !number
+ * }}
+ */
+ dpsl.DiskReadRoutineParams;
+
+/**
  * Params object of dpsl.diagnostics.nvme.runWearLevelRoutine()
  * @typedef {{wearLevelThreshold: !number}}
  */
