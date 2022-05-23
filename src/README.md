@@ -179,6 +179,12 @@ class Routine {
 | voltageMinDesign | number | Desired minimum output voltage |
 | voltageNow | number | Battery's voltage (V) |
 
+### AcPowerRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| expectedStatus | string | The expected status of the AC ('connected', 'disconnected' or 'unknown') |
+| expectedPowerType | string | (Optional) If specified, this must match the type of power supply for the routine to succeed. |
+
 ### BatteryDischargeRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -215,6 +221,11 @@ class Routine {
 | Function Name | Definition |
 ------------ | ------------- |
 | getAvailableRoutines | () => Promise\<List\<string\>\> |
+
+### dpsl.diagnostics.power.*
+| Function Name | Definition |
+------------ | ------------- |
+| runAcPowerRoutine | (params: AcPowerRoutineParams) => Promise\<Routine\> |
 
 ### dpsl.diagnostics.battery.*
 | Function Name | Definition |
