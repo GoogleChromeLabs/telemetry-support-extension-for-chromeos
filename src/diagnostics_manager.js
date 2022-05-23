@@ -267,17 +267,18 @@ class MemoryManager {
 class DiskManager {
   /**
    * Runs disk read test.
+   * @param {!dpsl.DiskReadRoutineParams} params
    * @return { !Promise<!Routine> }
    * @public
    */
-  async runReadRoutine() {
+  async runReadRoutine(params) {
     const functionName = 'runDiskReadRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
           /* chromeVersion */ 101);
     }
 
-    return chrome.os.diagnostics.runDiskReadRoutine().then(
+    return chrome.os.diagnostics.runDiskReadRoutine(params).then(
         (response) => new Routine(response.id));
   }
 }
