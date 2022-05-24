@@ -105,6 +105,21 @@ class DPSLTelemetryRequester {
 
     return chrome.os.telemetry.getBatteryInfo();
   }
+
+  /**
+   * Requests Stateful Partition info.
+   * @return { !Promise<!dpsl.StatefulPartitionInfo> }
+   * @public
+   */
+  async getStatefulPartitionInfo() {
+    const functionName = 'getStatefulPartitionInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 105);
+    }
+
+    return chrome.os.telemetry.getStatefulPartitionInfo();
+  }
 }
 
 module.exports = {

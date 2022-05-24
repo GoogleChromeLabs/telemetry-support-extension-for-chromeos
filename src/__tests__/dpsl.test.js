@@ -176,6 +176,30 @@ describe('dpsl.telemetry tests', () => {
       done();
     });
   });
+
+  test('dpsl.telemetry.getStatefulPartitionInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedStatefulPartitionInfo = {
+          'availableSpace': 80000000000,
+          'totalSpace': 90000000000,
+        };
+        const chrome = {
+          os: {
+            telemetry: {
+              getStatefulPartitionInfo: () => expectedStatefulPartitionInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getStatefulPartitionInfo()
+            .then((statefulPartitionInfo) => {
+              expect(statefulPartitionInfo)
+                  .toEqual(expectedStatefulPartitionInfo);
+              done();
+            });
+      });
 });
 
 
