@@ -197,8 +197,9 @@ describe('dpsl.diagnostics tests', () => {
       (done) => {
         // Mock the global chrome object.
         const expectedRoutinesList = {
-          routines: ['battery_capacity', 'battery_charge', 'battery_discharge',
-            'battery_health', 'cpu_cache', 'cpu_stress', 'memory', 'disk-read',
+          routines: ['ac_power', 'battery_capacity', 'battery_charge',
+            'battery_discharge', 'battery_health', 'cpu_cache',
+            'cpu_stress', 'memory', 'disk-read',
             'smartctl-check', 'nvme-wear-level'],
         };
         const chrome = {
@@ -255,6 +256,10 @@ describe('dpsl.diagnostics tests', () => {
       });
 
   const testCases = [
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.power.runAcPowerRoutine,
+      'chromeOsRoutineFunction': 'runAcPowerRoutine',
+    },
     {
       'dpslRoutineFunction': dpsl.diagnostics.battery.runCapacityRoutine,
       'chromeOsRoutineFunction': 'runBatteryCapacityRoutine',

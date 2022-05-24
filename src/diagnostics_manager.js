@@ -97,6 +97,28 @@ class Routine {
 }
 
 /**
+ * AC Power Manager for dpsl.diagnostics.power.* APIs.
+ */
+class AcPowerManager {
+  /**
+   * Runs AC Power test.
+   * @param {!dpsl.AcPowerRoutineParams} params
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runAcPowerRoutine(params) {
+    const functionName = 'runAcPowerRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 105);
+    }
+
+    return chrome.os.diagnostics.runAcPowerRoutine(params).then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * Diagnostics Battery Manager for dpsl.diagnostics.battery.* APIs.
  */
 class BatteryManager {
@@ -350,6 +372,12 @@ class DPSLDiagnosticsManager {
    * @constructor
    */
   constructor() {
+    /**
+     * @type {!AcPowerManager}
+     * @public
+     */
+    this.power = new AcPowerManager();
+
     /**
      * @type {!BatteryManager}
      * @public
