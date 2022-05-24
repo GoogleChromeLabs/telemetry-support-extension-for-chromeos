@@ -110,7 +110,7 @@ class AcPowerManager {
     const functionName = 'runAcPowerRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
-          /* chromeVersion */ 100);
+          /* chromeVersion */ 105);
     }
 
     return chrome.os.diagnostics.runAcPowerRoutine(params).then(

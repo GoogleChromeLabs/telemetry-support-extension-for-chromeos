@@ -207,7 +207,7 @@ dpsl.RoutineStatus;
  * Params object of dpsl.diagnostics.power.runAcPowerRoutine()
  * @typedef {{
  *   expectedStatus: !string,
- *   expectedPowerType?: string
+ *   expectedPowerType?: !string
  * }}
  */
 dpsl.AcPowerRoutineParams;

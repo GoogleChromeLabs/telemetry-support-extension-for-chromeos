@@ -183,7 +183,7 @@ class Routine {
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
 | expectedStatus | string | The expected status of the AC ('connected', 'disconnected' or 'unknown') |
-| expectedPowerType | string | (Optional) If specified, this must match the type of power supply for the routine to succeed. |
+| expectedPowerType* | string | If specified, this must match the type of power supply for the routine to succeed. |
 
 ### BatteryDischargeRoutineParams
 | Property Name | Type | Description |
