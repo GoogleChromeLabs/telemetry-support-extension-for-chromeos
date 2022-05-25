@@ -179,6 +179,11 @@ class Routine {
 | voltageMinDesign | number | Desired minimum output voltage |
 | voltageNow | number | Battery's voltage (V) |
 
+### StatefulPartitionInfo
+| Property Name | Type | Description |
+| availableSpace | number | The currently available space in the user partition (Bytes) |
+| totalSpace | number | The total space of the user partition (Bytes) |
+
 ### AcPowerRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -216,6 +221,7 @@ class Routine {
 | getCpuInfo | () => Promise\<CpuInfo\> |
 | getMemoryInfo | () => Promise\<MemoryInfo\> |
 | getBatteryInfo | () => Promise\<BatteryInfo\> |
+| getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition |
