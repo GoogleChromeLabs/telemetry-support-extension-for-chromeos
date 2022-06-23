@@ -200,6 +200,32 @@ describe('dpsl.telemetry tests', () => {
               done();
             });
       });
+
+  test('dpsl.telemetry.getOsVersionInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedOsVersionInfo = {
+          'releaseMilestone': '87',
+          'buildNumber': '13544',
+          'patchNumber': '59.0',
+          'releaseChannel': 'stable-channel',
+        };
+        const chrome = {
+          os: {
+            telemetry: {
+              getOsVersionInfo: () => expectedOsVersionInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getOsVersionInfo()
+            .then((osVersionInfo) => {
+              expect(osVersionInfo)
+                  .toEqual(expectedOsVersionInfo);
+              done();
+            });
+      });
 });
 
 

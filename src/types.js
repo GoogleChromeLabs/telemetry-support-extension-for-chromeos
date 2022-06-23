@@ -85,6 +85,17 @@ dpsl.VpdInfo;
 dpsl.OemDataInfo;
 
 /**
+ * Response message containing OS version Info
+ * @typedef {{
+ *   releaseMilestone: !string,
+ *   buildNumber: !string,
+ *   patchNumber: !string,
+ *   releaseChannel: !string
+ * }}
+ */
+dpsl.OsVersionInfo;
+
+/**
  * Response message containing CPU Info
  * @typedef {{
  *   numTotalThreads: number,

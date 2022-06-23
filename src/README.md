@@ -184,6 +184,13 @@ class Routine {
 | availableSpace | number | The currently available space in the user partition (Bytes) |
 | totalSpace | number | The total space of the user partition (Bytes) |
 
+### OsVersionInfo
+| Property Name | Type | Description |
+| releaseMilestone | string | The release milestone (e.g. "87") |
+| buildNumber | string | The build number (e.g. "13544") |
+| patchNumber | string | The build number (e.g. "59.0") |
+| releaseChannel | string | The release channel (e.g. "stable-channel") |
+
 ### AcPowerRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -222,6 +229,7 @@ class Routine {
 | getMemoryInfo | () => Promise\<MemoryInfo\> |
 | getBatteryInfo | () => Promise\<BatteryInfo\> |
 | getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> |
+| getOsVersionInfo | () => Promise\<getOsVersionInfo\> |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition |

@@ -120,6 +120,21 @@ class DPSLTelemetryRequester {
 
     return chrome.os.telemetry.getStatefulPartitionInfo();
   }
+
+  /**
+   * Requests OS version info.
+   * @return { !Promise<!dpsl.OsVersionInfo> }
+   * @public
+   */
+  async getOsVersionInfo() {
+    const functionName = 'getOsVersionInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 105);
+    }
+
+    return chrome.os.telemetry.getOsVersionInfo();
+  }
 }
 
 module.exports = {
