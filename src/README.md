@@ -181,11 +181,13 @@ class Routine {
 
 ### StatefulPartitionInfo
 | Property Name | Type | Description |
+------------ | ------- | ----------- |
 | availableSpace | number | The currently available space in the user partition (Bytes) |
 | totalSpace | number | The total space of the user partition (Bytes) |
 
 ### OsVersionInfo
 | Property Name | Type | Description |
+------------ | ------- | ----------- |
 | releaseMilestone | string | The release milestone (e.g. "87") |
 | buildNumber | string | The build number (e.g. "13544") |
 | patchNumber | string | The build number (e.g. "59.0") |
@@ -221,59 +223,59 @@ class Routine {
 
 ## Functions
 ### dpsl.telemetry.*
-| Function Name | Definition |
------------- | -------------
-| getVpdInfo | () => Promise\<VpdInfo\> |
-| getOemData | () => Promise\<OemDataInfo\> |
-| getCpuInfo | () => Promise\<CpuInfo\> |
-| getMemoryInfo | () => Promise\<MemoryInfo\> |
-| getBatteryInfo | () => Promise\<BatteryInfo\> |
-| getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> |
-| getOsVersionInfo | () => Promise\<getOsVersionInfo\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| getVpdInfo | () => Promise\<VpdInfo\> | 1.0.0 |
+| getOemData | () => Promise\<OemDataInfo\> | 1.0.0 |
+| getCpuInfo | () => Promise\<CpuInfo\> |  1.2.0 |
+| getMemoryInfo | () => Promise\<MemoryInfo\> | 1.2.0 |
+| getBatteryInfo | () => Promise\<BatteryInfo\> | 1.3.0 |
+| getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> | 1.3.1 |
+| getOsVersionInfo | () => Promise\<getOsVersionInfo\> | 1.3.1 |
 
 ### dpsl.diagnostics.*
-| Function Name | Definition |
------------- | ------------- |
-| getAvailableRoutines | () => Promise\<List\<string\>\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| getAvailableRoutines | () => Promise\<List\<string\>\> | 1.0.0 |
 
 ### dpsl.diagnostics.power.*
-| Function Name | Definition |
------------- | ------------- |
-| runAcPowerRoutine | (params: AcPowerRoutineParams) => Promise\<Routine\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runAcPowerRoutine | (params: AcPowerRoutineParams) => Promise\<Routine\> | 1.3.1 |
 
 ### dpsl.diagnostics.battery.*
-| Function Name | Definition |
------------- | ------------- |
-| runCapacityRoutine | () => Promise\<Routine\> |
-| runHealthRoutine | () => Promise\<Routine\> |
-| runDischargeRoutine | (params: BatteryDischargeRoutineParams) => Promise\<Routine\> |
-| runChargeRoutine | (params: BatteryChargeRoutineParams) => Promise\<Routine\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runCapacityRoutine | () => Promise\<Routine\> | 1.0.0 |
+| runHealthRoutine | () => Promise\<Routine\> | 1.0.0 |
+| runDischargeRoutine | (params: BatteryDischargeRoutineParams) => Promise\<Routine\> | 1.0.0 |
+| runChargeRoutine | (params: BatteryChargeRoutineParams) => Promise\<Routine\> | 1.0.0 |
 
 ### dpsl.diagnostics.cpu.*
-| Function Name | Definition |
------------- | ------------- |
-| runCacheRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
-| runStressRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
-| runFloatingPointAccuracyRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
-| runPrimeSearchRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runCacheRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.0.0 |
+| runStressRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.0.0 |
+| runFloatingPointAccuracyRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.1.0 |
+| runPrimeSearchRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.1.0 |
 
 ### dpsl.diagnostics.memory.*
-| Function Name | Definition |
------------- | ------------- |
-| runMemoryRoutine | () => Promise\<Routine\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runMemoryRoutine | () => Promise\<Routine\> | 1.0.0 |
 
 ### dpsl.diagnostics.disk.*
-| Function Name | Definition |
------------- | ------------- |
-| runReadRoutine | () => Promise\<Routine\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runReadRoutine | () => Promise\<Routine\> | 1.3.0 |
 
 ### dpsl.diagnostics.nvme.*
-| Function Name | Definition |
------------- | ------------- |
-| runSmartctlCheckRoutine | () => Promise\<Routine\> |
-| runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runSmartctlCheckRoutine | () => Promise\<Routine\> | 1.3.0 |
+| runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> | 1.3.0 |
 
 ### dpsl.diagnostics.network.*
-| Function Name | Definition |
------------- | ------------- |
-| runLanConnectivityRoutine | () => Promise\<Routine\> |
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runLanConnectivityRoutine | () => Promise\<Routine\> | 1.3.0 |
