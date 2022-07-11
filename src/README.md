@@ -267,7 +267,7 @@ class Routine {
 ### dpsl.diagnostics.disk.*
 | Function Name | Definition | Released in `dpsl` version |
 ------------ | ------------- | ------------- |
-| runReadRoutine | () => Promise\<Routine\> | 1.3.0 |
+| runReadRoutine | () => Promise\<Routine\> | 1.3.1 |
 
 ### dpsl.diagnostics.nvme.*
 | Function Name | Definition | Released in `dpsl` version |
