@@ -287,3 +287,4 @@ class Routine {
 | Function Name | Definition | Released in `dpsl` version |
 ------------ | ------------- | ------------- |
 | runLanConnectivityRoutine | () => Promise\<Routine\> | 1.3.0 |
+| runSignalStrengthRoutine | () => Promise\<Routine\> | 1.3.2 |

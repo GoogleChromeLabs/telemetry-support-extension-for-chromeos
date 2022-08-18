@@ -362,6 +362,22 @@ class NetworkManager {
     return chrome.os.diagnostics.runLanConnectivityRoutine().then(
         (response) => new Routine(response.id));
   }
+
+  /**
+   * Runs Signal Strength test.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runSignalStrengthRoutine() {
+    const functionName = 'runSignalStrengthRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 108);
+    }
+
+    return chrome.os.diagnostics.runSignalStrengthRoutine().then(
+        (response) => new Routine(response.id));
+  }
 }
 
 /**
