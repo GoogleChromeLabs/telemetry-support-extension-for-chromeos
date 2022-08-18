@@ -92,6 +92,21 @@ class DPSLTelemetryRequester {
   }
 
   /**
+   * Requests non removable block devices info.
+   * @return { !Promise<!dpsl.BlockDeviceInfo> }
+   * @public
+   */
+  async getNonRemovableBlockDevicesInfo() {
+    const functionName = 'getNonRemovableBlockDevicesInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 108);
+    }
+
+    return chrome.os.telemetry.getNonRemovableBlockDevicesInfo();
+  }
+
+  /**
    * Requests Battery info.
    * @return { !Promise<!dpsl.BatteryInfo> }
    * @public

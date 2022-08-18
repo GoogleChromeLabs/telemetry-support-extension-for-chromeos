@@ -193,6 +193,13 @@ class Routine {
 | patchNumber | string | The build number (e.g. "59.0") |
 | releaseChannel | string | The release channel (e.g. "stable-channel") |
 
+### BlockDeviceInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| name | string | The name of the block device. |
+| type | string | The type of the block device, (e.g. "MMC", "NVMe" or "ATA"). |
+| size | number | The device size in bytes. |
+
 ### AcPowerRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -231,7 +238,8 @@ class Routine {
 | getMemoryInfo | () => Promise\<MemoryInfo\> | 1.2.0 |
 | getBatteryInfo | () => Promise\<BatteryInfo\> | 1.3.0 |
 | getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> | 1.3.1 |
-| getOsVersionInfo | () => Promise\<getOsVersionInfo\> | 1.3.1 |
+| getOsVersionInfo | () => Promise\<OsVersionInfo\> | 1.3.1 |
+| getNonRemovableBlockDevicesInfo | () => Promise\<BlockDeviceInfo\> | 1.3.2 |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition | Released in `dpsl` version |

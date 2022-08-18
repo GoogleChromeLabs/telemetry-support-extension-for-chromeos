@@ -139,18 +139,9 @@ dpsl.MemoryInfo;
 /**
  * Response message containing BlockDevice Info
  * @typedef {!Array<{
- *   path: string,
- *   size: number,
- *   type: string,
- *   manufacturerId: number,
- *   name: string,
- *   serial: string,
- *   bytesReadSinceLastBoot: number,
- *   bytesWrittenSinceLastBoot: number,
- *   readTimeSecondsSinceLastBoot: number,
- *   writeTimeSecondsSinceLastBoot: number,
- *   ioTimeSecondsSinceLastBoot: number,
- *   discardTimeSecondsSinceLastBoot: number
+ *   name: !string,
+ *   type: !string,
+ *   size: !number,
  * }>}
  */
 dpsl.BlockDeviceInfo;
