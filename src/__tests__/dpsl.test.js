@@ -144,6 +144,32 @@ describe('dpsl.telemetry tests', () => {
     });
   });
 
+  test('dpsl.telemetry.getNonRemovableBlockDevicesInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedNonRemovableBlockDevicesInfo = {
+          'name': 'TestName',
+          'type': 'TestType',
+          'size': '1000000',
+        };
+        const chrome = {
+          os: {
+            telemetry: {
+              getNonRemovableBlockDevicesInfo:
+                () => expectedNonRemovableBlockDevicesInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getNonRemovableBlockDevicesInfo()
+            .then((nonRemovableBlockDevicesInfo) => {
+              expect(nonRemovableBlockDevicesInfo)
+                  .toEqual(expectedNonRemovableBlockDevicesInfo);
+              done();
+            });
+      });
+
   test('dpsl.telemetry.getBatteryInfo() returns correct data', (done) => {
     // Mock the global chrome object.
     const expectedBatteryInfo = {
