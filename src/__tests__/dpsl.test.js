@@ -275,7 +275,7 @@ describe('dpsl.diagnostics tests', () => {
         const expectedRoutinesList = {
           routines: ['ac_power', 'battery_capacity', 'battery_charge',
             'battery_discharge', 'battery_health', 'cpu_cache',
-            'cpu_stress', 'memory', 'disk-read',
+            'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
             'smartctl-check', 'signal_strength', 'nvme-wear-level'],
         };
         const chrome = {
@@ -384,6 +384,11 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runWearLevelRoutine,
       'chromeOsRoutineFunction': 'runNvmeWearLevelRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.network
+          .runDnsProviderPresentRoutine,
+      'chromeOsRoutineFunction': 'runDnsProviderPresentRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network.runLanConnectivityRoutine,

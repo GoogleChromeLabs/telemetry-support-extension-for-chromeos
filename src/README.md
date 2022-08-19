@@ -288,3 +288,4 @@ class Routine {
 ------------ | ------------- | ------------- |
 | runLanConnectivityRoutine | () => Promise\<Routine\> | 1.3.0 |
 | runSignalStrengthRoutine | () => Promise\<Routine\> | 1.3.2 |
+| runDnsProviderPresentRoutine | () => Promise\<Routine\> | 1.3.2 |

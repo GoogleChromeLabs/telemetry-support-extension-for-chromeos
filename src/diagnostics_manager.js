@@ -348,6 +348,22 @@ class NvmeManager {
  */
 class NetworkManager {
   /**
+   * Runs a test that checks if the DNS provider is present.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runDnsProviderPresentRoutine() {
+    const functionName = 'runDnsProviderPresentRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 108);
+    }
+
+    return chrome.os.diagnostics.runDnsProviderPresentRoutine().then(
+        (response) => new Routine(response.id));
+  }
+
+  /**
    * Runs Network Lan connectivity test.
    * @return { !Promise<!Routine> }
    * @public
