@@ -276,8 +276,8 @@ describe('dpsl.diagnostics tests', () => {
           routines: ['ac_power', 'battery_capacity', 'battery_charge',
             'battery_discharge', 'battery_health', 'cpu_cache',
             'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
-            'dns_resolution', 'smartctl-check', 'signal_strength',
-            'nvme-wear-level'],
+            'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
+            'signal_strength', 'nvme-wear-level'],
         };
         const chrome = {
           os: {
@@ -395,6 +395,11 @@ describe('dpsl.diagnostics tests', () => {
       'dpslRoutineFunction': dpsl.diagnostics.network
           .runDnsResolutionRoutine,
       'chromeOsRoutineFunction': 'runDnsResolutionRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.network
+          .runGatewayCanBePingedRoutine,
+      'chromeOsRoutineFunction': 'runGatewayCanBePingedRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network.runLanConnectivityRoutine,
