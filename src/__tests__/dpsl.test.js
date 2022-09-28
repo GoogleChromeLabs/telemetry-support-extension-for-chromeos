@@ -121,6 +121,43 @@ describe('dpsl.telemetry tests', () => {
     });
   });
 
+  test('dpsl.telemetry.getInternetConnectivityInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedInternetInfo = {
+          'networks': [{
+            'type': 'wifi',
+            'state': 'online',
+            'ipv4Address': '192.168.123.456',
+            'ipv6Addresses': ['FE80:CD00:0000:0CDE:1257:0000:211E:729C'],
+            'signalStrength': 42,
+          },
+          {
+            'type': 'ethernet',
+            'state': 'disabled',
+            'ipv4Address': '1.1.1.1',
+            'ipv6Addresses': [],
+            'signalStrength': 100,
+          },
+          ]};
+
+        const chrome = {
+          os: {
+            telemetry: {
+              getInternetConnectivityInfo: () => expectedInternetInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getInternetConnectivityInfo()
+            .then((internetInfo) => {
+              expect(internetInfo)
+                  .toEqual(expectedInternetInfo);
+              done();
+            });
+      });
+
   test('dpsl.telemetry.getMemoryInfo() returns correct data', (done) => {
     // Mock the global chrome object.
     const expectedMemoryInfo = {

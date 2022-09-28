@@ -66,6 +66,21 @@ dpsl.BatteryInfo;
 dpsl.BluetoothInfo;
 
 /**
+ * Response message containing internet 
+ * connectivity info
+ * @typedef {{
+ *   networks: Array<{
+ *     type: string,
+ *     state: string,
+ *     ipv4Address: string,
+ *     ipv6Addresses: Array<string>,
+ *     signalStrength: number
+ *   }>
+ * }}
+ */
+dpsl.InternetConnectivityInfo;
+
+/**
  * Response message containing VPD Info
  * @typedef {{
  *   skuNumber: string,

@@ -77,6 +77,21 @@ class DPSLTelemetryRequester {
   }
 
   /**
+   * Requests internet connectivity info.
+   * @return { !Promise<!dpsl.InternetConnectivityInfo> }
+   * @public
+   */
+  async getInternetConnectivityInfo() {
+    const functionName = 'getInternetConnectivityInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 108);
+    }
+
+    return chrome.os.telemetry.getInternetConnectivityInfo();
+  }
+
+  /**
    * Requests Memory info.
    * @return { !Promise<!dpsl.MemoryInfo> }
    * @public
