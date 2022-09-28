@@ -364,6 +364,22 @@ class NetworkManager {
   }
 
   /**
+   * Runs a test that checks if DNS resolution is successful.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runDnsResolutionRoutine() {
+    const functionName = 'runDnsResolutionRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 108);
+    }
+
+    return chrome.os.diagnostics.runDnsResolutionRoutine().then(
+        (response) => new Routine(response.id));
+  }
+
+  /**
    * Runs Network Lan connectivity test.
    * @return { !Promise<!Routine> }
    * @public
