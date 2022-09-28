@@ -380,6 +380,22 @@ class NetworkManager {
   }
 
   /**
+   * Runs a test that checks if the network gateway can be pinged.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runGatewayCanBePingedRoutine() {
+    const functionName = 'runGatewayCanBePingedRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 108);
+    }
+
+    return chrome.os.diagnostics.runGatewayCanBePingedRoutine().then(
+        (response) => new Routine(response.id));
+  }
+
+  /**
    * Runs Network Lan connectivity test.
    * @return { !Promise<!Routine> }
    * @public

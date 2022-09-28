@@ -290,3 +290,4 @@ class Routine {
 | runSignalStrengthRoutine | () => Promise\<Routine\> | 1.3.2 |
 | runDnsProviderPresentRoutine | () => Promise\<Routine\> | 1.3.2 |
 | runDnsResolutionRoutine | () => Promise\<Routine\> | 1.3.2 |
+| runGatewayCanBePingedRoutine | () => Promise\<Routine\> | 1.3.2 |
