@@ -153,6 +153,20 @@ class Routine {
 | name | string | State name |
 | timeInStateSinceLastBootUs | number | Time spent in the state since the last reboot, in microseconds |
 
+### InternetConnectivityInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| networks | Array<NetworkInfo> | List of available network interfaces and their configuration |
+
+### NetworkInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| type | string | The type of network interface (wifi, ethernet, etc.) |
+| state | string | The current state of the network interface (disabled, enabled, online, etc.) |
+| ipv4Address | string | The currently assigned ipv4Address of the interface |
+| ipv6Addresses | Array<string> | The list of currently assigned ipv6Addresses of the interface |
+| signalStrength | number | The current signal strength in percent |
+
 ### MemoryInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -240,6 +254,7 @@ class Routine {
 | getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> | 1.3.1 |
 | getOsVersionInfo | () => Promise\<OsVersionInfo\> | 1.3.1 |
 | getNonRemovableBlockDevicesInfo | () => Promise\<BlockDeviceInfo\> | 1.3.2 |
+| getInternetConnectivityInfo | () => Promise\<InternetConnectivityInfo\> | 1.3.2 |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition | Released in `dpsl` version |
