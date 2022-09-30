@@ -264,6 +264,48 @@ describe('dpsl.telemetry tests', () => {
             });
       });
 
+  test('dpsl.telemetry.getTpmInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedTpmInfo = {
+          'version': {
+            'gscVersion': 'cr50',
+            'family': 2,
+            'specLevel': 1,
+            'manufacturer': 42,
+            'tpmModel': 3,
+            'firmwareVersion': 1,
+            'vendorSpecific': 'VendorSpecific',
+          },
+          'status': {
+            'enabled': false,
+            'owned': false,
+            'ownerPasswordIsPresent': false,
+          },
+          'dictionaryAttack': {
+            'counter': 1,
+            'threshold': 2,
+            'lockoutInEffect': true,
+            'lockoutSecondsRemaining': 50,
+          },
+        };
+        const chrome = {
+          os: {
+            telemetry: {
+              getTpmInfo: () => expectedTpmInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getTpmInfo()
+            .then((tpmInfo) => {
+              expect(tpmInfo)
+                  .toEqual(expectedTpmInfo);
+              done();
+            });
+      });
+
   test('dpsl.telemetry.getOsVersionInfo() returns correct data',
       (done) => {
         // Mock the global chrome object.

@@ -171,6 +171,34 @@ dpsl.BlockDeviceInfo;
 dpsl.StatefulPartitionInfo;
 
 /**
+ * Response message containing TPM Info
+ * @typedef {{
+ *   version: {
+ *     gscVersion: string,
+ *     family: number,
+ *     specLevel: number,
+ *     manufacturer: number,
+ *     modelNumber: number,
+ *     tpmModel: number,
+ *     firmwareVersion: number,
+ *     vendorSpecific: string,
+ *   },
+ *   status: {
+ *     enabled: boolean,
+ *     owned: boolean,
+ *     ownerPasswordIsPresent: boolean,
+ *   },
+ *   dictionaryAttack: {
+ *     counter: number,
+ *     threshold: number,
+ *     lockoutInEffect: number,
+ *     lockoutSecondsRemaining: number,
+ *   },
+ * }}
+ */
+dpsl.TpmInfo;
+
+/**
  * Response message containing Timezone Info
  * @typedef {{
  *   posix: string,

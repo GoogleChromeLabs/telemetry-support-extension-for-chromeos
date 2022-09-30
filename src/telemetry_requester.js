@@ -152,6 +152,21 @@ class DPSLTelemetryRequester {
   }
 
   /**
+   * Requests TPM (Trusted Platform Module) info.
+   * @return { !Promise<!dpsl.TpmInfo> }
+   * @public
+   */
+  async getTpmInfo() {
+    const functionName = 'getTpmInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 108);
+    }
+
+    return chrome.os.telemetry.getTpmInfo();
+  }
+
+  /**
    * Requests OS version info.
    * @return { !Promise<!dpsl.OsVersionInfo> }
    * @public
