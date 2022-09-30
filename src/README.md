@@ -199,6 +199,39 @@ class Routine {
 | availableSpace | number | The currently available space in the user partition (Bytes) |
 | totalSpace | number | The total space of the user partition (Bytes) |
 
+### TpmVersion
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| gscVersion | string | The version of Google security chip(GSC), or "not_gsc" if not applicable  |
+| family | number | TPM family. We use the TPM 2.0 style encoding (see [here](https://trustedcomputinggroup.org/wp-content/uploads/TPM-Rev-2.0-Part-1-Architecture-01.07-2014-03-13.pdf)  for reference), e.g.: <ul><li>TPM 1.2: "1.2" -> 0x312e3200</li><li> TPM 2.0: "2.0" -> 0x322e3000</li></ul> |
+| specLevel | number | The level of the specification that is implemented by the TPM  |
+| manufacturer | number | A manufacturer specific code |
+| tpmModel | number | The TPM model number |
+| firmwareVersion | number | The current firmware version of the TPM  |
+| vendorSpecific | string | Information set by the vendor |
+
+### TpmStatus
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| enabled | boolean | Wheather the |
+| owned | boolean | Whether the TPM has been owned |
+| specLevel | boolean | Whether the owner password is still retained (as part of the TPM initialization) |
+
+### TpmDictionaryAttack
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| counter | number | The current dictionary attack counter value |
+| threshold | number | The current dictionary attack counter threshold |
+| lockoutInEffect | boolean | Whether the TPM is currently in some form of dictionary attack lockout |
+| lockoutSecondsRemaining | number | The number of seconds remaining in the lockout (if applicable) |
+
+### TpmInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| version | TpmVersion | The current version of the Trusted Platform Module (TPM) |
+| status | TpmStatus | The current status of the TPM |
+| dictonaryAttack | TpmDictionaryAttack | TPM dictionary attack (DA) related information |
+
 ### OsVersionInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -255,6 +288,7 @@ class Routine {
 | getOsVersionInfo | () => Promise\<OsVersionInfo\> | 1.3.1 |
 | getNonRemovableBlockDevicesInfo | () => Promise\<BlockDeviceInfo\> | 1.3.2 |
 | getInternetConnectivityInfo | () => Promise\<InternetConnectivityInfo\> | 1.3.2 |
+| getTpmInfo | () => Promise\<TpmInfo\> | 1.3.2 |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition | Released in `dpsl` version |
