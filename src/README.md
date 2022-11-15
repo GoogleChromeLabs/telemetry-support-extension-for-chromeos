@@ -342,3 +342,8 @@ class Routine {
 | runDnsProviderPresentRoutine | () => Promise\<Routine\> | 1.3.2 |
 | runDnsResolutionRoutine | () => Promise\<Routine\> | 1.3.2 |
 | runGatewayCanBePingedRoutine | () => Promise\<Routine\> | 1.3.2 |
+
+### dpsl.diagnostics.sensor.*
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runSensitiveSensorRoutine | () => Promise\<Routine\> | 1.3.3 |

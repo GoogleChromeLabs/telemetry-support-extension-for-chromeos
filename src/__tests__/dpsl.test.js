@@ -358,7 +358,8 @@ describe('dpsl.diagnostics tests', () => {
             'battery_discharge', 'battery_health', 'cpu_cache',
             'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
             'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
-            'signal_strength', 'nvme-wear-level', 'nvme_self_test'],
+            'signal_strength', 'nvme-wear-level', 'nvme_self_test',
+            'sensitive_sensor'],
         };
         const chrome = {
           os: {
@@ -493,6 +494,10 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.network.runSignalStrengthRoutine,
       'chromeOsRoutineFunction': 'runSignalStrengthRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.sensor.runSensitiveSensorRoutine,
+      'chromeOsRoutineFunction': 'runSensitiveSensorRoutine',
     },
   ];
 

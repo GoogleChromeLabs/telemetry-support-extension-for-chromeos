@@ -446,6 +446,30 @@ class NetworkManager {
 }
 
 /**
+ * Sensor Manager for dpsl.diagnostics.sensor.* APIs.
+ */
+class SensorManager {
+  /**
+   * Runs sensitive sensor test. This routine checks that the device's sensors
+   * are working correctly by monitoring the sensor sample data without user
+   * interaction. This routine only support sensitive sensors including
+   * accelerometers, gyro sensors, gravity sensors and magnetometers.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runSensitiveSensorRoutine() {
+    const functionName = 'runSensitiveSensorRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 110);
+    }
+
+    return chrome.os.diagnostics.runSensitiveSensorRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 class DPSLDiagnosticsManager {
@@ -494,6 +518,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.network = new NetworkManager();
+
+    /**
+     * @type {!SensorManager}
+     * @public
+     */
+    this.sensor = new SensorManager();
   }
 
   /**
