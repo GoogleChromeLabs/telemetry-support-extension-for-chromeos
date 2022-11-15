@@ -128,6 +128,7 @@ describe('dpsl.telemetry tests', () => {
           'networks': [{
             'type': 'wifi',
             'state': 'online',
+            'macAddress': '00:00:5e:00:53:af',
             'ipv4Address': '192.168.123.456',
             'ipv6Addresses': ['FE80:CD00:0000:0CDE:1257:0000:211E:729C'],
             'signalStrength': 42,
@@ -135,6 +136,7 @@ describe('dpsl.telemetry tests', () => {
           {
             'type': 'ethernet',
             'state': 'disabled',
+            'macAddress': '00:af:5e:00:53:00',
             'ipv4Address': '1.1.1.1',
             'ipv6Addresses': [],
             'signalStrength': 100,
