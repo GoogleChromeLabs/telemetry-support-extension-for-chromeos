@@ -293,6 +293,15 @@ dpsl.CpuRoutineDurationParams;
  dpsl.DiskReadRoutineParams;
 
 /**
+* Params object of dpsl.diagnostics.nvme.runSelfTestRoutine()
+* Possible test_types are 'short_test' and 'long_test'
+* @typedef {{
+ *  test_type: !string,
+ * }}
+ */
+dpsl.NvmeSelfTestRoutineParams;
+
+/**
  * Params object of dpsl.diagnostics.nvme.runWearLevelRoutine()
  * @typedef {{wearLevelThreshold: !number}}
  */

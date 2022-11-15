@@ -326,6 +326,23 @@ class NvmeManager {
   }
 
   /**
+   * Runs NVMe self test.
+   * @param {!dpsl.NvmeSelfTestRoutineParams} params
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runSelfTestRoutine(params) {
+    const functionName = 'runNvmeSelfTestRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 110);
+    }
+
+    return chrome.os.diagnostics.runNvmeSelfTestRoutine(params).then(
+        (response) => new Routine(response.id));
+  }
+
+  /**
    * Runs NVMe wear level test.
    * @param {!dpsl.NvmeWearLevelRoutineParams} params
    * @return { !Promise<!Routine> }

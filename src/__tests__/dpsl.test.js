@@ -356,7 +356,7 @@ describe('dpsl.diagnostics tests', () => {
             'battery_discharge', 'battery_health', 'cpu_cache',
             'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
             'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
-            'signal_strength', 'nvme-wear-level'],
+            'signal_strength', 'nvme-wear-level', 'nvme_self_test'],
         };
         const chrome = {
           os: {
@@ -460,6 +460,10 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runSmartctlCheckRoutine,
       'chromeOsRoutineFunction': 'runSmartctlCheckRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.nvme.runSelfTestRoutine,
+      'chromeOsRoutineFunction': 'runNvmeSelfTestRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runWearLevelRoutine,
