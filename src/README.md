@@ -331,6 +331,7 @@ class Routine {
 ------------ | ------------- | ------------- |
 | runSmartctlCheckRoutine | () => Promise\<Routine\> | 1.3.0 |
 | runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> | 1.3.0 |
+| runSelfTestRoutine | (params: NvmeSelfTestRoutineParams) => Promise\<Routine\> | 1.3.3 |
 
 ### dpsl.diagnostics.network.*
 | Function Name | Definition | Released in `dpsl` version |
