@@ -163,6 +163,7 @@ class Routine {
 ------------ | ------- | ----------- |
 | type | string | The type of network interface (wifi, ethernet, etc.) |
 | state | string | The current state of the network interface (disabled, enabled, online, etc.) |
+| macAddress | string | (Added in M110): The currently assigned mac address. Only available with the permission os.telemetry.network_info. |
 | ipv4Address | string | The currently assigned ipv4Address of the interface |
 | ipv6Addresses | Array<string> | The list of currently assigned ipv6Addresses of the interface |
 | signalStrength | number | The current signal strength in percent |

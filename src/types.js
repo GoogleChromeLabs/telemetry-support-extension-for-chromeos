@@ -72,6 +72,7 @@ dpsl.BluetoothInfo;
  *   networks: Array<{
  *     type: string,
  *     state: string,
+ *     macAddress: string,
  *     ipv4Address: string,
  *     ipv6Addresses: Array<string>,
  *     signalStrength: number
