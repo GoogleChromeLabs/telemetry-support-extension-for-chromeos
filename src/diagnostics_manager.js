@@ -306,6 +306,30 @@ class DiskManager {
 }
 
 /**
+ * Diagnostics eMMC Manager for dpsl.diagnostics.emmc.* APIs.
+ */
+class EmmcManager {
+  /**
+   * Runs eMMC lifetime check. This routine checks the lifetime of the eMMC
+   * drive. The routine will pass if PRE_EOL_INFO is 0x01 (normal). In
+   * addition, the value of DEVICE_LIFE_TIME_EST_TYP_A and
+   * DEVICE_LIFE_TIME_EST_TYP_B will be included in the output.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runEmmcLifetimeRoutine() {
+    const functionName = 'runEmmcLifetimeRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 110);
+    }
+
+    return chrome.os.diagnostics.runEmmcLifetimeRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * Diagnostics NVMe Manager for dpsl.diagnostics.nmve.* APIs.
  */
 class NvmeManager {
@@ -542,6 +566,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.sensor = new SensorManager();
+
+    /**
+     * @type {!SensorManager}
+     * @public
+     */
+    this.emmc = new EmmcManager();
   }
 
   /**

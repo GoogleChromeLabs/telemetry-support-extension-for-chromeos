@@ -359,7 +359,7 @@ describe('dpsl.diagnostics tests', () => {
             'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
             'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
             'signal_strength', 'nvme-wear-level', 'nvme_self_test',
-            'sensitive_sensor', 'fingerprint_alive'],
+            'sensitive_sensor', 'fingerprint_alive', 'emmc_lifetime'],
         };
         const chrome = {
           os: {
@@ -459,6 +459,10 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.disk.runReadRoutine,
       'chromeOsRoutineFunction': 'runDiskReadRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.emmc.runEmmcLifetimeRoutine,
+      'chromeOsRoutineFunction': 'runEmmcLifetimeRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runSmartctlCheckRoutine,
