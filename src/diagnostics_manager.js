@@ -467,6 +467,24 @@ class SensorManager {
     return chrome.os.diagnostics.runSensitiveSensorRoutine().then(
         (response) => new Routine(response.id));
   }
+
+  /**
+   * Runs fingerprint alive sensor test. This routine checks whether the
+   * fingerprint module is alive or not. Alive means the sensor is responsive
+   * and the firmware version is RW.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runFingerprintAliveRoutine() {
+    const functionName = 'runFingerprintAliveRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 110);
+    }
+
+    return chrome.os.diagnostics.runFingerprintAliveRoutine().then(
+        (response) => new Routine(response.id));
+  }
 }
 
 /**

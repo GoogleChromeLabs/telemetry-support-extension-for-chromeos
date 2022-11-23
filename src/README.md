@@ -347,3 +347,4 @@ class Routine {
 | Function Name | Definition | Released in `dpsl` version |
 ------------ | ------------- | ------------- |
 | runSensitiveSensorRoutine | () => Promise\<Routine\> | 1.3.3 |
+| runFingerprintAliveRoutine | () => Promise\<Routine\> | 1.3.3 |
