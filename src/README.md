@@ -327,6 +327,11 @@ class Routine {
 ------------ | ------------- | ------------- |
 | runReadRoutine | () => Promise\<Routine\> | 1.3.1 |
 
+### dpsl.diagnostics.emmc.*
+| Function Name | Definition | Released in `dpsl` version |
+------------ | ------------- | ------------- |
+| runEmmcLifetimeRoutine | () => Promise\<Routine\> | 1.3.3 |
+
 ### dpsl.diagnostics.nvme.*
 | Function Name | Definition | Released in `dpsl` version |
 ------------ | ------------- | ------------- |
