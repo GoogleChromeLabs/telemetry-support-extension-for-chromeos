@@ -359,7 +359,7 @@ describe('dpsl.diagnostics tests', () => {
             'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
             'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
             'signal_strength', 'nvme-wear-level', 'nvme_self_test',
-            'sensitive_sensor'],
+            'sensitive_sensor', 'fingerprint_alive'],
         };
         const chrome = {
           os: {
@@ -498,6 +498,10 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.sensor.runSensitiveSensorRoutine,
       'chromeOsRoutineFunction': 'runSensitiveSensorRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.sensor.runFingerprintAliveRoutine,
+      'chromeOsRoutineFunction': 'runFingerprintAliveRoutine',
     },
   ];
 
