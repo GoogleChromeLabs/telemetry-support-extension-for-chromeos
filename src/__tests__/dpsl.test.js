@@ -359,7 +359,8 @@ describe('dpsl.diagnostics tests', () => {
             'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
             'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
             'signal_strength', 'nvme-wear-level', 'nvme_self_test',
-            'sensitive_sensor', 'fingerprint_alive', 'emmc_lifetime'],
+            'sensitive_sensor', 'fingerprint_alive', 'emmc_lifetime',
+            'smartctl_check_with_percentage_used'],
         };
         const chrome = {
           os: {
@@ -528,5 +529,46 @@ describe('dpsl.diagnostics tests', () => {
         done();
       });
     });
+  });
+
+
+  test('runSmartctlCheckRoutine works without parameters', (done) => {
+    const expectedRunRoutineResponse = {id: 123456};
+
+    const chrome = {
+      os: {
+        diagnostics: {
+          runSmartctlCheckRoutine:
+            (params = undefined) => Promise.resolve(expectedRunRoutineResponse),
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.diagnostics.nvme.runSmartctlCheckRoutine().then((routine) => {
+      expect(routine).toEqual(expectedRunRoutineResponse);
+      done();
+    });
+  });
+
+  test('runSmartctlCheckRoutine works with parameters', (done) => {
+    const expectedRunRoutineResponse = {id: 123456};
+
+    const chrome = {
+      os: {
+        diagnostics: {
+          runSmartctlCheckRoutine:
+            (params = undefined) => Promise.resolve(expectedRunRoutineResponse),
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.diagnostics.nvme
+        .runSmartctlCheckRoutine({percentageUsedThreshold: 42})
+        .then((routine) => {
+          expect(routine).toEqual(expectedRunRoutineResponse);
+          done();
+        });
   });
 });

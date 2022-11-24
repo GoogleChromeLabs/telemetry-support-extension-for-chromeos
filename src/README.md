@@ -276,6 +276,11 @@ class Routine {
 ------------ | ------- | ----------- |
 | wearLevelThreshold | number | Threshold number in percentage which routine examines wear level status against |
 
+### SmartctlCheckRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| percentageUsedThreshold | number | an optional threshold number in percentage, range [0, 255] inclusive, that the routine examines `percentage_used` against. If not specified, the routine will default to the max allowed value (255). |
+
 ## Functions
 ### dpsl.telemetry.*
 | Function Name | Definition | Released in `dpsl` version |
@@ -335,7 +340,7 @@ class Routine {
 ### dpsl.diagnostics.nvme.*
 | Function Name | Definition | Released in `dpsl` version |
 ------------ | ------------- | ------------- |
-| runSmartctlCheckRoutine | () => Promise\<Routine\> | 1.3.0 |
+| runSmartctlCheckRoutine | (params: SmartctlCheckRoutineParams?) => Promise\<Routine\> | intial release: 1.3.0, new parameter added: 1.3.3. The parameter is only available if "smartctl_check_with_percentage_used" is returned from `GetAvailableRoutines` |
 | runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> | 1.3.0 |
 | runSelfTestRoutine | (params: NvmeSelfTestRoutineParams) => Promise\<Routine\> | 1.3.3 |
 
