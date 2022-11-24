@@ -335,17 +335,18 @@ class EmmcManager {
 class NvmeManager {
   /**
    * Runs NVMe smartctl test.
+   * @param {dpsl.SmartctlCheckRoutineParams} params
    * @return { !Promise<!Routine> }
    * @public
    */
-  async runSmartctlCheckRoutine() {
+  async runSmartctlCheckRoutine(params = undefined) {
     const functionName = 'runSmartctlCheckRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
           /* chromeVersion */ 100);
     }
 
-    return chrome.os.diagnostics.runSmartctlCheckRoutine().then(
+    return chrome.os.diagnostics.runSmartctlCheckRoutine(params).then(
         (response) => new Routine(response.id));
   }
 

@@ -307,3 +307,9 @@ dpsl.NvmeSelfTestRoutineParams;
  * @typedef {{wearLevelThreshold: !number}}
  */
  dpsl.NvmeWearLevelRoutineParams;
+
+/**
+ * Params object of dpsl.diagnostics.nvme.runSmartctlCheckRoutine()
+ * @typedef {{percentageUsedThreshold: !number}}
+ */
+ dpsl.SmartctlCheckRoutineParams;
