@@ -283,78 +283,78 @@ class Routine {
 
 ## Functions
 ### dpsl.telemetry.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| getVpdInfo | () => Promise\<VpdInfo\> | 1.0.0 |
-| getOemData | () => Promise\<OemDataInfo\> | 1.0.0 |
-| getCpuInfo | () => Promise\<CpuInfo\> |  1.2.0 |
-| getMemoryInfo | () => Promise\<MemoryInfo\> | 1.2.0 |
-| getBatteryInfo | () => Promise\<BatteryInfo\> | 1.3.0 |
-| getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> | 1.3.1 |
-| getOsVersionInfo | () => Promise\<OsVersionInfo\> | 1.3.1 |
-| getNonRemovableBlockDevicesInfo | () => Promise\<BlockDeviceInfo\> | 1.3.2 |
-| getInternetConnectivityInfo | () => Promise\<InternetConnectivityInfo\> | 1.3.2 |
-| getTpmInfo | () => Promise\<TpmInfo\> | 1.3.2 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| getVpdInfo | () => Promise\<VpdInfo\> | `os.telemetry`, `os.telemetry.serial_number` | 1.0.0 |
+| getOemData | () => Promise\<OemDataInfo\> | `os.telemetry`, `os.telemetry.serial_number` | 1.0.0 |
+| getCpuInfo | () => Promise\<CpuInfo\> | `os.telemetry` | 1.2.0 |
+| getMemoryInfo | () => Promise\<MemoryInfo\> | `os.telemetry` | 1.2.0 |
+| getBatteryInfo | () => Promise\<BatteryInfo\> | `os.telemetry`, `os.telemetry.serial_number` | 1.3.0 |
+| getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> | `os.telemetry` | 1.3.1 |
+| getOsVersionInfo | () => Promise\<OsVersionInfo\> | `os.telemetry` | 1.3.1 |
+| getNonRemovableBlockDevicesInfo | () => Promise\<BlockDeviceInfo\> | `os.telemetry` | 1.3.2 |
+| getInternetConnectivityInfo | () => Promise\<InternetConnectivityInfo\> | `os.telemetry`, `os.telemetry.network_info` for MAC address field | 1.3.2 |
+| getTpmInfo | () => Promise\<TpmInfo\> | `os.telemetry` | 1.3.2 |
 
 ### dpsl.diagnostics.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| getAvailableRoutines | () => Promise\<List\<string\>\> | 1.0.0 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| getAvailableRoutines | () => Promise\<List\<string\>\> | `os.diagnostics` | 1.0.0 |
 
 ### dpsl.diagnostics.power.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runAcPowerRoutine | (params: AcPowerRoutineParams) => Promise\<Routine\> | 1.3.1 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runAcPowerRoutine | (params: AcPowerRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.3.1 |
 
 ### dpsl.diagnostics.battery.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runCapacityRoutine | () => Promise\<Routine\> | 1.0.0 |
-| runHealthRoutine | () => Promise\<Routine\> | 1.0.0 |
-| runDischargeRoutine | (params: BatteryDischargeRoutineParams) => Promise\<Routine\> | 1.0.0 |
-| runChargeRoutine | (params: BatteryChargeRoutineParams) => Promise\<Routine\> | 1.0.0 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runCapacityRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.0.0 |
+| runHealthRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.0.0 |
+| runDischargeRoutine | (params: BatteryDischargeRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.0.0 |
+| runChargeRoutine | (params: BatteryChargeRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.0.0 |
 
 ### dpsl.diagnostics.cpu.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runCacheRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.0.0 |
-| runStressRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.0.0 |
-| runFloatingPointAccuracyRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.1.0 |
-| runPrimeSearchRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | 1.1.0 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runCacheRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | `os.diagnostics` | 1.0.0 |
+| runStressRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | `os.diagnostics` | 1.0.0 |
+| runFloatingPointAccuracyRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | `os.diagnostics` | 1.1.0 |
+| runPrimeSearchRoutine | (params: CpuRoutineDurationParams) => Promise\<Routine\> | `os.diagnostics` | 1.1.0 |
 
 ### dpsl.diagnostics.memory.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runMemoryRoutine | () => Promise\<Routine\> | 1.0.0 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runMemoryRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.0.0 |
 
 ### dpsl.diagnostics.disk.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runReadRoutine | () => Promise\<Routine\> | 1.3.1 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runReadRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.1 |
 
 ### dpsl.diagnostics.emmc.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runEmmcLifetimeRoutine | () => Promise\<Routine\> | 1.3.3 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runEmmcLifetimeRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.3 |
 
 ### dpsl.diagnostics.nvme.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runSmartctlCheckRoutine | (params: SmartctlCheckRoutineParams?) => Promise\<Routine\> | intial release: 1.3.0, new parameter added: 1.3.3. The parameter is only available if "smartctl_check_with_percentage_used" is returned from `GetAvailableRoutines` |
-| runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> | 1.3.0 |
-| runSelfTestRoutine | (params: NvmeSelfTestRoutineParams) => Promise\<Routine\> | 1.3.3 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runSmartctlCheckRoutine | (params: SmartctlCheckRoutineParams?) => Promise\<Routine\> | `os.diagnostics` | intial release: 1.3.0, new parameter added: 1.3.3. The parameter is only available if "smartctl_check_with_percentage_used" is returned from `GetAvailableRoutines` |
+| runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.3.0 |
+| runSelfTestRoutine | (params: NvmeSelfTestRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.3.3 |
 
 ### dpsl.diagnostics.network.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runLanConnectivityRoutine | () => Promise\<Routine\> | 1.3.0 |
-| runSignalStrengthRoutine | () => Promise\<Routine\> | 1.3.2 |
-| runDnsProviderPresentRoutine | () => Promise\<Routine\> | 1.3.2 |
-| runDnsResolutionRoutine | () => Promise\<Routine\> | 1.3.2 |
-| runGatewayCanBePingedRoutine | () => Promise\<Routine\> | 1.3.2 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runLanConnectivityRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.0 |
+| runSignalStrengthRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
+| runDnsProviderPresentRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
+| runDnsResolutionRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
+| runGatewayCanBePingedRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
 
 ### dpsl.diagnostics.sensor.*
-| Function Name | Definition | Released in `dpsl` version |
------------- | ------------- | ------------- |
-| runSensitiveSensorRoutine | () => Promise\<Routine\> | 1.3.3 |
-| runFingerprintAliveRoutine | () => Promise\<Routine\> | 1.3.3 |
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runSensitiveSensorRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.3 |
+| runFingerprintAliveRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.3 |
