@@ -479,8 +479,8 @@ describe('dpsl.diagnostics tests', () => {
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network
-          .runDnsProviderPresentRoutine,
-      'chromeOsRoutineFunction': 'runDnsProviderPresentRoutine',
+          .runDnsResolverPresentRoutine,
+      'chromeOsRoutineFunction': 'runDnsResolverPresentRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network

@@ -349,7 +349,7 @@ class Routine {
 ------------ | ------------- | ------------- | ------------- |
 | runLanConnectivityRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.0 |
 | runSignalStrengthRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
-| runDnsProviderPresentRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
+| runDnsResolverPresentRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
 | runDnsResolutionRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
 | runGatewayCanBePingedRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.2 |
 

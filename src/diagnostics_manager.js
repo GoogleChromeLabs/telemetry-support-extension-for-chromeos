@@ -394,14 +394,14 @@ class NetworkManager {
    * @return { !Promise<!Routine> }
    * @public
    */
-  async runDnsProviderPresentRoutine() {
-    const functionName = 'runDnsProviderPresentRoutine';
+  async runDnsResolverPresentRoutine() {
+    const functionName = 'runDnsResolverPresentRoutine';
     if (!isSupported(functionName)) {
       throw new MethodNotFoundError(API_NAME, functionName,
           /* chromeVersion */ 108);
     }
 
-    return chrome.os.diagnostics.runDnsProviderPresentRoutine().then(
+    return chrome.os.diagnostics.runDnsResolverPresentRoutine().then(
         (response) => new Routine(response.id));
   }
 
