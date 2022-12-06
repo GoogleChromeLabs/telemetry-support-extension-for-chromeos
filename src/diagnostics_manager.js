@@ -346,7 +346,12 @@ class NvmeManager {
           /* chromeVersion */ 100);
     }
 
-    return chrome.os.diagnostics.runSmartctlCheckRoutine(params).then(
+    if (arguments.length != 0) {
+      return chrome.os.diagnostics.runSmartctlCheckRoutine(params).then(
+          (response) => new Routine(response.id));
+    }
+
+    return chrome.os.diagnostics.runSmartctlCheckRoutine().then(
         (response) => new Routine(response.id));
   }
 
@@ -569,7 +574,7 @@ class DPSLDiagnosticsManager {
     this.sensor = new SensorManager();
 
     /**
-     * @type {!SensorManager}
+     * @type {!EmmcManager}
      * @public
      */
     this.emmc = new EmmcManager();

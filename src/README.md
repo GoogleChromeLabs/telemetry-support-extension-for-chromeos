@@ -285,11 +285,11 @@ class Routine {
 ### dpsl.telemetry.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
 ------------ | ------------- | ------------- | ------------- |
-| getVpdInfo | () => Promise\<VpdInfo\> | `os.telemetry`, `os.telemetry.serial_number` | 1.0.0 |
-| getOemData | () => Promise\<OemDataInfo\> | `os.telemetry`, `os.telemetry.serial_number` | 1.0.0 |
+| getVpdInfo | () => Promise\<VpdInfo\> | `os.telemetry`, `os.telemetry.serial_number` for serial number field | 1.0.0 |
+| getOemData | () => Promise\<OemDataInfo\> | `os.telemetry`, `os.telemetry.serial_number` for the whole result | 1.0.0 |
 | getCpuInfo | () => Promise\<CpuInfo\> | `os.telemetry` | 1.2.0 |
 | getMemoryInfo | () => Promise\<MemoryInfo\> | `os.telemetry` | 1.2.0 |
-| getBatteryInfo | () => Promise\<BatteryInfo\> | `os.telemetry`, `os.telemetry.serial_number` | 1.3.0 |
+| getBatteryInfo | () => Promise\<BatteryInfo\> | `os.telemetry`, `os.telemetry.serial_number` for serial number field | 1.3.0 |
 | getStatefulPartitionInfo | () => Promise\<StatefulPartitionInfo\> | `os.telemetry` | 1.3.1 |
 | getOsVersionInfo | () => Promise\<OsVersionInfo\> | `os.telemetry` | 1.3.1 |
 | getNonRemovableBlockDevicesInfo | () => Promise\<BlockDeviceInfo\> | `os.telemetry` | 1.3.2 |

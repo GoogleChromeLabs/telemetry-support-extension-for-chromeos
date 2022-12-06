@@ -195,7 +195,7 @@ describe('dpsl.telemetry tests', () => {
           os: {
             telemetry: {
               getNonRemovableBlockDevicesInfo:
-                () => expectedNonRemovableBlockDevicesInfo,
+                 () => expectedNonRemovableBlockDevicesInfo,
             },
           },
         };
@@ -390,9 +390,9 @@ describe('dpsl.diagnostics tests', () => {
           os: {
             diagnostics: {
               runBatteryCapacityRoutine:
-                () => Promise.resolve(expectedRunRoutineResponse),
+                 () => Promise.resolve(expectedRunRoutineResponse),
               getRoutineUpdate:
-                () => Promise.resolve(expectedRoutineStatusResponse),
+                 () => Promise.resolve(expectedRoutineStatusResponse),
             },
           },
         };
@@ -446,7 +446,7 @@ describe('dpsl.diagnostics tests', () => {
     },
     {
       'dpslRoutineFunction':
-        dpsl.diagnostics.cpu.runFloatingPointAccuracyRoutine,
+         dpsl.diagnostics.cpu.runFloatingPointAccuracyRoutine,
       'chromeOsRoutineFunction': 'runCpuFloatingPointAccuracyRoutine',
     },
     {
@@ -518,7 +518,7 @@ describe('dpsl.diagnostics tests', () => {
         os: {
           diagnostics: {
             [testCase.chromeOsRoutineFunction]:
-              () => Promise.resolve(expectedRunRoutineResponse),
+               () => Promise.resolve(expectedRunRoutineResponse),
           },
         },
       };
@@ -539,7 +539,10 @@ describe('dpsl.diagnostics tests', () => {
       os: {
         diagnostics: {
           runSmartctlCheckRoutine:
-            (params = undefined) => Promise.resolve(expectedRunRoutineResponse),
+             (params = undefined) => {
+               return Promise.resolve(params === undefined ?
+                 expectedRunRoutineResponse : undefined);
+             },
         },
       },
     };
@@ -558,7 +561,8 @@ describe('dpsl.diagnostics tests', () => {
       os: {
         diagnostics: {
           runSmartctlCheckRoutine:
-            (params = undefined) => Promise.resolve(expectedRunRoutineResponse),
+             (params = undefined) =>
+               Promise.resolve(params ? expectedRunRoutineResponse : undefined),
         },
       },
     };
