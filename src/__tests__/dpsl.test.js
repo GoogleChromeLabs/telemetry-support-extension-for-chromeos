@@ -185,6 +185,26 @@ describe('dpsl.telemetry tests', () => {
             });
       });
 
+  test('dpsl.telemetry.getMarketingInfo() returns correct data', (done) => {
+    // Mock the global chrome object.
+    const expectedMarketingInfo = {
+      'marketingName': 'MyMarketingName',
+    };
+    const chrome = {
+      os: {
+        telemetry: {
+          getMarketingInfo: () => expectedMarketingInfo,
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.telemetry.getMarketingInfo().then((marketingInfo) => {
+      expect(marketingInfo).toEqual(expectedMarketingInfo);
+      done();
+    });
+  });
+
   test('dpsl.telemetry.getMemoryInfo() returns correct data', (done) => {
     // Mock the global chrome object.
     const expectedMemoryInfo = {

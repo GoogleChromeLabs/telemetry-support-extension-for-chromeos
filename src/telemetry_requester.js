@@ -107,6 +107,21 @@ class DPSLTelemetryRequester {
   }
 
   /**
+   * Requests Marketing info.
+   * @return { !Promise<!dpsl.MarketingInfo> }
+   * @public
+   */
+  async getMarketingInfo() {
+    const functionName = 'getMarketingInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 111);
+    }
+
+    return chrome.os.telemetry.getMarketingInfo();
+  }
+
+  /**
    * Requests Memory info.
    * @return { !Promise<!dpsl.MemoryInfo> }
    * @public
