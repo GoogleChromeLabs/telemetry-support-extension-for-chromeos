@@ -169,6 +169,14 @@ dpsl.FanInfo;
 /**
  * Response message containing Memory Info
  * @typedef {{
+*   marketingName: string,
+* }}
+*/
+dpsl.MarketingInfo;
+
+/**
+ * Response message containing Memory Info
+ * @typedef {{
  *   totalMemoryKiB: number,
  *   freeMemoryKiB: number,
  *   availableMemoryKiB: number,

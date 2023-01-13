@@ -196,6 +196,11 @@ class Routine {
 | ipv6Addresses | Array<string> | The list of currently assigned ipv6Addresses of the interface |
 | signalStrength | number | The current signal strength in percent |
 
+### MarketingInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| marketingName | string | Contents of CrosConfig in `/branding/marketing-name` |
+
 ### MemoryInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -324,6 +329,7 @@ class Routine {
 | getInternetConnectivityInfo | () => Promise\<InternetConnectivityInfo\> | `os.telemetry`, `os.telemetry.network_info` for MAC address field | 1.3.2 |
 | getTpmInfo | () => Promise\<TpmInfo\> | `os.telemetry` | 1.3.2 |
 | getAudioInfo | () => Promise\<AudioInfo\> | `os.telemetry` | 1.3.4 |
+| getMarketingInfo | () => Promise\<MarketingInfo\> | `os.telemetry` | 1.3.4 |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
