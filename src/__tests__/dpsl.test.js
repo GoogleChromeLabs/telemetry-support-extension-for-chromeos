@@ -30,6 +30,31 @@ describe('dpsl.telemetry tests', () => {
     expect(dpsl.telemetry).not.toBeNull();
   });
 
+  test('dpsl.telemetry.getAudioInfo() returns correct data', (done) => {
+    // Mock the global chrome object.
+    const expectedAudioInfo = {
+      'outputMute': false,
+      'inputMute': 'true',
+      'underruns': 0,
+      'severeUnderruns': 0,
+      'outputNodes': [],
+      'inputNodes': [],
+    };
+    const chrome = {
+      os: {
+        telemetry: {
+          getAudioInfo: () => expectedAudioInfo,
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.telemetry.getAudioInfo().then((audioInfo) => {
+      expect(audioInfo).toEqual(expectedAudioInfo);
+      done();
+    });
+  });
+
   test('dpsl.telemetry.getVpdInfo() returns correct data', (done) => {
     // Mock the global chrome object.
     const expectedVpdInfo = {
