@@ -112,6 +112,34 @@ class Routine {
 
 - Routine's id usually starts with 0.
 
+### AudioInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| outputMute | boolean | Is the active output device mute or not |
+| inputMute | boolean | Is the active input device mute or not |
+| underruns | number | Number of underruns |
+| severeUnderruns | number | Number of severe underruns |
+| outputNodes | Array<AudioOutputNodeInfo> | Output nodes |
+| inputNodes | Array<AudioInputNodeInfo> | Input nodes |
+
+### AudioOutputNodeInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| id | number | Node id |
+| name | string | The name of this node. For example, "Speaker" |
+| deviceName | string | The name of the device that this node belongs to. For example, "HDA Intel PCH: CA0132 Analog:0,0" |
+| active | boolean | Whether this node is currently used for output. There is one active node for output |
+| nodeVolume | number | The node volume in [0, 100] |
+
+### AudioInputNodeInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| id | number | Node id |
+| name | string | The name of this node. For example, "Internal Mic" |
+| deviceName | string | The name of the device that this node belongs to. For example, "HDA Intel PCH: CA0132 Analog:0,0" |
+| active | boolean | Whether this node is currently used for input. There is one active node for input |
+| nodeGain | number | The input node gain set by UI, the value is in [0, 100] |
+
 ### VpdInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -295,6 +323,7 @@ class Routine {
 | getNonRemovableBlockDevicesInfo | () => Promise\<BlockDeviceInfo\> | `os.telemetry` | 1.3.2 |
 | getInternetConnectivityInfo | () => Promise\<InternetConnectivityInfo\> | `os.telemetry`, `os.telemetry.network_info` for MAC address field | 1.3.2 |
 | getTpmInfo | () => Promise\<TpmInfo\> | `os.telemetry` | 1.3.2 |
+| getAudioInfo | () => Promise\<AudioInfo\> | `os.telemetry` | 1.3.4 |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |

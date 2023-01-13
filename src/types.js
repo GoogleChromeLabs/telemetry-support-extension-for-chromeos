@@ -24,6 +24,31 @@
  ////////////////////// dpsl.telemetry.* type definitions //////////////////////
 
 /**
+ * Response message containing Audio input node Info
+ * @typedef {!{
+*   outputMute: boolean,
+*   inputMute: boolean,
+*   underruns: number,
+*   severeUnderruns: number,
+*   outputNodes: Array<{
+*      id: number,
+*      name: string,
+*      deviceName: string,
+*      active: boolean,
+*      nodeVolume: number,
+*   }>,
+*  inputNodes: Array<{
+*      id: number,
+*      name: string,
+*      deviceName: string,
+*      active: boolean,
+*      nodeGain: number,
+*   }>,
+* }}
+*/
+dpsl.AudioInfo;
+
+/**
  * Response message containing Backlight Info
  * @typedef {!Array<{
  *   path: string,

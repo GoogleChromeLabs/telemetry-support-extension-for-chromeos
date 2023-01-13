@@ -32,6 +32,21 @@ const API_NAME = 'telemetry';
  */
 class DPSLTelemetryRequester {
   /**
+   * Requests Audio info.
+   * @return { !Promise<!dpsl.AudioInfo> }
+   * @public
+   */
+  async getAudioInfo() {
+    const functionName = 'getAudioInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 111);
+    }
+
+    return chrome.os.telemetry.getAudioInfo();
+  }
+
+  /**
    * Requests CachedVpd info.
    * @return { !Promise<!dpsl.VpdInfo> }
    * @public
