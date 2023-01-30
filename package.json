@@ -1,6 +1,6 @@
 {
   "name": "cros-dpsl-js",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Diagnostics processor support library for Chrome OS",
   "main": "./src/dpsl.js",
   "exports": "./src/dpsl.js",
