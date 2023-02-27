@@ -427,9 +427,9 @@ describe('dpsl.diagnostics tests', () => {
         // Mock the global chrome object.
         const expectedRunRoutineResponse = {id: 123456};
         const expectedRoutineStatusResponse = {
-          progressPercent: 76,
+          progress_percent: 76,
           status: 'running',
-          statusMessage: 'routine is running..',
+          status_message: 'routine is running..',
         };
         const chrome = {
           os: {
@@ -614,7 +614,7 @@ describe('dpsl.diagnostics tests', () => {
     global.chrome = chrome;
 
     dpsl.diagnostics.nvme
-        .runSmartctlCheckRoutine({percentageUsedThreshold: 42})
+        .runSmartctlCheckRoutine({percentage_used_threshold: 42})
         .then((routine) => {
           expect(routine).toEqual(expectedRunRoutineResponse);
           done();

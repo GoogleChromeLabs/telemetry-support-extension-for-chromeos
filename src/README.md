@@ -40,7 +40,7 @@ function isFinalStatus(routineStatus) {
 }
 
 function checkRoutineStatus(routine, routineStatus) {
-  console.log('Routine Progress:', routineStatus.progressPercent);
+  console.log('Routine Progress:', routineStatus.progress_percent);
   if (!isFinalStatus(routineStatus)) {
     setTimeout(() => {
       routine.getStatus().
@@ -81,11 +81,11 @@ dpsl.diagnostics.getAvailableRoutines().then((routineList) => {
 ### RoutineStatus
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| progressPercent | number | Percentage of the routine progress |
+| progress_percent | number | Percentage of the routine progress |
 | output* | string | Accumulated output, like logs |
 | status | string | Current status of the routine. One of ['ready', 'running', 'waiting_user_action', 'passed', 'failed', 'error', 'cancelled', 'failed_to_start', 'removed', 'cancelling', 'unsupported', 'not_run', 'unknown'] |
-| statusMessage | string | More detailed status message |
-| userMessage* | string | The requested user action. Note: used in interactive routines only. Possible values ['unplug-ac-power', 'plug-in-ac-power', 'unknown' ]
+| status_message | string | More detailed status message |
+| user_message* | string | The requested user action. Note: used in interactive routines only. Possible values ['unplug-ac-power', 'plug-in-ac-power', 'unknown' ]
 
 (*) Optional fields.
 
@@ -284,35 +284,35 @@ class Routine {
 ### AcPowerRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| expectedStatus | string | The expected status of the AC ('connected', 'disconnected' or 'unknown') |
-| expectedPowerType* | string | If specified, this must match the type of power supply for the routine to succeed. |
+| expected_status | string | The expected status of the AC ('connected', 'disconnected' or 'unknown') |
+| expected_power_type* | string | If specified, this must match the type of power supply for the routine to succeed. |
 
 ### BatteryDischargeRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| lengthSeconds | number | Length of time to run the routine for |
-| maximumDischargePercentAllowed | number | The routine will fail if the battery discharges by more than this percentage |
+| length_seconds | number | Length of time to run the routine for |
+| maximum_discharge_percent_allowed | number | The routine will fail if the battery discharges by more than this percentage |
 
 ### BatteryChargeRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| lengthSeconds | number | Length of time to run the routine for |
-| minimumChargePercentRequired | number | The routine will fail if the battery charges by less than this percentage |
+| length_seconds | number | Length of time to run the routine for |
+| minimum_charge_percent_required | number | The routine will fail if the battery charges by less than this percentage |
 
 ### CpuRoutineDurationParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| lengthSeconds | number | Length of time to run the routine for |
+| length_seconds | number | Length of time to run the routine for |
 
 ### NvmeWearLevelRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| wearLevelThreshold | number | Threshold number in percentage which routine examines wear level status against |
+| wear_level_threshold | number | Threshold number in percentage which routine examines wear level status against |
 
 ### SmartctlCheckRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
-| percentageUsedThreshold | number | an optional threshold number in percentage, range [0, 255] inclusive, that the routine examines `percentage_used` against. If not specified, the routine will default to the max allowed value (255). |
+| percentage_used_threshold | number | an optional threshold number in percentage, range [0, 255] inclusive, that the routine examines `percentage_used` against. If not specified, the routine will default to the max allowed value (255). |
 
 ## Functions
 ### dpsl.telemetry.*

@@ -273,11 +273,11 @@ dpsl.AvailableRoutinesList;
  * user. Note: used in interactive routines only, two possible values are
  * returned: 'unplug-ac-power' or 'plug-in-ac-power'.
  * @typedef {{
- *   progressPercent: !number,
+ *   progress_percent: !number,
  *   output?: string,
  *   status: !string,
- *   statusMessage: !string,
- *   userMessage?: string
+ *   status_message: !string,
+ *   user_message?: string
   }}
  */
 dpsl.RoutineStatus;
@@ -285,8 +285,8 @@ dpsl.RoutineStatus;
 /**
  * Params object of dpsl.diagnostics.power.runAcPowerRoutine()
  * @typedef {{
- *   expectedStatus: !string,
- *   expectedPowerType?: !string
+ *   expected_status: !string,
+ *   expected_power_type?: !string
  * }}
  */
 dpsl.AcPowerRoutineParams;
@@ -294,8 +294,8 @@ dpsl.AcPowerRoutineParams;
 /**
  * Params object of dpsl.diagnostics.battery.runChargeRoutine()
  * @typedef {{
- *   lengthSeconds: !number,
- *   minimumChargePercentRequired: !number
+ *   length_seconds: !number,
+ *   minimum_charge_percent_required: !number
  * }}
  */
 dpsl.BatteryChargeRoutineParams;
@@ -303,8 +303,8 @@ dpsl.BatteryChargeRoutineParams;
 /**
  * Params object of dpsl.diagnostics.battery.runDischargeRoutine()
  * @typedef {{
- *   lengthSeconds: !number,
- *   maximumDischargePercentAllowed: !number
+ *   length_seconds: !number,
+ *   maximum_discharge_percent_allowed: !number
  * }}
  */
 dpsl.BatteryDischargeRoutineParams;
@@ -312,7 +312,7 @@ dpsl.BatteryDischargeRoutineParams;
 /**
  * Params object of dpsl.diagnostics.cpu.{runCacheRoutine(), runStressRoutine(),
  * runFloatingPointAccuracyRoutine()}
- * @typedef {{lengthSeconds: !number}}
+ * @typedef {{length_seconds: !number}}
  */
 dpsl.CpuRoutineDurationParams;
 
@@ -320,8 +320,8 @@ dpsl.CpuRoutineDurationParams;
  * Params object of dpsl.diagnostics.disk.runReadRoutine()
  * @typedef {{
  *  type: !string,
- *  lengthSeconds: !number,
- *  fileSizeMb: !number
+ *  length_seconds: !number,
+ *  file_size_mb: !number
  * }}
  */
  dpsl.DiskReadRoutineParams;
@@ -337,12 +337,12 @@ dpsl.NvmeSelfTestRoutineParams;
 
 /**
  * Params object of dpsl.diagnostics.nvme.runWearLevelRoutine()
- * @typedef {{wearLevelThreshold: !number}}
+ * @typedef {{wear_level_threshold: !number}}
  */
  dpsl.NvmeWearLevelRoutineParams;
 
 /**
  * Params object of dpsl.diagnostics.nvme.runSmartctlCheckRoutine()
- * @typedef {{percentageUsedThreshold: !number}}
+ * @typedef {{percentage_used_threshold: !number}}
  */
  dpsl.SmartctlCheckRoutineParams;
