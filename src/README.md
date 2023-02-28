@@ -309,6 +309,11 @@ class Routine {
 ------------ | ------- | ----------- |
 | wear_level_threshold | number | Threshold number in percentage which routine examines wear level status against |
 
+### NvmeSelfTestRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| test_type | string | Selects between a "short_test" or a "long_test". |
+
 ### SmartctlCheckRoutineParams
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
