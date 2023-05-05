@@ -210,6 +210,21 @@ class DPSLTelemetryRequester {
 
     return chrome.os.telemetry.getOsVersionInfo();
   }
+
+  /**
+   * Requests USB Bus information.
+   * @return { !Promise<!dpsl.UsbBusInfo> }
+   * @public
+   */
+  async getUsbBusInfo() {
+    const functionName = 'getUsbBusInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 114);
+    }
+
+    return chrome.os.telemetry.getUsbBusInfo();
+  }
 }
 
 module.exports = {

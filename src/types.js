@@ -250,6 +250,33 @@ dpsl.TimezoneInfo;
  */
 dpsl.TelemetryInfoTypes;
 
+/**
+ * Response message containing USB bus Info
+ * @typedef {{
+*   devices: Array<{
+*     classId: number,
+*     subClassId: number,
+*     protocolId: number,
+*     vendorId: number,
+*     productId: number,
+*     interfaces: Array<{
+*       interfaceNumber: number,
+*       classId: number,
+*       subclassId: number,
+*       protocolId: number,
+*       driver: string,
+*     }>,
+*     fwupdFirmwareVersionInfo: {
+*       version: string,
+*       version_format: string
+*     }
+*     version: string,
+*     spec_speed: string
+*   }>
+* }}
+*/
+dpsl.UsbBusInfo;
+
 ///////////////////// dpsl.diagnostics.* type definitions //////////////////////
 
 /**

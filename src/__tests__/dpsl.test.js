@@ -378,6 +378,48 @@ describe('dpsl.telemetry tests', () => {
               done();
             });
       });
+
+  test('dpsl.telemetry.getUsbBusInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedUsbBusInfo = {
+          'devices': [{
+            'classId': 1,
+            'subClassId': 2,
+            'protocolId': 3,
+            'vendorId': 4,
+            'productId': 5,
+            'interfaces': [{
+              'interfaceNumber': 6,
+              'classId': 7,
+              'subclassId': 8,
+              'protocolId': 9,
+              'driver': 'TestDriver',
+            }],
+            'fwupdFirmwareVersionInfo': {
+              'version': 'TestVersion',
+              'version_format': 'quad',
+            },
+            'version': 'usb2',
+            'spec_speed': 'n5Gbps',
+          }],
+        };
+        const chrome = {
+          os: {
+            telemetry: {
+              getUsbBusInfo: () => expectedUsbBusInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getUsbBusInfo()
+            .then((usbBusInfo) => {
+              expect(usbBusInfo)
+                  .toEqual(expectedUsbBusInfo);
+              done();
+            });
+      });
 });
 
 
