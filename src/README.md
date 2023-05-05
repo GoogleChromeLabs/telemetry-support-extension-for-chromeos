@@ -319,6 +319,81 @@ class Routine {
 ------------ | ------- | ----------- |
 | percentage_used_threshold | number | an optional threshold number in percentage, range [0, 255] inclusive, that the routine examines `percentage_used` against. If not specified, the routine will default to the max allowed value (255). |
 
+### UsbBusInterfaceInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| interfaceNumber | number | The zero-based number (index) of the interface |
+| classId | number | The class id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| subclassId | number | The subclass id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| protocolId | number | The protocol id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| driver | string | The driver used by the device. This is the name of the matched driver which is registered in the kernel. See "{kernel root}/drivers/" for the list of the built in drivers |
+
+### Enum FwupdVersionFormat
+| Property Name | Description |
+------------ | ------------- |
+| plain | An unidentified format text string |
+| number | A single integer version number |
+| pair | Two AABB.CCDD version numbers |
+| triplet | Microsoft-style AA.BB.CCDD version numbers |
+| quad | UEFI-style AA.BB.CC.DD version numbers |
+| bcd | Binary coded decimal notation |
+| intelMe | Intel ME-style bitshifted notation |
+| intelMe2 | Intel ME-style A.B.CC.DDDD notation |
+| surfaceLegacy | Legacy Microsoft Surface 10b.12b.10b |
+| surface | Microsoft Surface 8b.16b.8b |
+| dellBios | Dell BIOS BB.CC.DD style |
+| hex | Hexadecimal 0xAABCCDD style |
+
+### FwupdFirmwareVersionInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| version | string | The string form of the firmware version |
+| version_format | FwupdVersionFormat | The format for parsing the version string |
+
+### Enum UsbVersion
+| Property Name |
+------------ |
+| unknown |
+| usb1 |
+| usb2 |
+| usb3 |
+
+### Enum UsbSpecSpeed
+An enumeration of the usb spec speed in Mbps.
+Source:
+
+1. https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-usb
+2. https://www.kernel.org/doc/Documentation/ABI/stable/sysfs-bus-usb
+3. https://en.wikipedia.org/wiki/USB
+
+| Property Name | Description |
+------------ | ------------- |
+| unknown | Unknown speed |
+| n1_5Mbps | Low speed |
+| n12Mbps | Full speed |
+| n480Mbps | High Speed |
+| n5Gbps | Super Speed |
+| n10Gbps | Super Speed+ |
+| n20Gbps | Super Speed+ Gen 2x2 |
+
+### UsbBusInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| classId | number | The class id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| subclassId | number | The subclass id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| protocolId | number | The protocol id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| vendorId | number | The vendor id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| productId | number | The product id can be used to classify / identify the usb interfaces. See the usb.ids database for the values (https://github.com/gentoo/hwids) |
+| interfaces | Array\<UsbBusInterfaceInfo\> | The usb interfaces under the device. A usb device has at least one interface. Each interface may or may not work independently, based on each device. This allows a usb device to provide multiple features. The interfaces are sorted by the `interface_number` field |
+| fwupdFirmwareVersionInfo | FwupdFirmwareVersionInfo | The firmware version obtained from fwupd |
+| version | UsbVersion | The recognized usb version. It may not be the highest USB version supported by the hardware |
+| spec_speed | UsbSpecSpeed | The spec usb speed |
+
+### UsbDevicesInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| devices | Array\<UsbBusInfo\> | Information about all connected USB devices |
+
 ## Functions
 ### dpsl.telemetry.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
@@ -335,6 +410,7 @@ class Routine {
 | getTpmInfo | () => Promise\<TpmInfo\> | `os.telemetry` | 1.3.2 |
 | getAudioInfo | () => Promise\<AudioInfo\> | `os.telemetry` | 1.3.4 |
 | getMarketingInfo | () => Promise\<MarketingInfo\> | `os.telemetry` | 1.3.4 |
+| getUsbBusInfo | () => Promise\<UsbDevicesInfo\> | `os.telemetry`, `os.attached_device_info` | 1.3.5 |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
