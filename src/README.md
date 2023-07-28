@@ -460,6 +460,11 @@ Source:
 | runWearLevelRoutine | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.3.0 |
 | runSelfTestRoutine | (params: NvmeSelfTestRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.3.3 |
 
+### dpsl.diagnostics.ufs.*
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runUfsLifetimeRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.6 |
+
 ### dpsl.diagnostics.network.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
 ------------ | ------------- | ------------- | ------------- |

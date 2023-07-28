@@ -447,7 +447,8 @@ describe('dpsl.diagnostics tests', () => {
             'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
             'signal_strength', 'nvme-wear-level', 'nvme_self_test',
             'sensitive_sensor', 'fingerprint_alive', 'emmc_lifetime',
-            'smartctl_check_with_percentage_used', 'audio_driver'],
+            'smartctl_check_with_percentage_used', 'audio_driver',
+            'ufs_lifetime'],
         };
         const chrome = {
           os: {
@@ -563,6 +564,10 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runWearLevelRoutine,
       'chromeOsRoutineFunction': 'runNvmeWearLevelRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.ufs.runUfsLifetimeRoutine,
+      'chromeOsRoutineFunction': 'runUfsLifetimeRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network
