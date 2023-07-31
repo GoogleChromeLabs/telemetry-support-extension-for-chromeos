@@ -474,3 +474,8 @@ Source:
 ------------ | ------------- | ------------- | ------------- |
 | runSensitiveSensorRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.3 |
 | runFingerprintAliveRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.3 |
+
+### dpsl.diagnostics.audio.*
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runAudioDriverRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.6 |

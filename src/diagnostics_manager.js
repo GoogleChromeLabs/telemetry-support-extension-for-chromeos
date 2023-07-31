@@ -518,6 +518,28 @@ class SensorManager {
 }
 
 /**
+ * Diagnostics audio Manager for dpsl.diagnostics.audio.* APIs.
+ */
+class AudioManager {
+  /**
+   * Runs audio driver check. This routine checks whether there is any errors
+   * about the audio driver.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runAudioDriverRoutine() {
+    const functionName = 'runAudioDriverRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 117);
+    }
+
+    return chrome.os.diagnostics.runAudioDriverRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 class DPSLDiagnosticsManager {
@@ -578,6 +600,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.emmc = new EmmcManager();
+
+    /**
+     * @type {!AudioManager}
+     * @public
+     */
+    this.audio = new AudioManager();
   }
 
   /**
