@@ -277,6 +277,45 @@ dpsl.TelemetryInfoTypes;
 */
 dpsl.UsbBusInfo;
 
+/**
+ * Response message containing Display Info
+ * @typedef {{
+ *   embeddedDisplay: {
+ *     privacyScreenSupported: boolean,
+ *     privacyScreenEnabled: boolean,
+ *     displayWidth: number,
+ *     displayHeight: number,
+ *     resolutionHorizontal: number,
+ *     resolutionVertical: number,
+ *     refreshRate: number,
+ *     manufacturer: string,
+ *     modelId: number,
+ *     serialNumber: number,
+ *     manufactureWeek: number,
+ *     manufactureYear: number,
+ *     edidVersion: string,
+ *     inputType: string,
+ *     displayName: string,
+ *   },
+ *   externalDisplays: Array<{
+ *     displayWidth: number,
+ *     displayHeight: number,
+ *     resolutionHorizontal: number,
+ *     resolutionVertical: number,
+ *     refreshRate: number,
+ *     manufacturer: string,
+ *     modelId: number,
+ *     serialNumber: number,
+ *     manufactureWeek: number,
+ *     manufactureYear: number,
+ *     edidVersion: string,
+ *     inputType: string,
+ *     displayName: string,
+ *   }>,
+ * }}
+ */
+dpsl.DisplayInfo;
+
 ///////////////////// dpsl.diagnostics.* type definitions //////////////////////
 
 /**

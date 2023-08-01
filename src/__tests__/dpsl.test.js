@@ -420,6 +420,60 @@ describe('dpsl.telemetry tests', () => {
               done();
             });
       });
+
+  test('dpsl.telemetry.getDisplayInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedDisplayInfo = {
+          'embeddedDisplay': {
+            'privacyScreenSupported': true,
+            'privacyScreenEnabled': true,
+            'displayWidth': 1,
+            'displayHeight': 2,
+            'resolutionHorizontal': 3,
+            'resolutionVertical': 4,
+            'refreshRate': 5,
+            'manufacturer': 'ABC',
+            'modelId': 6,
+            'serialNumber': 7,
+            'manufactureWeek': 8,
+            'manufactureYear': 9,
+            'edidVersion': 'TestEdidVersion',
+            'inputType': 'digital',
+            'displayName': 'TestDisplayName',
+          },
+          'externalDisplays': [{
+            'displayWidth': 1,
+            'displayHeight': 2,
+            'resolutionHorizontal': 3,
+            'resolutionVertical': 4,
+            'refreshRate': 5,
+            'manufacturer': 'ABC',
+            'modelId': 6,
+            'serialNumber': 7,
+            'manufactureWeek': 8,
+            'manufactureYear': 9,
+            'edidVersion': 'TestEdidVersion',
+            'inputType': 'digital',
+            'displayName': 'TestDisplayName',
+          }],
+        };
+        const chrome = {
+          os: {
+            telemetry: {
+              getDisplayInfo: () => expectedDisplayInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getDisplayInfo()
+            .then((displayInfo) => {
+              expect(displayInfo)
+                  .toEqual(expectedDisplayInfo);
+              done();
+            });
+      });
 });
 
 

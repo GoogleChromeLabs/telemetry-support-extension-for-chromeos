@@ -394,6 +394,55 @@ Source:
 ------------ | ------- | ----------- |
 | devices | Array\<UsbBusInfo\> | Information about all connected USB devices |
 
+### Enum DisplayInputType
+| Property Name | Description |
+------------ | ----------- |
+| unknown | Unknown enum value |
+| digital | Digital input |
+| analog | Analog input |
+
+### EmbeddedDisplayInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| privacyScreenSupported | bool | Privacy screen is supported or not |
+| privacyScreenEnabled | bool | Privacy screen is enabled or not |
+| displayWidth | number | Display width in millimeters |
+| displayHeight | number | Display height in millimeters |
+| resolutionHorizontal | number | Horizontal resolution |
+| resolutionVertical | number | Vertical resolution |
+| refreshRate | number | Refresh rate |
+| manufacturer | string | Three letter manufacturer ID |
+| modelId | number | Manufacturer product code |
+| serialNumber | number | 32 bits serial number |
+| manufactureWeek | number | Week of manufacture |
+| manufactureYear | number | Year of manufacture |
+| edidVersion | string | EDID version |
+| inputType | DisplayInputType | Digital or analog input |
+| displayName | string | Name of display product |
+
+### ExternalDisplayInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| displayWidth | number | Display width in millimeters |
+| displayHeight | number | Display height in millimeters |
+| resolutionHorizontal | number | Horizontal resolution |
+| resolutionVertical | number | Vertical resolution |
+| refreshRate | number | Refresh rate |
+| manufacturer | string | Three letter manufacturer ID |
+| modelId | number | Manufacturer product code |
+| serialNumber | number | 32 bits serial number |
+| manufactureWeek | number | Week of manufacture |
+| manufactureYear | number | Year of manufacture |
+| edidVersion | string | EDID version |
+| inputType | DisplayInputType | Digital or analog input |
+| displayName | string | Name of display product |
+
+### DisplayInfo
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| embeddedDisplay | EmbeddedDisplayInfo | Information about embedded display |
+| externalDisplays | Array\<ExternalDisplayInfo\> | Information about external displays |
+
 ## Functions
 ### dpsl.telemetry.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
@@ -411,6 +460,7 @@ Source:
 | getAudioInfo | () => Promise\<AudioInfo\> | `os.telemetry` | 1.3.4 |
 | getMarketingInfo | () => Promise\<MarketingInfo\> | `os.telemetry` | 1.3.4 |
 | getUsbBusInfo | () => Promise\<UsbDevicesInfo\> | `os.telemetry`, `os.attached_device_info` | 1.3.5 |
+| getDisplayInfo | () => Promise\<DisplayInfo\> | `os.telemetry` | 1.3.6 |
 
 ### dpsl.diagnostics.*
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
