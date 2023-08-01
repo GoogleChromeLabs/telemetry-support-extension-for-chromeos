@@ -391,6 +391,28 @@ class NvmeManager {
 }
 
 /**
+ * Diagnostics UFS Manager for dpsl.diagnostics.ufs.* APIs.
+ */
+class UfsManager {
+  /**
+   * Runs UFS lifetime check. This routine checks the lifetime of the UFS
+   * drive.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runUfsLifetimeRoutine() {
+    const functionName = 'runUfsLifetimeRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 117);
+    }
+
+    return chrome.os.diagnostics.runUfsLifetimeRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * Diagnostics Network Manager for dpsl.diagnostics.network.* APIs.
  */
 class NetworkManager {
@@ -606,6 +628,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.audio = new AudioManager();
+
+    /**
+     * @type {!UfsManager}
+     * @public
+     */
+    this.ufs = new UfsManager();
   }
 
   /**
