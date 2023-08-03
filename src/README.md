@@ -85,7 +85,7 @@ dpsl.diagnostics.getAvailableRoutines().then((routineList) => {
 | output* | string | Accumulated output, like logs |
 | status | string | Current status of the routine. One of ['ready', 'running', 'waiting_user_action', 'passed', 'failed', 'error', 'cancelled', 'failed_to_start', 'removed', 'cancelling', 'unsupported', 'not_run', 'unknown'] |
 | status_message | string | More detailed status message |
-| user_message* | string | The requested user action. Note: used in interactive routines only. Possible values ['unplug-ac-power', 'plug-in-ac-power', 'unknown' ]
+| user_message* | string | The requested user action. Note: used in interactive routines only. Possible values ['unplug_ac_power', 'plug_in_ac_power', 'press_power_button', 'unknown' ]
 
 (*) Optional fields.
 
@@ -319,6 +319,11 @@ class Routine {
 ------------ | ------- | ----------- |
 | percentage_used_threshold | number | an optional threshold number in percentage, range [0, 255] inclusive, that the routine examines `percentage_used` against. If not specified, the routine will default to the max allowed value (255). |
 
+### PowerButtonRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| timeout_seconds | number | Number of seconds to listen for the power button events. Range: [1, 600]. |
+
 ### UsbBusInterfaceInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -534,3 +539,8 @@ Source:
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
 ------------ | ------------- | ------------- | ------------- |
 | runAudioDriverRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.6 |
+
+### dpsl.diagnostics.hardwareButton.*
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runPowerButtonRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.6 |

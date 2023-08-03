@@ -336,8 +336,8 @@ dpsl.AvailableRoutinesList;
  *   'failed_to_start', 'removed', 'cancelling', 'unsupported', 'not_run']
  * |statusMessage| more detailed status message.
  * |userMessage| Requested user action. Should be localized and displayed to the
- * user. Note: used in interactive routines only, two possible values are
- * returned: 'unplug-ac-power' or 'plug-in-ac-power'.
+ *   user. Note: used in interactive routines only, possible values are
+ *   'unplug_ac_power', 'plug_in_ac_power' and 'press_power_button'.
  * @typedef {{
  *   progress_percent: !number,
  *   output?: string,
@@ -412,3 +412,9 @@ dpsl.NvmeSelfTestRoutineParams;
  * @typedef {{percentage_used_threshold: !number}}
  */
  dpsl.SmartctlCheckRoutineParams;
+
+/**
+ * Params object of dpsl.diagnostics.hardwareButton.runPowerButtonRoutine()
+ * @typedef {{timeout_seconds: !number}}
+ */
+ dpsl.PowerButtonRoutineParams;

@@ -502,7 +502,7 @@ describe('dpsl.diagnostics tests', () => {
             'signal_strength', 'nvme-wear-level', 'nvme_self_test',
             'sensitive_sensor', 'fingerprint_alive', 'emmc_lifetime',
             'smartctl_check_with_percentage_used', 'audio_driver',
-            'ufs_lifetime'],
+            'ufs_lifetime', 'power_button'],
         };
         const chrome = {
           os: {
@@ -657,6 +657,11 @@ describe('dpsl.diagnostics tests', () => {
     {
       'dpslRoutineFunction': dpsl.diagnostics.audio.runAudioDriverRoutine,
       'chromeOsRoutineFunction': 'runAudioDriverRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.hardwareButton
+          .runPowerButtonRoutine,
+      'chromeOsRoutineFunction': 'runPowerButtonRoutine',
     },
   ];
 

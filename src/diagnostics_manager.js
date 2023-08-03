@@ -562,6 +562,31 @@ class AudioManager {
 }
 
 /**
+ * Diagnostics Hardware Button Manager for dpsl.diagnostics.hardwareButton.*
+ * APIs.
+ */
+class HardwareButtonManager {
+  /**
+   * Runs power button test. This routine checks the functionality of the power
+   * button. The routine passes if a power button event is received before the
+   * timeout. Otherwise, the routine fails.
+   * @param {!dpsl.PowerButtonRoutineParams} params
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runPowerButtonRoutine(params) {
+    const functionName = 'runPowerButtonRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 117);
+    }
+
+    return chrome.os.diagnostics.runPowerButtonRoutine(params).then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 class DPSLDiagnosticsManager {
@@ -634,6 +659,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.ufs = new UfsManager();
+
+    /**
+     * @type {!HardwareButtonManager}
+     * @public
+     */
+    this.hardwareButton = new HardwareButtonManager();
   }
 
   /**
