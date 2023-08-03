@@ -225,6 +225,21 @@ class DPSLTelemetryRequester {
 
     return chrome.os.telemetry.getUsbBusInfo();
   }
+
+  /**
+   * Requests Display information.
+   * @return { !Promise<!dpsl.DisplayInfo> }
+   * @public
+   */
+  async getDisplayInfo() {
+    const functionName = 'getDisplayInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 117);
+    }
+
+    return chrome.os.telemetry.getDisplayInfo();
+  }
 }
 
 module.exports = {
