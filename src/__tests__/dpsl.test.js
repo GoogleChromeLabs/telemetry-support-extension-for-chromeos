@@ -663,6 +663,11 @@ describe('dpsl.diagnostics tests', () => {
           .runPowerButtonRoutine,
       'chromeOsRoutineFunction': 'runPowerButtonRoutine',
     },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.bluetooth
+          .runBluetoothPowerRoutine,
+      'chromeOsRoutineFunction': 'runBluetoothPowerRoutine',
+    },
   ];
 
   testCases.forEach((testCase) => {

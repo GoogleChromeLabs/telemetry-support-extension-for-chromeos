@@ -544,3 +544,8 @@ Source:
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
 ------------ | ------------- | ------------- | ------------- |
 | runPowerButtonRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.6 |
+
+### dpsl.diagnostics.bluetooth.*
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runBluetoothPowerRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.6 |

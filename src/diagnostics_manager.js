@@ -587,6 +587,29 @@ class HardwareButtonManager {
 }
 
 /**
+ * Diagnostics Bluetooth Manager for dpsl.diagnostics.bluetooth.* APIs.
+ */
+class BluetoothManager {
+  /**
+   * Runs Bluetooth power check. This routine checks whether the Bluetooth
+   * adapter can be powered off/on and the powered status is consistent in both
+   * HCI and D-Bus levels.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runBluetoothPowerRoutine() {
+    const functionName = 'runBluetoothPowerRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 117);
+    }
+
+    return chrome.os.diagnostics.runBluetoothPowerRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 class DPSLDiagnosticsManager {
@@ -665,6 +688,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.hardwareButton = new HardwareButtonManager();
+
+    /**
+     * @type {!BluetoothManager}
+     * @public
+     */
+    this.bluetooth = new BluetoothManager();
   }
 
   /**
