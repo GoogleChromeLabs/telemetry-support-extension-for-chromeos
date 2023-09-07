@@ -668,6 +668,21 @@ describe('dpsl.diagnostics tests', () => {
           .runBluetoothPowerRoutine,
       'chromeOsRoutineFunction': 'runBluetoothPowerRoutine',
     },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.bluetooth
+          .runBluetoothDiscoveryRoutine,
+      'chromeOsRoutineFunction': 'runBluetoothDiscoveryRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.bluetooth
+          .runBluetoothScanningRoutine,
+      'chromeOsRoutineFunction': 'runBluetoothScanningRoutine',
+    },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.bluetooth
+          .runBluetoothPairingRoutine,
+      'chromeOsRoutineFunction': 'runBluetoothPairingRoutine',
+    },
   ];
 
   testCases.forEach((testCase) => {

@@ -418,3 +418,19 @@ dpsl.NvmeSelfTestRoutineParams;
  * @typedef {{timeout_seconds: !number}}
  */
  dpsl.PowerButtonRoutineParams;
+
+/**
+ * Params object of dpsl.diagnostics.bluetooth.runBluetoothScanningRoutine()
+ * @typedef {{
+ *   length_seconds: !number,
+ * }}
+ */
+ dpsl.BluetoothScanningRoutineParams;
+
+/**
+ * Params object of dpsl.diagnostics.bluetooth.runBluetoothPairingRoutine()
+ * @typedef {{
+*   peripheral_id: !string,
+* }}
+*/
+ dpsl.BluetoothPairingRoutineParams;

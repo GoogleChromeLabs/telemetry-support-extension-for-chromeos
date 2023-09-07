@@ -324,6 +324,16 @@ class Routine {
 ------------ | ------- | ----------- |
 | timeout_seconds | number | Number of seconds to listen for the power button events. Range: [1, 600]. |
 
+### BluetoothScanningRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| length_seconds | number | Length of time to run the routine for. |
+
+### BluetoothPairingRoutineParams
+| Property Name | Type | Description |
+------------ | ------- | ----------- |
+| peripheral_id | string | The unique id of the target peripheral device to test. This id can be obtained from the output of the runBluetoothScanningRoutine. |
+
 ### UsbBusInterfaceInfo
 | Property Name | Type | Description |
 ------------ | ------- | ----------- |
@@ -549,3 +559,6 @@ Source:
 | Function Name | Definition | Permission needed to access | Released in `dpsl` version |
 ------------ | ------------- | ------------- | ------------- |
 | runBluetoothPowerRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.6 |
+| runBluetoothDiscoveryRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.7 |
+| runBluetoothScanningRoutine | (params: BluetoothScanningRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.3.7 |
+| runBluetoothPairingRoutine | (params: BluetoothPairingRoutineParams) => Promise\<Routine\> | `os.diagnostics` | 1.3.7 |
