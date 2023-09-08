@@ -607,6 +607,61 @@ class BluetoothManager {
     return chrome.os.diagnostics.runBluetoothPowerRoutine().then(
         (response) => new Routine(response.id));
   }
+
+  /**
+   * Runs Bluetooth discovery check. This routine checks whether the Bluetooth
+   * adapter can start/stop discovery mode and the discovering status is
+   * consistent in both HCI and D-Bus levels.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runBluetoothDiscoveryRoutine() {
+    const functionName = 'runBluetoothDiscoveryRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 118);
+    }
+
+    return chrome.os.diagnostics.runBluetoothDiscoveryRoutine().then(
+        (response) => new Routine(response.id));
+  }
+
+  /**
+   * Runs Bluetooth scanning check. This routine checks whether the Bluetooth
+   * adapter can scan nearby Bluetooth peripherals and collect nearby
+   * peripherals' information.
+   * @param {!dpsl.BluetoothScanningRoutineParams} params
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runBluetoothScanningRoutine(params) {
+    const functionName = 'runBluetoothScanningRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 118);
+    }
+
+    return chrome.os.diagnostics.runBluetoothScanningRoutine(params).then(
+        (response) => new Routine(response.id));
+  }
+
+  /**
+   * Runs Bluetooth pairing check. This routine checks whether the adapter can
+   * find and pair with a device with a specific peripheral id.
+   * @param {!dpsl.BluetoothPairingRoutineParams} params
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runBluetoothPairingRoutine(params) {
+    const functionName = 'runBluetoothPairingRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 118);
+    }
+
+    return chrome.os.diagnostics.runBluetoothPairingRoutine(params).then(
+        (response) => new Routine(response.id));
+  }
 }
 
 /**
