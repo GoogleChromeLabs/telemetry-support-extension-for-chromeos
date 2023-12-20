@@ -665,6 +665,27 @@ class BluetoothManager {
 }
 
 /**
+ * Diagnostics fan Manager for dpsl.diagnostics.fan.* APIs.
+ */
+class FanManager {
+  /**
+   * Runs fan test. This routine checks whether the fan can be controlled.
+   * @return { !Promise<!Routine> }
+   * @public
+   */
+  async runFanRoutine() {
+    const functionName = 'runFanRoutine';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 121);
+    }
+
+    return chrome.os.diagnostics.runFanRoutine().then(
+        (response) => new Routine(response.id));
+  }
+}
+
+/**
  * DPSL Diagnostics Manager for dpsl.diagnostics.* APIs.
  */
 class DPSLDiagnosticsManager {
@@ -749,6 +770,12 @@ class DPSLDiagnosticsManager {
      * @public
      */
     this.bluetooth = new BluetoothManager();
+
+    /**
+     * @type {!FanManager}
+     * @public
+     */
+    this.fan = new FanManager();
   }
 
   /**

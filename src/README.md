@@ -562,3 +562,8 @@ Source:
 | runBluetoothDiscoveryRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.7 |
 | runBluetoothScanningRoutine | (params: BluetoothScanningRoutineParams) => Promise\<Routine\> | `os.diagnostics`, `os.bluetooth_peripherals_info` | 1.3.7 |
 | runBluetoothPairingRoutine | (params: BluetoothPairingRoutineParams) => Promise\<Routine\> | `os.diagnostics`, `os.bluetooth_peripherals_info` | 1.3.7 |
+
+### dpsl.diagnostics.fan.*
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runFanRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.8 |
