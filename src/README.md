@@ -428,7 +428,7 @@ Source:
 | refreshRate | number | Refresh rate |
 | manufacturer | string | Three letter manufacturer ID |
 | modelId | number | Manufacturer product code |
-| serialNumber | number | 32 bits serial number |
+| serialNumber | number | 32 bits serial number. Starting from M120, this field is always empty due to privacy requirements. |
 | manufactureWeek | number | Week of manufacture |
 | manufactureYear | number | Year of manufacture |
 | edidVersion | string | EDID version |
@@ -445,7 +445,7 @@ Source:
 | refreshRate | number | Refresh rate |
 | manufacturer | string | Three letter manufacturer ID |
 | modelId | number | Manufacturer product code |
-| serialNumber | number | 32 bits serial number |
+| serialNumber | number | 32 bits serial number. Starting from M120, this field is always empty due to privacy requirements. |
 | manufactureWeek | number | Week of manufacture |
 | manufactureYear | number | Year of manufacture |
 | edidVersion | string | EDID version |
