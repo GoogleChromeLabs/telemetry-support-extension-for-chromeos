@@ -428,7 +428,7 @@ Source:
 | refreshRate | number | Refresh rate |
 | manufacturer | string | Three letter manufacturer ID |
 | modelId | number | Manufacturer product code |
-| serialNumber | number | 32 bits serial number |
+| serialNumber | number | 32 bits serial number. Starting from M120, this field is always empty due to privacy requirements. |
 | manufactureWeek | number | Week of manufacture |
 | manufactureYear | number | Year of manufacture |
 | edidVersion | string | EDID version |
@@ -445,7 +445,7 @@ Source:
 | refreshRate | number | Refresh rate |
 | manufacturer | string | Three letter manufacturer ID |
 | modelId | number | Manufacturer product code |
-| serialNumber | number | 32 bits serial number |
+| serialNumber | number | 32 bits serial number. Starting from M120, this field is always empty due to privacy requirements. |
 | manufactureWeek | number | Week of manufacture |
 | manufactureYear | number | Year of manufacture |
 | edidVersion | string | EDID version |
@@ -562,3 +562,8 @@ Source:
 | runBluetoothDiscoveryRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.7 |
 | runBluetoothScanningRoutine | (params: BluetoothScanningRoutineParams) => Promise\<Routine\> | `os.diagnostics`, `os.bluetooth_peripherals_info` | 1.3.7 |
 | runBluetoothPairingRoutine | (params: BluetoothPairingRoutineParams) => Promise\<Routine\> | `os.diagnostics`, `os.bluetooth_peripherals_info` | 1.3.7 |
+
+### dpsl.diagnostics.fan.*
+| Function Name | Definition | Permission needed to access | Released in `dpsl` version |
+------------ | ------------- | ------------- | ------------- |
+| runFanRoutine | () => Promise\<Routine\> | `os.diagnostics` | 1.3.8 |

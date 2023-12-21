@@ -683,6 +683,10 @@ describe('dpsl.diagnostics tests', () => {
           .runBluetoothPairingRoutine,
       'chromeOsRoutineFunction': 'runBluetoothPairingRoutine',
     },
+    {
+      'dpslRoutineFunction': dpsl.diagnostics.fan.runFanRoutine,
+      'chromeOsRoutineFunction': 'runFanRoutine',
+    },
   ];
 
   testCases.forEach((testCase) => {
