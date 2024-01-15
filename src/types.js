@@ -91,7 +91,7 @@ dpsl.BatteryInfo;
 dpsl.BluetoothInfo;
 
 /**
- * Response message containing internet 
+ * Response message containing internet
  * connectivity info
  * @typedef {{
  *   networks: Array<{
@@ -334,6 +334,7 @@ dpsl.AvailableRoutinesList;
  * |status| current status of the routine. One of ['ready', 'running',
  *   'waiting_user_action', 'passed', 'failed', 'error', 'cancelled',
  *   'failed_to_start', 'removed', 'cancelling', 'unsupported', 'not_run']
+ * |statusCode| corresponding code for the status message.
  * |statusMessage| more detailed status message.
  * |userMessage| Requested user action. Should be localized and displayed to the
  *   user. Note: used in interactive routines only, possible values are
@@ -342,8 +343,9 @@ dpsl.AvailableRoutinesList;
  *   progress_percent: !number,
  *   output?: string,
  *   status: !string,
+ *   status_code?: number,
  *   status_message: !string,
- *   user_message?: string
+ *   user_message?: string,
   }}
  */
 dpsl.RoutineStatus;

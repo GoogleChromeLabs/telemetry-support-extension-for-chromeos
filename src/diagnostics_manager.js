@@ -16,7 +16,11 @@
 
 /* global chrome */
 
-const {isSupported, MethodNotFoundError} = require('./utils.js');
+const statusCodeUtils = require('./status_codes.js');
+const {
+  isSupported,
+  MethodNotFoundError,
+} = require('./utils.js');
 
 /**
 * @fileoverview
@@ -40,14 +44,22 @@ const ROUTINE_COMMAND_TYPE = {
 class Routine {
   /**
    * @param {!number} id
+   * @param {!function} getStatusCodeFunc
    */
-  constructor(id) {
+  constructor(id, getStatusCodeFunc) {
     /**
      * Routine ID created when the routine is first requested to run.
      * @type { !number }
      * @const
      */
     this.id = id;
+
+    /**
+     * Function that returns the status code.
+     * @type { !function }
+     * @const
+     */
+    this.getStatusCode = getStatusCodeFunc;
   }
 
   /**
@@ -63,7 +75,8 @@ class Routine {
     };
 
     return /** @type {!dpsl.RoutineStatus} */ (
-      chrome.os.diagnostics.getRoutineUpdate(request));
+      chrome.os.diagnostics.getRoutineUpdate(request).then((status) =>
+        statusCodeUtils.fillStatusCode(this.getStatusCode, status)));
   }
 
   /**
@@ -114,7 +127,8 @@ class AcPowerManager {
     }
 
     return chrome.os.diagnostics.runAcPowerRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForAcPower));
   }
 }
 
@@ -135,7 +149,8 @@ class BatteryManager {
     }
 
     return chrome.os.diagnostics.runBatteryCapacityRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBatteryCapacity));
   }
 
   /**
@@ -151,7 +166,8 @@ class BatteryManager {
     }
 
     return chrome.os.diagnostics.runBatteryHealthRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBatteryHealth));
   }
 
   /**
@@ -168,7 +184,8 @@ class BatteryManager {
     }
 
     return chrome.os.diagnostics.runBatteryDischargeRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBatteryDischarge));
   }
 
   /**
@@ -185,7 +202,8 @@ class BatteryManager {
     }
 
     return chrome.os.diagnostics.runBatteryChargeRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBatteryCharge));
   }
 }
 
@@ -207,7 +225,8 @@ class CpuManager {
     }
 
     return chrome.os.diagnostics.runCpuCacheRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForCpuCache));
   }
 
   /**
@@ -224,7 +243,8 @@ class CpuManager {
     }
 
     return chrome.os.diagnostics.runCpuStressRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForCpuStress));
   }
 
   /**
@@ -241,7 +261,8 @@ class CpuManager {
     }
 
     return chrome.os.diagnostics.runCpuFloatingPointAccuracyRoutine(params)
-        .then((response) => new Routine(response.id));
+        .then((response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForFloatingPointAccuracy));
   }
 
   /**
@@ -258,7 +279,8 @@ class CpuManager {
     }
 
     return chrome.os.diagnostics.runCpuPrimeSearchRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForPrimeSearch));
   }
 }
 
@@ -279,7 +301,8 @@ class MemoryManager {
     }
 
     return chrome.os.diagnostics.runMemoryRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForMemory));
   }
 }
 
@@ -301,7 +324,8 @@ class DiskManager {
     }
 
     return chrome.os.diagnostics.runDiskReadRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForDiskRead));
   }
 }
 
@@ -325,7 +349,8 @@ class EmmcManager {
     }
 
     return chrome.os.diagnostics.runEmmcLifetimeRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForEmmcLifetime));
   }
 }
 
@@ -348,11 +373,13 @@ class NvmeManager {
 
     if (arguments.length != 0) {
       return chrome.os.diagnostics.runSmartctlCheckRoutine(params).then(
-          (response) => new Routine(response.id));
+          (response) => new Routine(response.id,
+              statusCodeUtils.getStatusCodeForSmartctlCheck));
     }
 
     return chrome.os.diagnostics.runSmartctlCheckRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForSmartctlCheck));
   }
 
   /**
@@ -369,7 +396,8 @@ class NvmeManager {
     }
 
     return chrome.os.diagnostics.runNvmeSelfTestRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForNvmeSelfTest));
   }
 
   /**
@@ -386,7 +414,8 @@ class NvmeManager {
     }
 
     return chrome.os.diagnostics.runNvmeWearLevelRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForNvmeWearLevel));
   }
 }
 
@@ -408,7 +437,10 @@ class UfsManager {
     }
 
     return chrome.os.diagnostics.runUfsLifetimeRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(
+            response.id,
+            statusCodeUtils.getStatusCodeForUfsLifeTime,
+        ));
   }
 }
 
@@ -429,7 +461,8 @@ class NetworkManager {
     }
 
     return chrome.os.diagnostics.runDnsResolverPresentRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForDnsResolverPresent));
   }
 
   /**
@@ -445,7 +478,8 @@ class NetworkManager {
     }
 
     return chrome.os.diagnostics.runDnsResolutionRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForDnsResolution));
   }
 
   /**
@@ -461,7 +495,8 @@ class NetworkManager {
     }
 
     return chrome.os.diagnostics.runGatewayCanBePingedRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForGatewayCanBePinged));
   }
 
   /**
@@ -477,7 +512,8 @@ class NetworkManager {
     }
 
     return chrome.os.diagnostics.runLanConnectivityRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForLanConnectivity));
   }
 
   /**
@@ -493,7 +529,8 @@ class NetworkManager {
     }
 
     return chrome.os.diagnostics.runSignalStrengthRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForSignalStrength));
   }
 }
 
@@ -517,7 +554,8 @@ class SensorManager {
     }
 
     return chrome.os.diagnostics.runSensitiveSensorRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForSensitiveSensor));
   }
 
   /**
@@ -535,7 +573,8 @@ class SensorManager {
     }
 
     return chrome.os.diagnostics.runFingerprintAliveRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForFingerprintAlive));
   }
 }
 
@@ -557,7 +596,8 @@ class AudioManager {
     }
 
     return chrome.os.diagnostics.runAudioDriverRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForAudioDriver));
   }
 }
 
@@ -582,7 +622,9 @@ class HardwareButtonManager {
     }
 
     return chrome.os.diagnostics.runPowerButtonRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(
+            response.id,
+            statusCodeUtils.getStatusCodeForPowerButton));
   }
 }
 
@@ -605,7 +647,8 @@ class BluetoothManager {
     }
 
     return chrome.os.diagnostics.runBluetoothPowerRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBluetoothPower));
   }
 
   /**
@@ -623,7 +666,8 @@ class BluetoothManager {
     }
 
     return chrome.os.diagnostics.runBluetoothDiscoveryRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBluetoothDiscovery));
   }
 
   /**
@@ -642,7 +686,8 @@ class BluetoothManager {
     }
 
     return chrome.os.diagnostics.runBluetoothScanningRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBluetoothScanning));
   }
 
   /**
@@ -660,7 +705,8 @@ class BluetoothManager {
     }
 
     return chrome.os.diagnostics.runBluetoothPairingRoutine(params).then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForBluetoothPairing));
   }
 }
 
@@ -681,7 +727,8 @@ class FanManager {
     }
 
     return chrome.os.diagnostics.runFanRoutine().then(
-        (response) => new Routine(response.id));
+        (response) => new Routine(response.id,
+            statusCodeUtils.getStatusCodeForFan));
   }
 }
 
