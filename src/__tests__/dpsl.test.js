@@ -15,6 +15,7 @@
  */
 
 const {dpsl} = require('../dpsl.js');
+const statusCodeUtils = require('../status_codes.js');
 
 describe('dpsl.telemetry tests', () => {
   let originalChrome;
@@ -166,7 +167,8 @@ describe('dpsl.telemetry tests', () => {
             'ipv6Addresses': [],
             'signalStrength': 100,
           },
-          ]};
+          ],
+        };
 
         const chrome = {
           os: {
@@ -240,7 +242,7 @@ describe('dpsl.telemetry tests', () => {
           os: {
             telemetry: {
               getNonRemovableBlockDevicesInfo:
-                 () => expectedNonRemovableBlockDevicesInfo,
+                () => expectedNonRemovableBlockDevicesInfo,
             },
           },
         };
@@ -522,7 +524,10 @@ describe('dpsl.diagnostics tests', () => {
   test('Routine.{getStatus(), resume(), stop()} returns correct data',
       (done) => {
         // Mock the global chrome object.
-        const expectedRunRoutineResponse = {id: 123456};
+        const expectedRunRoutineResponse = {
+          id: 123456,
+          getStatusCode: statusCodeUtils.getStatusCodeForBatteryCapacity,
+        };
         const expectedRoutineStatusResponse = {
           progress_percent: 76,
           status: 'running',
@@ -532,9 +537,9 @@ describe('dpsl.diagnostics tests', () => {
           os: {
             diagnostics: {
               runBatteryCapacityRoutine:
-                 () => Promise.resolve(expectedRunRoutineResponse),
+                () => Promise.resolve(expectedRunRoutineResponse),
               getRoutineUpdate:
-                 () => Promise.resolve(expectedRoutineStatusResponse),
+                () => Promise.resolve(expectedRoutineStatusResponse),
             },
           },
         };
@@ -557,134 +562,324 @@ describe('dpsl.diagnostics tests', () => {
         });
       });
 
+  test('Routine.getStatus() returns correct data when routine returns passed',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedRunRoutineResponse = {
+          id: 123456,
+          getStatusCode: statusCodeUtils.getStatusCodeForSmartctlCheck,
+        };
+        const expectedRoutineStatusResponseFromChrome = {
+          progress_percent: 100,
+          status: 'passed',
+          status_message: 'smartctl-check status: PASS.',
+        };
+
+        const chrome = {
+          os: {
+            diagnostics: {
+              runSmartctlCheckRoutine:
+              () => Promise.resolve(expectedRunRoutineResponse),
+              getRoutineUpdate:
+              () => Promise.resolve(expectedRoutineStatusResponseFromChrome),
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.diagnostics.nvme.runSmartctlCheckRoutine().then((routine) => {
+          expect(routine).toEqual(expectedRunRoutineResponse);
+          routine.getStatus().then((value) => {
+            expect(value).toStrictEqual(
+                Object.assign(
+                    {},
+                    expectedRoutineStatusResponseFromChrome,
+                    {status_code: 0x0000001},
+                ));
+            done();
+          });
+        });
+      });
+
+  test('Routine.getStatus() returns correct data when routine returns failed',
+      (done) => {
+      // Mock the global chrome object.
+        const expectedRunRoutineResponse = {
+          id: 123456,
+          getStatusCode: statusCodeUtils.getStatusCodeForAudioDriver,
+        };
+        const expectedRoutineStatusResponseFromChrome = {
+          progress_percent: 100,
+          status: 'failed',
+          status_message: '',
+          output: '{"audio_devices_succeed_to_open":false,' +
+          '"internal_card_detected":true}',
+        };
+
+        const chrome = {
+          os: {
+            diagnostics: {
+              runAudioDriverRoutine:
+              () => Promise.resolve(expectedRunRoutineResponse),
+              getRoutineUpdate:
+              () => Promise.resolve(expectedRoutineStatusResponseFromChrome),
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.diagnostics.audio.runAudioDriverRoutine().then((routine) => {
+          expect(routine).toEqual(expectedRunRoutineResponse);
+          routine.getStatus().then((value) => {
+            expect(value).toStrictEqual(
+                Object.assign(
+                    {},
+                    expectedRoutineStatusResponseFromChrome,
+                    {status_code: 0x0060002},
+                ));
+            done();
+          });
+        });
+      });
+
+  test('Routine.getStatus() returns correct data when routine returns error',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedRunRoutineResponse = {
+          id: 123456,
+          getStatusCode: statusCodeUtils.getStatusCodeForEmmcLifetime,
+        };
+        const expectedRoutineStatusResponseFromChrome = {
+          progress_percent: 100,
+          status: 'error',
+          status_message: 'Pre-EOL info is not normal.',
+        };
+
+        const chrome = {
+          os: {
+            diagnostics: {
+              runEmmcLifetimeRoutine:
+              () => Promise.resolve(expectedRunRoutineResponse),
+              getRoutineUpdate:
+              () => Promise.resolve(expectedRoutineStatusResponseFromChrome),
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.diagnostics.emmc.runEmmcLifetimeRoutine().then((routine) => {
+          expect(routine).toEqual(expectedRunRoutineResponse);
+          routine.getStatus().then((value) => {
+            expect(value).toStrictEqual(
+                Object.assign(
+                    {},
+                    expectedRoutineStatusResponseFromChrome,
+                    {status_code: 0x0160001},
+                ));
+            done();
+          });
+        });
+      });
+
+  test('Routine.getStatus() returns correct data when routine returns error ' +
+    'with dynamic status message',
+  (done) => {
+    // Mock the global chrome object.
+    const expectedRunRoutineResponse = {
+      id: 123456,
+      getStatusCode: statusCodeUtils.getStatusCodeForFan,
+    };
+    const expectedRoutineStatusResponseFromChrome = {
+      progress_percent: 100,
+      status: 'error',
+      status_message: 'Failed to read temperature for thermal sensor idx: 13',
+    };
+
+    const chrome = {
+      os: {
+        diagnostics: {
+          runFanRoutine:
+              () => Promise.resolve(expectedRunRoutineResponse),
+          getRoutineUpdate:
+              () => Promise.resolve(expectedRoutineStatusResponseFromChrome),
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.diagnostics.fan.runFanRoutine().then((routine) => {
+      expect(routine).toEqual(expectedRunRoutineResponse);
+      routine.getStatus().then((value) => {
+        expect(value).toStrictEqual(
+            Object.assign(
+                {},
+                expectedRoutineStatusResponseFromChrome,
+                {status_code: 0x0000002},
+            ));
+        done();
+      });
+    });
+  });
+
   const testCases = [
     {
       'dpslRoutineFunction': dpsl.diagnostics.power.runAcPowerRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForAcPower,
       'chromeOsRoutineFunction': 'runAcPowerRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.battery.runCapacityRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBatteryCapacity,
       'chromeOsRoutineFunction': 'runBatteryCapacityRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.battery.runHealthRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBatteryHealth,
       'chromeOsRoutineFunction': 'runBatteryHealthRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.battery.runDischargeRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBatteryDischarge,
       'chromeOsRoutineFunction': 'runBatteryDischargeRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.battery.runChargeRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBatteryCharge,
       'chromeOsRoutineFunction': 'runBatteryChargeRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.cpu.runCacheRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForCpuCache,
       'chromeOsRoutineFunction': 'runCpuCacheRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.cpu.runStressRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForCpuStress,
       'chromeOsRoutineFunction': 'runCpuStressRoutine',
     },
     {
       'dpslRoutineFunction':
-         dpsl.diagnostics.cpu.runFloatingPointAccuracyRoutine,
+        dpsl.diagnostics.cpu.runFloatingPointAccuracyRoutine,
+      'getStatusCodeFunc':
+        statusCodeUtils.getStatusCodeForFloatingPointAccuracy,
       'chromeOsRoutineFunction': 'runCpuFloatingPointAccuracyRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.cpu.runPrimeSearchRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForPrimeSearch,
       'chromeOsRoutineFunction': 'runCpuPrimeSearchRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.memory.runMemoryRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForMemory,
       'chromeOsRoutineFunction': 'runMemoryRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.disk.runReadRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForDiskRead,
       'chromeOsRoutineFunction': 'runDiskReadRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.emmc.runEmmcLifetimeRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForEmmcLifetime,
       'chromeOsRoutineFunction': 'runEmmcLifetimeRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runSmartctlCheckRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForSmartctlCheck,
       'chromeOsRoutineFunction': 'runSmartctlCheckRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runSelfTestRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForNvmeSelfTest,
       'chromeOsRoutineFunction': 'runNvmeSelfTestRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runWearLevelRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForNvmeWearLevel,
       'chromeOsRoutineFunction': 'runNvmeWearLevelRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.ufs.runUfsLifetimeRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForUfsLifeTime,
       'chromeOsRoutineFunction': 'runUfsLifetimeRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network
           .runDnsResolverPresentRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForDnsResolverPresent,
       'chromeOsRoutineFunction': 'runDnsResolverPresentRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network
           .runDnsResolutionRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForDnsResolution,
       'chromeOsRoutineFunction': 'runDnsResolutionRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network
           .runGatewayCanBePingedRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForGatewayCanBePinged,
       'chromeOsRoutineFunction': 'runGatewayCanBePingedRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network.runLanConnectivityRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForLanConnectivity,
       'chromeOsRoutineFunction': 'runLanConnectivityRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.network.runSignalStrengthRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForSignalStrength,
       'chromeOsRoutineFunction': 'runSignalStrengthRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.sensor.runSensitiveSensorRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForSensitiveSensor,
       'chromeOsRoutineFunction': 'runSensitiveSensorRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.sensor.runFingerprintAliveRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForFingerprintAlive,
       'chromeOsRoutineFunction': 'runFingerprintAliveRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.audio.runAudioDriverRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForAudioDriver,
       'chromeOsRoutineFunction': 'runAudioDriverRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.hardwareButton
           .runPowerButtonRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForPowerButton,
       'chromeOsRoutineFunction': 'runPowerButtonRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.bluetooth
           .runBluetoothPowerRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBluetoothPower,
       'chromeOsRoutineFunction': 'runBluetoothPowerRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.bluetooth
           .runBluetoothDiscoveryRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBluetoothDiscovery,
       'chromeOsRoutineFunction': 'runBluetoothDiscoveryRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.bluetooth
           .runBluetoothScanningRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBluetoothScanning,
       'chromeOsRoutineFunction': 'runBluetoothScanningRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.bluetooth
           .runBluetoothPairingRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForBluetoothPairing,
       'chromeOsRoutineFunction': 'runBluetoothPairingRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.fan.runFanRoutine,
+      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForFan,
       'chromeOsRoutineFunction': 'runFanRoutine',
     },
   ];
@@ -692,12 +887,15 @@ describe('dpsl.diagnostics tests', () => {
   testCases.forEach((testCase) => {
     test(`${testCase.dpslRoutineFunction}() returns correct data`, (done) => {
       // Mock the global chrome object.
-      const expectedRunRoutineResponse = {id: 123456};
+      const expectedRunRoutineResponse = {
+        id: 123456,
+        getStatusCode: testCase.getStatusCodeFunc,
+      };
       const chrome = {
         os: {
           diagnostics: {
             [testCase.chromeOsRoutineFunction]:
-               () => Promise.resolve(expectedRunRoutineResponse),
+              () => Promise.resolve(expectedRunRoutineResponse),
           },
         },
       };
@@ -712,16 +910,18 @@ describe('dpsl.diagnostics tests', () => {
 
 
   test('runSmartctlCheckRoutine works without parameters', (done) => {
-    const expectedRunRoutineResponse = {id: 123456};
-
+    const expectedRunRoutineResponse = {
+      id: 123456,
+      getStatusCode: statusCodeUtils.getStatusCodeForSmartctlCheck,
+    };
     const chrome = {
       os: {
         diagnostics: {
           runSmartctlCheckRoutine:
-             (params = undefined) => {
-               return Promise.resolve(params === undefined ?
-                 expectedRunRoutineResponse : undefined);
-             },
+            (params = undefined) => {
+              return Promise.resolve(params === undefined ?
+                expectedRunRoutineResponse : undefined);
+            },
         },
       },
     };
@@ -734,14 +934,16 @@ describe('dpsl.diagnostics tests', () => {
   });
 
   test('runSmartctlCheckRoutine works with parameters', (done) => {
-    const expectedRunRoutineResponse = {id: 123456};
-
+    const expectedRunRoutineResponse = {
+      id: 123456,
+      getStatusCode: statusCodeUtils.getStatusCodeForSmartctlCheck,
+    };
     const chrome = {
       os: {
         diagnostics: {
           runSmartctlCheckRoutine:
-             (params = undefined) =>
-               Promise.resolve(params ? expectedRunRoutineResponse : undefined),
+            (params = undefined) =>
+              Promise.resolve(params ? expectedRunRoutineResponse : undefined),
         },
       },
     };
