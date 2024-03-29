@@ -84,6 +84,7 @@ dpsl.diagnostics.getAvailableRoutines().then((routineList) => {
 | progress_percent | number | Percentage of the routine progress                                                                                                                                                                           |
 | output*          | string | Accumulated output, like logs                                                                                                                                                                                |
 | status           | string | Current status of the routine. One of ['ready', 'running', 'waiting_user_action', 'passed', 'failed', 'error', 'cancelled', 'failed_to_start', 'removed', 'cancelling', 'unsupported', 'not_run', 'unknown'] |
+| status_code*     | number | The corresponding code for the status message                                                                                                                                                                |
 | status_message   | string | More detailed status message                                                                                                                                                                                 |
 | user_message*    | string | The requested user action. Note: used in interactive routines only. Possible values ['unplug_ac_power', 'plug_in_ac_power', 'press_power_button', 'unknown' ]                                                |
 
