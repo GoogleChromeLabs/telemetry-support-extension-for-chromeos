@@ -580,25 +580,6 @@ function getStatusCodeForNvmeSelfTest(routineStatus) {
 }
 
 /**
- * Get status code based on the specified status message for routine "NVMe Wear
- * Level".
- * @param {!function} routineStatus
- * @return {number?}
- */
-function getStatusCodeForNvmeWearLevel(routineStatus) {
-  switch (routineStatus.status_message) {
-    case 'Wear-level status: FAILED, exceed the limitation value.':
-      return 0x0240001;
-    case 'Wear-level status: ERROR, threshold in percentage should be ' +
-      'non-empty and under 100.':
-    case 'Wear-level status: ERROR, cannot get wear level info.':
-      return CODE_ROUTINE_EXCEPTION;
-    default:
-      return undefined;
-  }
-}
-
-/**
  * Get status code based on the specified status message for routine "Power
  * Button".
  * @param {!function} routineStatus
@@ -738,7 +719,6 @@ module.exports = {
   getStatusCodeForLanConnectivity,
   getStatusCodeForMemory,
   getStatusCodeForNvmeSelfTest,
-  getStatusCodeForNvmeWearLevel,
   getStatusCodeForPowerButton,
   getStatusCodeForPrimeSearch,
   getStatusCodeForSensitiveSensor,

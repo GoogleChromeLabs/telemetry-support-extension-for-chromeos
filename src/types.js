@@ -404,12 +404,6 @@ dpsl.CpuRoutineDurationParams;
 dpsl.NvmeSelfTestRoutineParams;
 
 /**
- * Params object of dpsl.diagnostics.nvme.runWearLevelRoutine()
- * @typedef {{wear_level_threshold: !number}}
- */
- dpsl.NvmeWearLevelRoutineParams;
-
-/**
  * Params object of dpsl.diagnostics.nvme.runSmartctlCheckRoutine()
  * @typedef {{percentage_used_threshold: !number}}
  */
