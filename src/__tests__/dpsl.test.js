@@ -501,7 +501,7 @@ describe('dpsl.diagnostics tests', () => {
             'battery_discharge', 'battery_health', 'cpu_cache',
             'cpu_stress', 'memory', 'disk-read', 'dns_provider_present',
             'dns_resolution', 'gateway_can_be_pinged', 'smartctl-check',
-            'signal_strength', 'nvme-wear-level', 'nvme_self_test',
+            'signal_strength', 'nvme_self_test',
             'sensitive_sensor', 'fingerprint_alive', 'emmc_lifetime',
             'smartctl_check_with_percentage_used', 'audio_driver',
             'ufs_lifetime', 'power_button'],
@@ -793,11 +793,6 @@ describe('dpsl.diagnostics tests', () => {
       'dpslRoutineFunction': dpsl.diagnostics.nvme.runSelfTestRoutine,
       'getStatusCodeFunc': statusCodeUtils.getStatusCodeForNvmeSelfTest,
       'chromeOsRoutineFunction': 'runNvmeSelfTestRoutine',
-    },
-    {
-      'dpslRoutineFunction': dpsl.diagnostics.nvme.runWearLevelRoutine,
-      'getStatusCodeFunc': statusCodeUtils.getStatusCodeForNvmeWearLevel,
-      'chromeOsRoutineFunction': 'runNvmeWearLevelRoutine',
     },
     {
       'dpslRoutineFunction': dpsl.diagnostics.ufs.runUfsLifetimeRoutine,

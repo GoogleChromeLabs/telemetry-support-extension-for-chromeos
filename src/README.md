@@ -305,11 +305,6 @@ class Routine {
 | -------------- | ------ | ------------------------------------- |
 | length_seconds | number | Length of time to run the routine for |
 
-### NvmeWearLevelRoutineParams
-| Property Name        | Type   | Description                                                                     |
-| -------------------- | ------ | ------------------------------------------------------------------------------- |
-| wear_level_threshold | number | Threshold number in percentage which routine examines wear level status against |
-
 ### NvmeSelfTestRoutineParams
 | Property Name | Type   | Description                                      |
 | ------------- | ------ | ------------------------------------------------ |
@@ -523,7 +518,6 @@ Source:
 | Function Name           | Definition                                                  | Permission needed to access | Released in `dpsl` version                                                                                                                                          |
 | ----------------------- | ----------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | runSmartctlCheckRoutine | (params: SmartctlCheckRoutineParams?) => Promise\<Routine\> | `os.diagnostics`            | intial release: 1.3.0, new parameter added: 1.3.3. The parameter is only available if "smartctl_check_with_percentage_used" is returned from `GetAvailableRoutines` |
-| runWearLevelRoutine     | (params: NvmeWearLevelRoutineParams) => Promise\<Routine\>  | `os.diagnostics`            | 1.3.0                                                                                                                                                               |
 | runSelfTestRoutine      | (params: NvmeSelfTestRoutineParams) => Promise\<Routine\>   | `os.diagnostics`            | 1.3.3                                                                                                                                                               |
 
 ### dpsl.diagnostics.ufs.*
@@ -811,13 +805,6 @@ No codes are defined for Floating Point Accuracy.
 | **`0x0000002`** | SelfTest status: ERROR, self-test abortion failed.                                                                                                                  |
 | **`0x0000002`** | SelfTest status: ERROR, cannot get percent info.                                                                                                                    |
 | **`0x0000002`** | SelfTest status: Unknown complete status.                                                                                                                           |
-
-#### NVMe Wear Level
-| Code            | Status message                                                                       |
-| --------------- | ------------------------------------------------------------------------------------ |
-| `0x0240001`     | Wear-level status: FAILED, exceed the limitation value.                              |
-| **`0x0000002`** | Wear-level status: ERROR, threshold in percentage should be non-empty and under 100. |
-| **`0x0000002`** | Wear-level status: ERROR, cannot get wear level info.                                |
 
 #### Prime Search
 No codes are defined for Prime Search.
