@@ -268,6 +268,8 @@ function getStatusCodeForBluetoothScanning(routineStatus) {
       return 0x00E0001;
     case 'Bluetooth routine failed to switch adapter discovery mode.':
       return 0x00E0002;
+    case 'Bluetooth routine failed to get main adapter.':
+      return 0x00E0003;
     case 'Routine execution time should be strictly greater than zero.':
     case 'Unexpected Bluetooth diagnostic flow.':
       return CODE_ROUTINE_EXCEPTION;
