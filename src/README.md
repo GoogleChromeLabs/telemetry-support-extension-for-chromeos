@@ -672,6 +672,7 @@ The following status codes are shared by all routines.
 | --------------- | ------------------------------------------------------------ |
 | `0x00E0001`     | Bluetooth routine failed to change adapter powered status.   |
 | `0x00E0002`     | Bluetooth routine failed to switch adapter discovery mode.   |
+| `0x00E0003`     | Bluetooth routine failed to get main adapter.                |
 | **`0x0000002`** | Routine execution time should be strictly greater than zero. |
 | **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                        |
 
