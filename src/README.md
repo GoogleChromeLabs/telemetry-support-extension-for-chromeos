@@ -570,257 +570,257 @@ Source:
 
 The following status codes are shared by all routines.
 
-| Code            | Status message                                                                |
-| --------------- | ----------------------------------------------------------------------------- |
-| `0x0000001`     | Routine passed. (Note that some routines may have different success messages) |
-| **`0x0000002`** | (Exceptions raised by routines; refer to each routine for exact messages)     |
+| Code            | Status message                                                                | Released in `dpsl` version |
+| --------------- | ----------------------------------------------------------------------------- | -------------------------- |
+| `0x0000001`     | Routine passed. (Note that some routines may have different success messages) | `1.4.0`                    |
+| **`0x0000002`** | (Exceptions raised by routines; refer to each routine for exact messages)     | `1.4.0`                    |
 
 ### List of status codes by routine
 
 #### Audio Driver
 
-| Code            | Status message                                  |
-| --------------- | ----------------------------------------------- |
-| `0x0060001`     | No internal audio card detected.                |
-| `0x0060002`     | One or more audio devices failed to open.       |
-| **`0x0000002`** | Failed to get detected internal card from cras. |
-| **`0x0000002`** | Failed retrieving node info from cras.          |
+| Code            | Status message                                  | Released in `dpsl` version |
+| --------------- | ----------------------------------------------- | -------------------------- |
+| `0x0060001`     | No internal audio card detected.                | `1.4.0`                    |
+| `0x0060002`     | One or more audio devices failed to open.       | `1.4.0`                    |
+| **`0x0000002`** | Failed to get detected internal card from cras. | `1.4.0`                    |
+| **`0x0000002`** | Failed retrieving node info from cras.          | `1.4.0`                    |
 
 #### AC Power
-| Code            | Status message                                            |
-| --------------- | --------------------------------------------------------- |
-| `0x0010001`     | Expected online power supply, found offline power supply. |
-| `0x0010002`     | Expected offline power supply, found online power supply. |
-| `0x0010003`     | Read power type different from expected power type.       |
-| **`0x0000002`** | No valid AC power supply found.                           |
+| Code            | Status message                                            | Released in `dpsl` version |
+| --------------- | --------------------------------------------------------- | -------------------------- |
+| `0x0010001`     | Expected online power supply, found offline power supply. | `1.4.0`                    |
+| `0x0010002`     | Expected offline power supply, found online power supply. | `1.4.0`                    |
+| `0x0010003`     | Read power type different from expected power type.       | `1.4.0`                    |
+| **`0x0000002`** | No valid AC power supply found.                           | `1.4.0`                    |
 
 #### Battery Capacity
-| Code            | Status message                                     |
-| --------------- | -------------------------------------------------- |
-| `0x0070001`     | Battery design capacity not within given limits.   |
-| **`0x0000002`** | Invalid BatteryCapacityRoutineParameters.          |
-| **`0x0000002`** | Failed to get power supply properties from powerd. |
+| Code            | Status message                                     | Released in `dpsl` version |
+| --------------- | -------------------------------------------------- | -------------------------- |
+| `0x0070001`     | Battery design capacity not within given limits.   | `1.4.0`                    |
+| **`0x0000002`** | Invalid BatteryCapacityRoutineParameters.          | `1.4.0`                    |
+| **`0x0000002`** | Failed to get power supply properties from powerd. | `1.4.0`                    |
 
 #### Battery Charge
-| Code            | Status message                                                    |
-| --------------- | ----------------------------------------------------------------- |
-| `0x0080001`     | Battery is not charging.                                          |
-| `0x0080002`     | Battery charge percent less than minimum required charge percent. |
-| **`0x0000002`** | Invalid minimum required charge percent requested.                |
-| **`0x0000002`** | Failed to read battery attributes from sysfs.                     |
-| **`0x0000002`** | Failed to get power supply properties from powerd.                |
+| Code            | Status message                                                    | Released in `dpsl` version |
+| --------------- | ----------------------------------------------------------------- | -------------------------- |
+| `0x0080001`     | Battery is not charging.                                          | `1.4.0`                    |
+| `0x0080002`     | Battery charge percent less than minimum required charge percent. | `1.4.0`                    |
+| **`0x0000002`** | Invalid minimum required charge percent requested.                | `1.4.0`                    |
+| **`0x0000002`** | Failed to read battery attributes from sysfs.                     | `1.4.0`                    |
+| **`0x0000002`** | Failed to get power supply properties from powerd.                | `1.4.0`                    |
 
 #### Battery Discharge
-| Code            | Status message                                                       |
-| --------------- | -------------------------------------------------------------------- |
-| `0x0090001`     | Battery is not discharging.                                          |
-| `0x0090002`     | Battery discharge rate greater than maximum allowed discharge rate.  |
-| **`0x0000002`** | Maximum allowed discharge percent must be less than or equal to 100. |
-| **`0x0000002`** | Failed to read battery attributes from sysfs.                        |
-| **`0x0000002`** | Failed to get power supply properties from powerd.                   |
+| Code            | Status message                                                       | Released in `dpsl` version |
+| --------------- | -------------------------------------------------------------------- | -------------------------- |
+| `0x0090001`     | Battery is not discharging.                                          | `1.4.0`                    |
+| `0x0090002`     | Battery discharge rate greater than maximum allowed discharge rate.  | `1.4.0`                    |
+| **`0x0000002`** | Maximum allowed discharge percent must be less than or equal to 100. | `1.4.0`                    |
+| **`0x0000002`** | Failed to read battery attributes from sysfs.                        | `1.4.0`                    |
+| **`0x0000002`** | Failed to get power supply properties from powerd.                   | `1.4.0`                    |
 
 #### Battery Health
-| Code            | Status message                                     |
-| --------------- | -------------------------------------------------- |
-| `0x00A0001`     | Battery is over-worn.                              |
-| `0x00A0002`     | Battery cycle count is too high.                   |
-| **`0x0000002`** | Could not get cycle count.                         |
-| **`0x0000002`** | Invalid battery health routine parameters.         |
-| **`0x0000002`** | Could not get wear percentage.                     |
-| **`0x0000002`** | Failed to get power supply properties from powerd. |
+| Code            | Status message                                     | Released in `dpsl` version |
+| --------------- | -------------------------------------------------- | -------------------------- |
+| `0x00A0001`     | Battery is over-worn.                              | `1.4.0`                    |
+| `0x00A0002`     | Battery cycle count is too high.                   | `1.4.0`                    |
+| **`0x0000002`** | Could not get cycle count.                         | `1.4.0`                    |
+| **`0x0000002`** | Invalid battery health routine parameters.         | `1.4.0`                    |
+| **`0x0000002`** | Could not get wear percentage.                     | `1.4.0`                    |
+| **`0x0000002`** | Failed to get power supply properties from powerd. | `1.4.0`                    |
 
 #### Bluetooth Power
-| Code            | Status message                                                        |
-| --------------- | --------------------------------------------------------------------- |
-| `0x00D0001`     | Bluetooth routine is not supported when adapter is in discovery mode. |
-| `0x00D0002`     | Bluetooth routine failed to get main adapter.                         |
-| `0x00D0003`     | Bluetooth routine failed to change adapter powered status.            |
-| `0x00D0004`     | Bluetooth routine failed to validate adapter powered status.          |
-| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                                 |
+| Code            | Status message                                                        | Released in `dpsl` version |
+| --------------- | --------------------------------------------------------------------- | -------------------------- |
+| `0x00D0001`     | Bluetooth routine is not supported when adapter is in discovery mode. | `1.4.0`                    |
+| `0x00D0002`     | Bluetooth routine failed to get main adapter.                         | `1.4.0`                    |
+| `0x00D0003`     | Bluetooth routine failed to change adapter powered status.            | `1.4.0`                    |
+| `0x00D0004`     | Bluetooth routine failed to validate adapter powered status.          | `1.4.0`                    |
+| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                                 | `1.4.0`                    |
 
 #### Bluetooth Discovery
-| Code            | Status message                                                   |
-| --------------- | ---------------------------------------------------------------- |
-| `0x00B0001`     | Bluetooth routine failed to validate adapter discovering status. |
-| `0x00B0002`     | Bluetooth routine failed to get main adapter.                    |
-| `0x00B0003`     | Bluetooth routine failed to change adapter powered status.       |
-| `0x00B0004`     | Bluetooth routine failed to switch adapter discovery mode.       |
-| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                            |
+| Code            | Status message                                                   | Released in `dpsl` version |
+| --------------- | ---------------------------------------------------------------- | -------------------------- |
+| `0x00B0001`     | Bluetooth routine failed to validate adapter discovering status. | `1.4.0`                    |
+| `0x00B0002`     | Bluetooth routine failed to get main adapter.                    | `1.4.0`                    |
+| `0x00B0003`     | Bluetooth routine failed to change adapter powered status.       | `1.4.0`                    |
+| `0x00B0004`     | Bluetooth routine failed to switch adapter discovery mode.       | `1.4.0`                    |
+| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                            | `1.4.0`                    |
 
 #### Bluetooth Pairing
-| Code            | Status message                                                  |
-| --------------- | --------------------------------------------------------------- |
-| `0x00C0001`     | Bluetooth routine failed to find the device with peripheral ID. |
-| `0x00C0002`     | Bluetooth routine failed to create baseband connection.         |
-| `0x00C0003`     | Bluetooth routine failed to finish pairing.                     |
-| `0x00C0004`     | Bluetooth routine failed to get main adapter.                   |
-| `0x00C0005`     | Bluetooth routine failed to change adapter powered status.      |
-| `0x00C0006`     | Bluetooth routine failed to switch adapter discovery mode.      |
-| `0x00C0007`     | Bluetooth routine failed to remove target peripheral.           |
-| `0x00C0008`     | The target peripheral is already paired                         |
-| **`0x0000002`** | Bluetooth routine failed to set target device's alias           |
-| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                           |
+| Code            | Status message                                                  | Released in `dpsl` version |
+| --------------- | --------------------------------------------------------------- | -------------------------- |
+| `0x00C0001`     | Bluetooth routine failed to find the device with peripheral ID. | `1.4.0`                    |
+| `0x00C0002`     | Bluetooth routine failed to create baseband connection.         | `1.4.0`                    |
+| `0x00C0003`     | Bluetooth routine failed to finish pairing.                     | `1.4.0`                    |
+| `0x00C0004`     | Bluetooth routine failed to get main adapter.                   | `1.4.0`                    |
+| `0x00C0005`     | Bluetooth routine failed to change adapter powered status.      | `1.4.0`                    |
+| `0x00C0006`     | Bluetooth routine failed to switch adapter discovery mode.      | `1.4.0`                    |
+| `0x00C0007`     | Bluetooth routine failed to remove target peripheral.           | `1.4.0`                    |
+| `0x00C0008`     | The target peripheral is already paired                         | `1.4.0`                    |
+| **`0x0000002`** | Bluetooth routine failed to set target device's alias           | `1.4.0`                    |
+| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                           | `1.4.0`                    |
 
 #### Bluetooth Scanning
-| Code            | Status message                                               |
-| --------------- | ------------------------------------------------------------ |
-| `0x00E0001`     | Bluetooth routine failed to change adapter powered status.   |
-| `0x00E0002`     | Bluetooth routine failed to switch adapter discovery mode.   |
-| `0x00E0003`     | Bluetooth routine failed to get main adapter.                |
-| **`0x0000002`** | Routine execution time should be strictly greater than zero. |
-| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                        |
+| Code            | Status message                                               | Released in `dpsl` version |
+| --------------- | ------------------------------------------------------------ | -------------------------- |
+| `0x00E0001`     | Bluetooth routine failed to change adapter powered status.   | `1.4.0`                    |
+| `0x00E0002`     | Bluetooth routine failed to switch adapter discovery mode.   | `1.4.0`                    |
+| `0x00E0003`     | Bluetooth routine failed to get main adapter.                | `1.4.0`                    |
+| **`0x0000002`** | Routine execution time should be strictly greater than zero. | `1.4.0`                    |
+| **`0x0000002`** | Unexpected Bluetooth diagnostic flow.                        | `1.4.0`                    |
 
 #### Fan
-| Code            | Status message                                       |
-| --------------- | ---------------------------------------------------- |
-| `0x0170001`     | One or more fans cannot be set to certain speed.     |
-| **`0x0000002`** | cros config fan count must be a valid number         |
-| **`0x0000002`** | routine unsupported for device with no fan           |
-| **`0x0000002`** | Invalid routine stage                                |
-| **`0x0000002`** | Failed to get number of fans                         |
-| **`0x0000002`** | Failed to read fan speed                             |
-| **`0x0000002`** | Failed to set fan speed                              |
-| **`0x0000002`** | Failed to read thermal sensor version                |
-| **`0x0000002`** | Failed to read temperature for thermal sensor idx: X |
-| **`0x0000002`** | Error initializing udev                              |
+| Code            | Status message                                       | Released in `dpsl` version |
+| --------------- | ---------------------------------------------------- | -------------------------- |
+| `0x0170001`     | One or more fans cannot be set to certain speed.     | `1.4.0`                    |
+| **`0x0000002`** | cros config fan count must be a valid number         | `1.4.0`                    |
+| **`0x0000002`** | routine unsupported for device with no fan           | `1.4.0`                    |
+| **`0x0000002`** | Invalid routine stage                                | `1.4.0`                    |
+| **`0x0000002`** | Failed to get number of fans                         | `1.4.0`                    |
+| **`0x0000002`** | Failed to read fan speed                             | `1.4.0`                    |
+| **`0x0000002`** | Failed to set fan speed                              | `1.4.0`                    |
+| **`0x0000002`** | Failed to read thermal sensor version                | `1.4.0`                    |
+| **`0x0000002`** | Failed to read temperature for thermal sensor idx: X | `1.4.0`                    |
+| **`0x0000002`** | Error initializing udev                              | `1.4.0`                    |
 
 #### Fingerprint Alive
-| Code        | Status message                               |
-| ----------- | -------------------------------------------- |
-| `0x0190001` | Failed to get fingerprint info.              |
-| `0x0190002` | Fingerprint does not use a RW firmware copy. |
+| Code        | Status message                               | Released in `dpsl` version |
+| ----------- | -------------------------------------------- | -------------------------- |
+| `0x0190001` | Failed to get fingerprint info.              | `1.4.0`                    |
+| `0x0190002` | Fingerprint does not use a RW firmware copy. | `1.4.0`                    |
 
 #### Power Button
-| Code            | Status message                                           |
-| --------------- | -------------------------------------------------------- |
-| `0x0250001`     | Routine failed. No power button event observed.          |
-| **`0x0000002`** | Timeout is not in range [%u, %u]                         |
-| **`0x0000002`** | Routine error. Unable to listen for power button events. |
+| Code            | Status message                                           | Released in `dpsl` version |
+| --------------- | -------------------------------------------------------- | -------------------------- |
+| `0x0250001`     | Routine failed. No power button event observed.          | `1.4.0`                    |
+| **`0x0000002`** | Timeout is not in range [%u, %u]                         | `1.4.0`                    |
+| **`0x0000002`** | Routine error. Unable to listen for power button events. | `1.4.0`                    |
 
 #### CPU Cache
-| Code            | Status message                                       |
-| --------------- | ---------------------------------------------------- |
-| `0x0100001`     | One or more subtests failed.                         |
-| **`0x0000002`** | Memory info not found                                |
-| **`0x0000002`** | Not enough memory to run stressapptest               |
-| **`0x0000002`** | process control disconnected before routine finished |
+| Code            | Status message                                       | Released in `dpsl` version |
+| --------------- | ---------------------------------------------------- | -------------------------- |
+| `0x0100001`     | One or more subtests failed.                         | `1.4.0`                    |
+| **`0x0000002`** | Memory info not found                                | `1.4.0`                    |
+| **`0x0000002`** | Not enough memory to run stressapptest               | `1.4.0`                    |
+| **`0x0000002`** | process control disconnected before routine finished | `1.4.0`                    |
 
 #### CPU Stress
-| Code            | Status message                                       |
-| --------------- | ---------------------------------------------------- |
-| `0x0110001`     | One or more subtests failed.                         |
-| **`0x0000002`** | Memory info not found                                |
-| **`0x0000002`** | Not enough memory to run stressapptest               |
-| **`0x0000002`** | process control disconnected before routine finished |
+| Code            | Status message                                       | Released in `dpsl` version |
+| --------------- | ---------------------------------------------------- | -------------------------- |
+| `0x0110001`     | One or more subtests failed.                         | `1.4.0`                    |
+| **`0x0000002`** | Memory info not found                                | `1.4.0`                    |
+| **`0x0000002`** | Not enough memory to run stressapptest               | `1.4.0`                    |
+| **`0x0000002`** | process control disconnected before routine finished | `1.4.0`                    |
 
 #### Memory
-| Code            | Status message                                                       |
-| --------------- | -------------------------------------------------------------------- |
-| `0x0220001`     | One or more subtests failed.                                         |
-| **`0x0000002`** | Memory info not found                                                |
-| **`0x0000002`** | Less than 4 KiB memory available, not enough to run memtester.       |
-| **`0x0000002`** | Error in calling memtester                                           |
-| **`0x0000002`** | Error allocating or locking memory, or invoking the memtester binary |
-| **`0x0000002`** | Error parsing memtester output                                       |
+| Code            | Status message                                                       | Released in `dpsl` version |
+| --------------- | -------------------------------------------------------------------- | -------------------------- |
+| `0x0220001`     | One or more subtests failed.                                         | `1.4.0`                    |
+| **`0x0000002`** | Memory info not found                                                | `1.4.0`                    |
+| **`0x0000002`** | Less than 4 KiB memory available, not enough to run memtester.       | `1.4.0`                    |
+| **`0x0000002`** | Error in calling memtester                                           | `1.4.0`                    |
+| **`0x0000002`** | Error allocating or locking memory, or invoking the memtester binary | `1.4.0`                    |
+| **`0x0000002`** | Error parsing memtester output                                       | `1.4.0`                    |
 
 #### Floating Point Accuracy
 No codes are defined for Floating Point Accuracy.
 
 #### DNS Resolution
-| Code            | Status message                      |
-| --------------- | ----------------------------------- |
-| `0x0140001`     | Failed to resolve host.             |
-| **`0x0000002`** | DNS resolution routine did not run. |
+| Code            | Status message                      | Released in `dpsl` version |
+| --------------- | ----------------------------------- | -------------------------- |
+| `0x0140001`     | Failed to resolve host.             | `1.4.0`                    |
+| **`0x0000002`** | DNS resolution routine did not run. | `1.4.0`                    |
 
 #### DNS Resolver Present
-| Code            | Status message                                              |
-| --------------- | ----------------------------------------------------------- |
-| `0x0150001`     | IP config has no list of name servers available.            |
-| `0x0150002`     | IP config has a list of at least one malformed name server. |
-| **`0x0000002`** | DNS resolver present routine did not run.                   |
+| Code            | Status message                                              | Released in `dpsl` version |
+| --------------- | ----------------------------------------------------------- | -------------------------- |
+| `0x0150001`     | IP config has no list of name servers available.            | `1.4.0`                    |
+| `0x0150002`     | IP config has a list of at least one malformed name server. | `1.4.0`                    |
+| **`0x0000002`** | DNS resolver present routine did not run.                   | `1.4.0`                    |
 
 #### Gateway can be Pinged
-| Code            | Status message                                                             |
-| --------------- | -------------------------------------------------------------------------- |
-| `0x01B0001`     | All gateways are unreachable, hence cannot be pinged.                      |
-| `0x01B0002`     | The default network cannot be pinged.                                      |
-| `0x01B0003`     | The default network has a latency above the threshold.                     |
-| `0x01B0004`     | One or more of the non-default networks has failed pings.                  |
-| `0x01B0005`     | One or more of the non-default networks has a latency above the threshold. |
-| **`0x0000002`** | Gateway can be pinged routine did not run.                                 |
+| Code            | Status message                                                             | Released in `dpsl` version |
+| --------------- | -------------------------------------------------------------------------- | -------------------------- |
+| `0x01B0001`     | All gateways are unreachable, hence cannot be pinged.                      | `1.4.0`                    |
+| `0x01B0002`     | The default network cannot be pinged.                                      | `1.4.0`                    |
+| `0x01B0003`     | The default network has a latency above the threshold.                     | `1.4.0`                    |
+| `0x01B0004`     | One or more of the non-default networks has failed pings.                  | `1.4.0`                    |
+| `0x01B0005`     | One or more of the non-default networks has a latency above the threshold. | `1.4.0`                    |
+| **`0x0000002`** | Gateway can be pinged routine did not run.                                 | `1.4.0`                    |
 
 #### LAN Connectivity
-| Code            | Status message                        |
-| --------------- | ------------------------------------- |
-| `0x0200001`     | No LAN Connectivity detected.         |
-| **`0x0000002`** | LAN Connectivity routine did not run. |
+| Code            | Status message                        | Released in `dpsl` version |
+| --------------- | ------------------------------------- | -------------------------- |
+| `0x0200001`     | No LAN Connectivity detected.         | `1.4.0`                    |
+| **`0x0000002`** | LAN Connectivity routine did not run. | `1.4.0`                    |
 
 #### Signal Strength
-| Code            | Status message                       |
-| --------------- | ------------------------------------ |
-| `0x0290001`     | Weak signal detected.                |
-| **`0x0000002`** | Signal strength routine did not run. |
+| Code            | Status message                       | Released in `dpsl` version |
+| --------------- | ------------------------------------ | -------------------------- |
+| `0x0290001`     | Weak signal detected.                | `1.4.0`                    |
+| **`0x0000002`** | Signal strength routine did not run. | `1.4.0`                    |
 
 #### Sensitive Sensor
-| Code            | Status message                                               |
-| --------------- | ------------------------------------------------------------ |
-| `0x0280001`     | Sensitive sensor routine failed to pass all sensors.         |
-| `0x0280002`     | Sensitive sensor routine failed to pass configuration check. |
-| **`0x0000002`** | Sensitive sensor routine failed unexpectedly.                |
+| Code            | Status message                                               | Released in `dpsl` version |
+| --------------- | ------------------------------------------------------------ | -------------------------- |
+| `0x0280001`     | Sensitive sensor routine failed to pass all sensors.         | `1.4.0`                    |
+| `0x0280002`     | Sensitive sensor routine failed to pass configuration check. | `1.4.0`                    |
+| **`0x0000002`** | Sensitive sensor routine failed unexpectedly.                | `1.4.0`                    |
 
 #### Disk Read
-| Code            | Status message                                                                          |
-| --------------- | --------------------------------------------------------------------------------------- |
-| **`0x0000002`** | Disk read duration should not be zero after rounding towards zero to the nearest second |
-| **`0x0000002`** | Test file size should not be zero                                                       |
-| **`0x0000002`** | Unexpected disk read type                                                               |
-| **`0x0000002`** | Unexpected flow in disk read routine                                                    |
-| **`0x0000002`** | Failed to clean up storage                                                              |
-| **`0x0000002`** | Failed to retrieve free storage space                                                   |
-| **`0x0000002`** | Failed to reserve sufficient storage space                                              |
-| **`0x0000002`** | Failed to complete fio prepare job                                                      |
-| **`0x0000002`** | Failed to complete fio read job                                                         |
-| **`0x0000002`** | Failed to access fio stderr                                                             |
-| **`0x0000002`** | Failed to read fio stderr                                                               |
+| Code            | Status message                                                                          | Released in `dpsl` version |
+| --------------- | --------------------------------------------------------------------------------------- | -------------------------- |
+| **`0x0000002`** | Disk read duration should not be zero after rounding towards zero to the nearest second | `1.4.0`                    |
+| **`0x0000002`** | Test file size should not be zero                                                       | `1.4.0`                    |
+| **`0x0000002`** | Unexpected disk read type                                                               | `1.4.0`                    |
+| **`0x0000002`** | Unexpected flow in disk read routine                                                    | `1.4.0`                    |
+| **`0x0000002`** | Failed to clean up storage                                                              | `1.4.0`                    |
+| **`0x0000002`** | Failed to retrieve free storage space                                                   | `1.4.0`                    |
+| **`0x0000002`** | Failed to reserve sufficient storage space                                              | `1.4.0`                    |
+| **`0x0000002`** | Failed to complete fio prepare job                                                      | `1.4.0`                    |
+| **`0x0000002`** | Failed to complete fio read job                                                         | `1.4.0`                    |
+| **`0x0000002`** | Failed to access fio stderr                                                             | `1.4.0`                    |
+| **`0x0000002`** | Failed to read fio stderr                                                               | `1.4.0`                    |
 
 #### Emmc Lifetime
-| Code            | Status message              |
-| --------------- | --------------------------- |
-| `0x0160001`     | Pre-EOL info is not normal. |
-| **`0x0000002`** | Debugd returns error.       |
-| **`0x0000002`** | Failed to parse mmc output. |
+| Code            | Status message              | Released in `dpsl` version |
+| --------------- | --------------------------- | -------------------------- |
+| `0x0160001`     | Pre-EOL info is not normal. | `1.4.0`                    |
+| **`0x0000002`** | Debugd returns error.       | `1.4.0`                    |
+| **`0x0000002`** | Failed to parse mmc output. | `1.4.0`                    |
 
 #### NVMe Self Test
-| Code            | Status message                                                                                                                                                      |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `0x0230001`     | SelfTest status: self-test failed to start.                                                                                                                         |
-| `0x0230002`     | SelfTest status: Operation was aborted by Device Self-test command.                                                                                                 |
-| `0x0230003`     | SelfTest status: Operation was aborted by a Controller Level Reset.                                                                                                 |
-| `0x0230004`     | SelfTest status: Operation was aborted due to a removal of a namespace from the namespace inventory.                                                                |
-| `0x0230005`     | SelfTest Status: Operation was aborted due to the processing of a Format NVM command.                                                                               |
-| `0x0230006`     | SelfTest status: A fatal error or unknown test error occurred while the controller was executing the device self-test operation and the operation did not complete. |
-| `0x0230007`     | SelfTest status: Operation completed with a segment that failed and the segment that failed is not known.                                                           |
-| `0x0230008`     | SelfTest status: Operation completed with one or more failed segments and the first segment that failed is indicated in the Segment Number field.                   |
-| `0x0230009`     | SelfTest status: Operation was aborted for an unknown reason.                                                                                                       |
-| **`0x0000002`** | SelfTest status: ERROR, self-test abortion failed.                                                                                                                  |
-| **`0x0000002`** | SelfTest status: ERROR, cannot get percent info.                                                                                                                    |
-| **`0x0000002`** | SelfTest status: Unknown complete status.                                                                                                                           |
+| Code            | Status message                                                                                                                                                      | Released in `dpsl` version |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `0x0230001`     | SelfTest status: self-test failed to start.                                                                                                                         | `1.4.0`                    |
+| `0x0230002`     | SelfTest status: Operation was aborted by Device Self-test command.                                                                                                 | `1.4.0`                    |
+| `0x0230003`     | SelfTest status: Operation was aborted by a Controller Level Reset.                                                                                                 | `1.4.0`                    |
+| `0x0230004`     | SelfTest status: Operation was aborted due to a removal of a namespace from the namespace inventory.                                                                | `1.4.0`                    |
+| `0x0230005`     | SelfTest Status: Operation was aborted due to the processing of a Format NVM command.                                                                               | `1.4.0`                    |
+| `0x0230006`     | SelfTest status: A fatal error or unknown test error occurred while the controller was executing the device self-test operation and the operation did not complete. | `1.4.0`                    |
+| `0x0230007`     | SelfTest status: Operation completed with a segment that failed and the segment that failed is not known.                                                           | `1.4.0`                    |
+| `0x0230008`     | SelfTest status: Operation completed with one or more failed segments and the first segment that failed is indicated in the Segment Number field.                   | `1.4.0`                    |
+| `0x0230009`     | SelfTest status: Operation was aborted for an unknown reason.                                                                                                       | `1.4.0`                    |
+| **`0x0000002`** | SelfTest status: ERROR, self-test abortion failed.                                                                                                                  | `1.4.0`                    |
+| **`0x0000002`** | SelfTest status: ERROR, cannot get percent info.                                                                                                                    | `1.4.0`                    |
+| **`0x0000002`** | SelfTest status: Unknown complete status.                                                                                                                           | `1.4.0`                    |
 
 #### Prime Search
 No codes are defined for Prime Search.
 
 #### Smartctl Check
-| Code            | Status message                                                                                              |
-| --------------- | ----------------------------------------------------------------------------------------------------------- |
-| `0x02A0001`     | smartctl-check status: FAILED, one or more checks have failed.                                              |
-| **`0x0000002`** | smartctl-check status: ERROR, threshold in percentage should be non-empty and between 0 and 255, inclusive. |
-| **`0x0000002`** | smartctl-check status: FAILED, unable to parse smartctl output.                                             |
-| **`0x0000002`** | smartctl-check status: ERROR, debugd returns error.                                                         |
+| Code            | Status message                                                                                              | Released in `dpsl` version |
+| --------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `0x02A0001`     | smartctl-check status: FAILED, one or more checks have failed.                                              | `1.4.0`                    |
+| **`0x0000002`** | smartctl-check status: ERROR, threshold in percentage should be non-empty and between 0 and 255, inclusive. | `1.4.0`                    |
+| **`0x0000002`** | smartctl-check status: FAILED, unable to parse smartctl output.                                             | `1.4.0`                    |
+| **`0x0000002`** | smartctl-check status: ERROR, debugd returns error.                                                         | `1.4.0`                    |
 
 #### UFS Life Time
-| Code            | Status message                                                     |
-| --------------- | ------------------------------------------------------------------ |
-| `0x02B0001`     | Pre-EOL info is not normal.                                        |
-| **`0x0000002`** | Unable to determine a bsg node path                                |
-| **`0x0000002`** | Unable to deduce health descriptor path based on the bsg node path |
-| **`0x0000002`** | Error reading content from UFS health descriptor                   |
+| Code            | Status message                                                     | Released in `dpsl` version |
+| --------------- | ------------------------------------------------------------------ | -------------------------- |
+| `0x02B0001`     | Pre-EOL info is not normal.                                        | `1.4.0`                    |
+| **`0x0000002`** | Unable to determine a bsg node path                                | `1.4.0`                    |
+| **`0x0000002`** | Unable to deduce health descriptor path based on the bsg node path | `1.4.0`                    |
+| **`0x0000002`** | Error reading content from UFS health descriptor                   | `1.4.0`                    |
