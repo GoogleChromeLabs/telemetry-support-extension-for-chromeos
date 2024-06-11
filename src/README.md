@@ -600,6 +600,7 @@ The following status codes are shared by all routines.
 | `0x0070001`     | Battery design capacity not within given limits.   | `1.4.0`                    |
 | **`0x0000002`** | Invalid BatteryCapacityRoutineParameters.          | `1.4.0`                    |
 | **`0x0000002`** | Failed to get power supply properties from powerd. | `1.4.0`                    |
+| **`0x0000002`** | Unable to read battery design capacity.            | `1.4.1`                    |
 
 #### Battery Charge
 | Code            | Status message                                                    | Released in `dpsl` version |
