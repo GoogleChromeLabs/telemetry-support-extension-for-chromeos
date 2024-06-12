@@ -107,6 +107,7 @@ function getStatusCodeForBatteryCapacity(routineStatus) {
       return 0x0070001;
     case 'Invalid BatteryCapacityRoutineParameters.':
     case 'Failed to get power supply properties from powerd.':
+    case 'Unable to read battery design capacity.':
       return CODE_ROUTINE_EXCEPTION;
     default:
       return undefined;
