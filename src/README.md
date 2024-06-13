@@ -763,6 +763,20 @@ No codes are defined for Floating Point Accuracy.
 | **`0x0000002`** | Signal strength routine did not run. | `1.4.0`                    |
 
 #### Sensitive Sensor
+| Code            | Status message                                    | Released in `dpsl` version |
+| --------------- | ------------------------------------------------- | -------------------------- |
+| `0x0280001`     | Routine failed.                                   | `1.4.1`                    |
+| `0x0280002`     | Routine failed to complete existence check.       | `1.4.1`                    |
+| **`0x0000002`** | Unexpected flow in routine.                       | `1.4.1`                    |
+| **`0x0000002`** | Routine failed to initialize sensor devices.      | `1.4.1`                    |
+| **`0x0000002`** | Routine failed to set frequency.                  | `1.4.1`                    |
+| **`0x0000002`** | Routine failed to get required channels.          | `1.4.1`                    |
+| **`0x0000002`** | Routine failed to set channels enabled.           | `1.4.1`                    |
+| **`0x0000002`** | Observer error occurred while reading sample.     | `1.4.1`                    |
+| **`0x0000002`** | Mojo connection lost.                             | `1.4.1`                    |
+| **`0x0000002`** | Routine failed to read sample from sensor device. | `1.4.1`                    |
+
+(Legacy status codes used before M128)
 | Code            | Status message                                               | Released in `dpsl` version |
 | --------------- | ------------------------------------------------------------ | -------------------------- |
 | `0x0280001`     | Sensitive sensor routine failed to pass all sensors.         | `1.4.0`                    |
