@@ -625,10 +625,20 @@ function getStatusCodeForPrimeSearch(routineStatus) {
 function getStatusCodeForSensitiveSensor(routineStatus) {
   switch (routineStatus.status_message) {
     case 'Sensitive sensor routine failed to pass all sensors.':
+    case 'Routine failed.':
       return 0x0280001;
     case 'Sensitive sensor routine failed to pass configuration check.':
+    case 'Routine failed to complete existence check.':
       return 0x0280002;
     case 'Sensitive sensor routine failed unexpectedly.':
+    case 'Unexpected flow in routine.':
+    case 'Routine failed to initialize sensor devices.':
+    case 'Routine failed to set frequency.':
+    case 'Routine failed to get required channels.':
+    case 'Routine failed to set channels enabled.':
+    case 'Observer error occurred while reading sample.':
+    case 'Mojo connection lost.':
+    case 'Routine failed to read sample from sensor device.':
       return CODE_ROUTINE_EXCEPTION;
     default:
       return undefined;
