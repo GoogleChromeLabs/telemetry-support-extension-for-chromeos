@@ -505,9 +505,9 @@ Source:
 | runMemoryRoutine | () => Promise\<Routine\> | `os.diagnostics`            | 1.0.0                      |
 
 ### dpsl.diagnostics.disk.*
-| Function Name  | Definition               | Permission needed to access | Released in `dpsl` version |
-| -------------- | ------------------------ | --------------------------- | -------------------------- |
-| runReadRoutine | () => Promise\<Routine\> | `os.diagnostics`            | 1.3.1                      |
+| Function Name  | Definition                                            | Permission needed to access | Released in `dpsl` version |
+| -------------- | ----------------------------------------------------- | --------------------------- | -------------------------- |
+| runReadRoutine | (params: DiskReadRoutineParams) => Promise\<Routine\> | `os.diagnostics`            | 1.3.1                      |
 
 ### dpsl.diagnostics.emmc.*
 | Function Name          | Definition               | Permission needed to access | Released in `dpsl` version |
