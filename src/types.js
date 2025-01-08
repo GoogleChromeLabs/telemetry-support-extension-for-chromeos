@@ -316,6 +316,18 @@ dpsl.UsbBusInfo;
  */
 dpsl.DisplayInfo;
 
+/**
+ * Response message containing Thermal Info
+ * @typedef {{
+ *   thermalSensors: Array<{
+ *     name: string,
+ *     temperatureCelsius: number,
+ *     source: string,
+ *   }>,
+ * }}
+ */
+dpsl.ThermalInfo;
+
 ///////////////////// dpsl.diagnostics.* type definitions //////////////////////
 
 /**

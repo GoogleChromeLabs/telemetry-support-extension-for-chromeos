@@ -240,6 +240,21 @@ class DPSLTelemetryRequester {
 
     return chrome.os.telemetry.getDisplayInfo();
   }
+
+  /**
+   * Requests Thermal information.
+   * @return { !Promise<!dpsl.ThermalInfo> }
+   * @public
+   */
+  async getThermalInfo() {
+    const functionName = 'getThermalInfo';
+    if (!isSupported(functionName)) {
+      throw new MethodNotFoundError(API_NAME, functionName,
+          /* chromeVersion */ 127);
+    }
+
+    return chrome.os.telemetry.getThermalInfo();
+  }
 }
 
 module.exports = {
