@@ -454,6 +454,13 @@ Source:
 | embeddedDisplay  | EmbeddedDisplayInfo          | Information about embedded display  |
 | externalDisplays | Array\<ExternalDisplayInfo\> | Information about external displays |
 
+### DiskReadRoutineParams
+| Property Name  | Type   | Description                                                                               |
+| -------------- | ------ | ----------------------------------------------------------------------------------------- |
+| type           | string | Type of disk read routine that will be started. Selects between a "linear" or a "random". |
+| length_seconds | number | Length of time to run the routine for.                                                    |
+| file_size_mb   | number | Test file size, in mega bytes, to test with DiskRead routine. Maximum file size is 10 GB. |
+
 ## Functions
 ### dpsl.telemetry.*
 | Function Name                   | Definition                                | Permission needed to access                                          | Released in `dpsl` version |
@@ -505,9 +512,9 @@ Source:
 | runMemoryRoutine | () => Promise\<Routine\> | `os.diagnostics`            | 1.0.0                      |
 
 ### dpsl.diagnostics.disk.*
-| Function Name  | Definition               | Permission needed to access | Released in `dpsl` version |
-| -------------- | ------------------------ | --------------------------- | -------------------------- |
-| runReadRoutine | () => Promise\<Routine\> | `os.diagnostics`            | 1.3.1                      |
+| Function Name  | Definition                                            | Permission needed to access | Released in `dpsl` version |
+| -------------- | ----------------------------------------------------- | --------------------------- | -------------------------- |
+| runReadRoutine | (params: DiskReadRoutineParams) => Promise\<Routine\> | `os.diagnostics`            | 1.3.1                      |
 
 ### dpsl.diagnostics.emmc.*
 | Function Name          | Definition               | Permission needed to access | Released in `dpsl` version |
