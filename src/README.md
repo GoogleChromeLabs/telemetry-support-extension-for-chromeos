@@ -459,7 +459,7 @@ Source:
 | -------------- | ------ | ----------------------------------------------------------------------------------------- |
 | type           | string | Type of disk read routine that will be started. Selects between a "linear" or a "random". |
 | length_seconds | number | Length of time to run the routine for.                                                    |
-| file_size_mb   | number | test file size, in mega bytes, to test with DiskRead routine. Maximum file size is 10 GB. |
+| file_size_mb   | number | Test file size, in mega bytes, to test with DiskRead routine. Maximum file size is 10 GB. |
 
 ## Functions
 ### dpsl.telemetry.*
