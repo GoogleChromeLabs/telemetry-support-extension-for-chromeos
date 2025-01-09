@@ -109,7 +109,7 @@ class Routine {
 #### Important Notes regarding routine's id
 - The code (chrome browser extension) that uses the library needs to remember the routine's id so that it can perform operations on it (i.e. Routine.getStatus()) after the service worker is restarted.
 
-- Chrome OS doesn't persist routines across reboots. This means that depending code must not rely on routines created in previous sessions.
+- ChromeOS doesn't persist routines across reboots. This means that depending code must not rely on routines created in previous sessions.
 
 - Routine's id usually starts with 0.
 
