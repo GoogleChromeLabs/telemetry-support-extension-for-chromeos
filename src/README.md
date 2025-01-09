@@ -461,6 +461,18 @@ Source:
 | length_seconds | number | Length of time to run the routine for.                                                    |
 | file_size_mb   | number | Test file size, in mega bytes, to test with DiskRead routine. Maximum file size is 10 GB. |
 
+### ThermalSensorInfo
+| Property Name      | Type   | Description                                                             |
+| ------------------ | ------ | ----------------------------------------------------------------------- |
+| name               | string | Name of the thermal sensor.                                             |
+| temperatureCelsius | number | Temperature detected by the thermal sensor in celsius.                  |
+| source             | string | Where the thermal sensor is detected from. ("ec", "sysFs" or "unknown") |
+
+### ThermalInfo
+| Property Name  | Type                       | Description                                                            |
+| -------------- | -------------------------- | ---------------------------------------------------------------------- |
+| thermalSensors | Array\<ThermalSensorInfo\> | An array containing all the information retrieved for thermal sensors. |
+
 ## Functions
 ### dpsl.telemetry.*
 | Function Name                   | Definition                                | Permission needed to access                                          | Released in `dpsl` version |
@@ -479,6 +491,7 @@ Source:
 | getMarketingInfo                | () => Promise\<MarketingInfo\>            | `os.telemetry`                                                       | 1.3.4                      |
 | getUsbBusInfo                   | () => Promise\<UsbDevicesInfo\>           | `os.telemetry`, `os.attached_device_info`                            | 1.3.5                      |
 | getDisplayInfo                  | () => Promise\<DisplayInfo\>              | `os.telemetry`                                                       | 1.3.6                      |
+| getThermalInfo                  | () => Promise\<ThermalInfo\>              | `os.telemetry`                                                       | 1.4.1                      |
 
 ### dpsl.diagnostics.*
 | Function Name        | Definition                      | Permission needed to access | Released in `dpsl` version |

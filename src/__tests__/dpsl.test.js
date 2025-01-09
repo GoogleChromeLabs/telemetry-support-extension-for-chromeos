@@ -476,6 +476,85 @@ describe('dpsl.telemetry tests', () => {
               done();
             });
       });
+
+  test('dpsl.telemetry.getThermalInfo() returns correct data',
+      (done) => {
+        // Mock the global chrome object.
+        const expectedThermalInfo = {
+          'thermalSensors': [
+            {
+              'name': 'TSR0',
+              'source': 'sysFs',
+              'temperatureCelsius': 39.8,
+            },
+            {
+              'name': 'x86_pkg_temp',
+              'source': 'sysFs',
+              'temperatureCelsius': 51,
+            },
+            {
+              'name': 'TSR3',
+              'source': 'sysFs',
+              'temperatureCelsius': 35.8,
+            },
+            {
+              'name': 'TSR1',
+              'source': 'sysFs',
+              'temperatureCelsius': 36.8,
+            },
+            {
+              'name': 'INT3400 Thermal',
+              'source': 'sysFs',
+              'temperatureCelsius': 20,
+            },
+            {
+              'name': 'TCPU',
+              'source': 'sysFs',
+              'temperatureCelsius': 52,
+            },
+            {
+              'name': 'TSR2',
+              'source': 'sysFs',
+              'temperatureCelsius': 39.8,
+            },
+            {
+              'name': 'Charger',
+              'source': 'ec',
+              'temperatureCelsius': 39.85000000000002,
+            },
+            {
+              'name': 'PP3300 Regulator',
+              'source': 'ec',
+              'temperatureCelsius': 36.85000000000002,
+            },
+            {
+              'name': 'DDR and SOC',
+              'source': 'ec',
+              'temperatureCelsius': 39.85000000000002,
+            },
+            {
+              'name': 'Fan',
+              'source': 'ec',
+              'temperatureCelsius': 35.85000000000002,
+            },
+          ],
+        };
+        const chrome = {
+          os: {
+            telemetry: {
+              getThermalInfo: () => expectedThermalInfo,
+            },
+          },
+        };
+        global.chrome = chrome;
+
+        dpsl.telemetry.getThermalInfo()
+            .then((thermalInfo) => {
+              expect(thermalInfo)
+                  .toEqual(expectedThermalInfo);
+              done();
+            });
+      });
 });
 
 
