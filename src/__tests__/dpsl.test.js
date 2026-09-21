@@ -800,6 +800,46 @@ describe('dpsl.diagnostics tests', () => {
     });
   });
 
+  test('Routine.getStatus() returns correct data when audio driver routine ' +
+    'returns cras error status message',
+  (done) => {
+    // Mock the global chrome object.
+    const expectedRunRoutineResponse = {
+      id: 123456,
+      getStatusCode: statusCodeUtils.getStatusCodeForAudioDriver,
+    };
+    const expectedRoutineStatusResponseFromChrome = {
+      progress_percent: 100,
+      status: 'error',
+      status_message: 'Failed to get detected internal card from cras: 7',
+    };
+
+    const chrome = {
+      os: {
+        diagnostics: {
+          runAudioDriverRoutine:
+              () => Promise.resolve(expectedRunRoutineResponse),
+          getRoutineUpdate:
+              () => Promise.resolve(expectedRoutineStatusResponseFromChrome),
+        },
+      },
+    };
+    global.chrome = chrome;
+
+    dpsl.diagnostics.audio.runAudioDriverRoutine().then((routine) => {
+      expect(routine).toEqual(expectedRunRoutineResponse);
+      routine.getStatus().then((value) => {
+        expect(value).toStrictEqual(
+            Object.assign(
+                {},
+                expectedRoutineStatusResponseFromChrome,
+                {status_code: 0x0000002},
+            ));
+        done();
+      });
+    });
+  });
+
   const testCases = [
     {
       'dpslRoutineFunction': dpsl.diagnostics.power.runAcPowerRoutine,

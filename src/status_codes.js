@@ -85,11 +85,11 @@ function getStatusCodeForAudioDriver(routineStatus) {
   }
   // Exception handlers.
   if (/^Failed to get detected internal card from cras: \d+$/.test(
-      routineStatus.statusMessage)) {
+      routineStatus.status_message)) {
     return CODE_ROUTINE_EXCEPTION;
   }
   if (/^Failed retrieving node info from cras: \d+$/.test(
-      routineStatus.statusMessage)) {
+      routineStatus.status_message)) {
     return CODE_ROUTINE_EXCEPTION;
   }
   return undefined;
